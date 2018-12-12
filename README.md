@@ -14,9 +14,7 @@ CodeManiacs is an online judge for IIT Mandi. Currently people working on it are
 
 Install the Node Package Manager 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get install nodejs npm
-$ sudo apt-get install npm
+$ sudo snap install node --classic --channel=10
 $ npm install nodemon -g
 ```
 
