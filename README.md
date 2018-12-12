@@ -17,6 +17,7 @@ Install the Node Package Manager
 $ sudo apt-get update
 $ sudo apt-get install nodejs npm
 $ sudo apt-get install npm
+$ npm install nodemon -g
 ```
 
 Fork this repo and clone it
@@ -26,11 +27,7 @@ $ git clone https://github.com/<Your User Name>/CodeManiacs.git
 
 Open the folder CodeManiacs and install the dependencies
 ```bash
-$ npm install request --save
-$ npm install express --save
-$ npm install ejs --save
-$ npm install body-parser --save
-$ npm install nodemon -g
+$ npm install
 ```
 
 Run the application
