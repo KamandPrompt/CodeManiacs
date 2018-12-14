@@ -10,6 +10,7 @@
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "*",
+    "firebase": "^5.7.0",
     "request": "^2.88.0"
   },
   "repository": {
