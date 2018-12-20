@@ -3,10 +3,6 @@ var router = express.Router();
 var request = require('request');
 var userService = require('../authenticate');
 
-router.get('/', (req, res, next) => {
-    res.send('Welcome CodeManiacs');
-});
-
 router.post('/signup', function(req, res){
     var email = req.headers['email'];
     var password = req.headers['password'];
