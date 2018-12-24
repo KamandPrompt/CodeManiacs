@@ -46,13 +46,19 @@ const submit = () => {
 	ques.Tags = Tags.value ;
 	ques.Editorial = Editorial.value ;
 
+	//get reference of questions
+	const dbRef = firebase.database().ref('questions');
 
-    //getting reference of the database
-    const databaseRef = firebase.database().ref('questions') ;
+	dbRef.child('Total').once('value').then(snap => {
 
-	//send data to database
-	const qID = databaseRef.push(ques);
-	
-	window.alert("Question Submitted as "+ qID.key );
+		// get total num of problems and increment by one
+		const ProbNum = parseInt(snap.val() ) + 1;
+		dbRef.child('Total').set(ProbNum);
+
+		dbRef.child(ProbNum).set(ques);
+
+		window.alert("Question Submitted as "+ ProbNum );
+		document.location.reload();
+	});
 	
 }
