@@ -3,6 +3,10 @@ var router = express.Router();
 var request = require('request');
 var userService = require('../authenticate');
 
+router.get('/rankings', function(req, res, next) {
+  res.render('rankings', {page:'rankings', menuId:'rankings'});
+});
+
 router.post('/signup', function(req, res){
     var email = req.headers['email'];
     var password = req.headers['password'];

@@ -5,7 +5,7 @@
     position: relative;
     width: 100%;
     top: 0;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .row {
@@ -196,4 +196,8 @@ h3
 	opacity: 0.9;
 	font-family: 'Sofia';
 	text-align: center;
+}
+.caption {
+  font-weight: bold;
+  font-size: 4rem;
 }
