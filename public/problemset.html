@@ -2,26 +2,66 @@
 <html>
 <head>
     
-    <title>Welcome CodeManiacs</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="app.js"></script>
+    <title>CodeManiacs ProblemSet</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="sheet.css">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 	<script src = "include_html.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+	<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <script
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+	<script id="problem" type="text/x-handlebars-template">
+		<tr>
+			<td> {{number}} </td>
+			<td><a href="/question?qID={{number}}"> {{name}} </a></td>
+			<td> {{tag}} </td>
+			<td> {{diff}} </td>
+		</tr>
+    </script>
+    <link rel="stylesheet" type="text/css" href="grid.css">
+	<script src="problemSet.js" ></script>
+	
 </head>
-<body>
-	<div w3-include-html="header.html"></div> 
-	<script>
-	include();
-	</script>
+<body class="grid">
+	<header>
+        <div w3-include-html="header.html"></div> 
+        <script>
+        include();
+        </script>
+    </header>
 	
-		<br><br>
-		PROBLEM SET HERE
-		<br><br>
-	
-	<div w3-include-html="footer.html"></div> 
+	<div class="grid-content content">
+        <div class="grid-content box" >
+            <h1 class="title center"> ProblemSet</h1>
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Tags</th>
+                        <th>Difficulty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <button class="button is-link">More</button>
+        </div>
+    </div>
+        
+	<footer>
+        <div w3-include-html="footer.html"></div> 
 	<script>
 		include();
 	</script>
+    </footer>
 </body>
 </html>

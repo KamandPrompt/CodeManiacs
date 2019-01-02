@@ -7,6 +7,16 @@ router.get('/rankings', function(req, res, next) {
   res.render('rankings', {page:'rankings', menuId:'rankings'});
 });
 
+router.get('/problemset', (req,res,next) => {
+    res.render('../public/problemset.html');
+})
+router.get('/question', (req,res) => {
+    res.render('question.html');
+})
+router.get('/submit', (req,res)=> {
+    res.render('Submit.html');
+})
+
 router.post('/signup', function(req, res){
     var email = req.headers['email'];
     var password = req.headers['password'];
