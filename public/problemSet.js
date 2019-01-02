@@ -45,7 +45,7 @@ function addMultiple(limit) {
         addRow(i);
     }
     start = i;
-    if(i>=limit){
+    if(i>limit){
         $('.button').hide();
     }
 }
