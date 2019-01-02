@@ -12,30 +12,7 @@
 	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
 	<link rel="stylesheet" 
 	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
-    <style>
-.grid {
-    display: grid;
-    grid-gap: 10px;
-    justify-content: center;
-    grid-template-columns: [main-start] 1fr [content-start] minmax(300px, 1000px) [content-end] 1fr [main-end];
-    grid-template-rows: 100px auto 100px;
-}
-.grid-content {
-    grid-column: content;
-}
-header,footer {
-    grid-column: main;
-}
-footer {
-    align-self: end;
-}
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-	</style>
-	<script
+    <script
 	src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
@@ -47,7 +24,8 @@ footer {
 			<td> {{tag}} </td>
 			<td> {{diff}} </td>
 		</tr>
-	</script>
+    </script>
+    <link rel="stylesheet" type="text/css" href="grid.css">
 	<script src="problemSet.js" ></script>
 	
 </head>
