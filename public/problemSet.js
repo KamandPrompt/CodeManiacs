@@ -26,7 +26,6 @@ async function addRow(Qnum) {
     const diff = databaseRef.child(Qnum).child('Difficulty').once('value');
     let row = await Promise.all([name,tag,diff]);
     row = row.map(item => item.val());
-    // console.log(row);
     const data = {
         number:Qnum,
         name:row[0],
