@@ -12,6 +12,7 @@ header,footer {
     grid-column: main;
 }
 footer {
+    margin-top: 15px;
     align-self: end;
 }
 .center {

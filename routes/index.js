@@ -8,7 +8,7 @@ router.get('/rankings', function(req, res, next) {
 });
 
 router.get('/problemset', (req,res,next) => {
-    res.render('../public/problemset.html');
+    res.render('problemset');
 })
 router.get('/question', (req,res) => {
     res.render('question.html');

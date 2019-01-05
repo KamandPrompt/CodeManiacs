@@ -4,23 +4,13 @@
     
     <title>Welcome CodeManiacs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="sheet.css">
+    <link rel="stylesheet" type="text/css" href="css/sheet.css">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
-	<script src = "include_html.js"></script>
 </head>
 <body>
-	<div w3-include-html="header.html"></div> 
-	<script>
-	include();
-	</script>
-	<nav class="right">
-		<hr style="background-color: darkgrey; position: relative; z-index: -2; height: 40px;width: 1500px; box-shadow: 7px 7px 20px; border: 2px;border-color: black;border-radius: 12px">
-		<div class="flexbox" style="background-color: darkgrey; top:-50px; position: relative; border-color: black;border-radius: 12px">
-			<div style="margin: 5px; color: white; font-family: sans-serif;"><!here anchor will come><b>| Practice |</b></div>
-			<div style="margin: 5px; color: white; font-family: sans-serif;"><!here anchor will come><b>Compete |</b></div>
-			<div style="margin: 5px; color: white; font-family: sans-serif;"><!here anchor will come><b>Discuss |</b></div>
-		</div>
-	</nav>
+    <header>
+        <% include partials/header %>
+    </header>
 	<div class="row">
 		<div class="slideshow-container">
 			<div class="mySlides fade">
@@ -139,9 +129,8 @@
 		</div>
 	</div>
 		
-	<div w3-include-html="footer.html"></div> 
-	<script>
-		include();
-	</script>
+	<footer>
+        <% include partials/footer %>
+    </footer>
 </body>
 </html>
