@@ -16,6 +16,9 @@ router.get('/question', (req,res) => {
 router.get('/submit', (req,res)=> {
     res.render('Submit.html');
 })
+router.get ("/submitprob", (req, res) => {
+    res.render ("submitprob");
+})
 
 router.post('/signup', function(req, res){
     var email = req.headers['email'];
