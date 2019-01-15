@@ -8,11 +8,14 @@
     /* z-index: -1; */
 }
 
+.body {
+  font-size: 1rem;
+}
+
 .row {
-    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 0;
+    margin-top: 20px;
     margin-bottom: 0;
     max-width: 60.5rem;
 }
@@ -52,27 +55,30 @@
 .flexbox2
 {
 	display: flex;
-	float: all;
+  float: all;
 }
 * {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
+body {
+  font-family: Verdana, sans-serif; margin:0;
+}
 .mySlides {display: none}
 img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  max-width: 70%px;
   position: relative;
-  margin: auto;
+  top: 20px;
+  margin: 10% 0;
 }
 
 /* Next & previous buttons */
 .prev, .next {
   cursor: all;
   position: absolute;
-  top: 40%;
+  top: 5%;
   width: 100px;
-  height: 300px;
+  height: 100%;
   padding: 16px;
   margin-top: -22px;
   color: white;
@@ -160,8 +166,8 @@ img {vertical-align: middle;}
 .flexbox2
 {
 	display: flex;
-	margin-left: 300px;
-	margin-right: 300px;
+  width: 70%;
+  margin: 100px auto;
 }
 .flexbox2 .div
 {
@@ -170,12 +176,13 @@ img {vertical-align: middle;}
 	position: relative;
 	margin: 10px;
 	box-shadow: 0 0 5px;
-	border-radius: 10px;
+  border-radius: 10px;
+  font-size: 1.5rem;
 
 }
 .flexbox2 .div div
 {
-	opacity: 0.6;
+	opacity: 0.7;
 	min-height: 100px;
 	margin: 10px;
 	border: 1px solid #e7e5e6;
@@ -201,3 +208,116 @@ h3
   font-weight: bold;
   font-size: 4rem;
 }
+
+.navbar {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #547506), color-stop(1, #334b44));
+  background:-moz-linear-gradient(top, #547506 , #334b44 100%);
+  background:-webkit-linear-gradient(top, #547506 , #334b44 100%);
+  background:-o-linear-gradient(top, #547506 , #334b44 100%);
+  background:-ms-linear-gradient(top, #547506 , #334b44 100%);
+  background:linear-gradient(to bottom, #547506 , #334b44 100%);
+  text-align: right;
+  box-shadow: #18221f 0 0 20px;
+}
+
+  
+    .dropbtn {
+      background-color: #334b44;
+      color: white;
+      padding: 25px;
+      font-size: 1.2rem;
+      border: solid white;
+      border-width: 0 3px 0 0;
+      
+    }
+    
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      right:0;
+      font-size: 1.2rem;
+    }
+    
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      animation-name: fade;
+      animation-duration: 2s;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {display: block;}
+    
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+    
+    .homebtn {
+      -moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+      -webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+      box-shadow:inset 0px 1px 0px 0px #a4e271;
+      background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809));
+      background:-moz-linear-gradient(top, #89c403 5%, #77a809 100%);
+      background:-webkit-linear-gradient(top, #89c403 5%, #77a809 100%);
+      background:-o-linear-gradient(top, #89c403 5%, #77a809 100%);
+      background:-ms-linear-gradient(top, #89c403 5%, #77a809 100%);
+      background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809',GradientType=0);
+      background-color:#89c403;
+      -moz-border-radius:6px;
+      -webkit-border-radius:6px;
+      border-radius:6px;
+      border:1px solid #74b807;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 24px;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #528009;
+      margin:0 3px;
+      position: relative;
+      top: 7px;
+    }
+    .homebtn:hover {
+      background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
+      background:-moz-linear-gradient(top, #77a809 5%, #89c403 100%);
+      background:-webkit-linear-gradient(top, #77a809 5%, #89c403 100%);
+      background:-o-linear-gradient(top, #77a809 5%, #89c403 100%);
+      background:-ms-linear-gradient(top, #77a809 5%, #89c403 100%);
+      background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
+      background-color:#77a809;
+    }
+    .homebtn a {
+      color: #ffffff;
+    }
+    
+    .footer {
+      background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #547506), color-stop(1, #334b44));
+      background:-moz-linear-gradient(top, #547506 5%, #334b44 100%);
+      background:-webkit-linear-gradient(top, #547506 5%, #334b44 100%);
+      background:-o-linear-gradient(top, #547506 5%, #334b44 100%);
+      background:-ms-linear-gradient(top, #547506 5%, #334b44 100%);
+      background:linear-gradient(to bottom, #547506 5%, #334b44 100%);
+      color: #ffffff;
+      height: 100px;
+    }
