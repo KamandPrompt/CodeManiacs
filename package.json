@@ -11,7 +11,10 @@
     "ejs": "^2.6.1",
     "express": "*",
     "firebase": "^5.7.0",
-    "request": "^2.88.0"
+    "firebase-admin": "^6.5.0",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   },
   "repository": {
     "type": "git",

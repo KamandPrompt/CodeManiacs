@@ -3,6 +3,10 @@ var router = express.Router();
 var request = require('request');
 var userService = require('../authenticate');
 
+router.get ("/", function (req, res){
+    res.render("index");    
+});
+
 router.get('/rankings', function(req, res, next) {
   res.render('rankings', {page:'rankings', menuId:'rankings'});
 });
