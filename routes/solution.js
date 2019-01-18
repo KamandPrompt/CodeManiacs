@@ -17,31 +17,31 @@ const getParams = async (qID) => {
     const memory = limitRef.child('Memory').once('value');
 
     //wait for the promises to resolve
-    let arr = await Promise.all([input,output,time,memory]);
+    let data = await Promise.all([input,output,time,memory]);
 
     //extract the value from resolved promises
-    arr = arr.map(item => item.val());
+    data = data.map(item => item.val());
 
-    return arr;
+    return data;
 }
 
 const submitSolution = async (req,res,next) => {
     
     const qID = req.body.qID;
-    const arr = await getParams(qID);
+    const data = await getParams(qID);
     const langID = Number(req.body.language);
-    arr.push(req.body.code);
-    arr.push(langID);
+    data.push(req.body.code);
+    data.push(langID);
     
-    const result = await checkAnswer(arr);
+    const result = await checkAnswer(data);
     /*
     add code to attach this submissions data to user's account
     */
     res.send(result.status.description);
 }
 
-// takes arr as input [stdin,stdout,time,memory,srcCode,langID]
-const checkAnswer = async(arr) => {
+// takes array as input [stdin,stdout,time,memory,srcCode,langID]
+const checkAnswer = async(data) => {
     const options = {
         "method": "POST",
         "url": "http://sntc.iitmandi.ac.in:3000/submissions/",
@@ -65,13 +65,13 @@ const checkAnswer = async(arr) => {
         "json": true
     }
 
-    options.body['stdin'] = arr[0];
-    options.body['expected_output'] = arr[1];
-    options.body['cpu_time_limit'] = Number(arr[2]);
+    options.body['stdin'] = data[0];
+    options.body['expected_output'] = data[1];
+    options.body['cpu_time_limit'] = Number(data[2]);
     options.body['wall_time_limit'] = options.body['cpu_time_limit'] * 1.5;
-    options.body['memory_limit'] = arr[3];
-    options.body['source_code'] = arr[4];
-    options.body['language_id'] = arr[5];
+    options.body['memory_limit'] = data[3];
+    options.body['source_code'] = data[4];
+    options.body['language_id'] = data[5];
 
     const SNTCresponse = await request(options);
 

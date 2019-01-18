@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    
+
     <title>Submit | CodeManiacs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/sheet.css">
@@ -12,69 +13,70 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
 </head>
+
 <body>
     <header>
         <% include partials/header %>
     </header>
-    <div class = "submit-container">
-    <div id = "prob-no">Submit your solution for the problem </div>
-    <div id = "editor">#include &#60;bits/stdc++.h&#62;
-using namespace std;
+    <div class="submit-container">
+        <div id="prob-no">Submit your solution for the problem </div>
+        <div id="editor">#include &#60;bits/stdc++.h&#62;
+            using namespace std;
 
-int main(){
-    
-    return 0;
-}</div>
-    <div class = "submit">
-        <select id="language">
-            <option value="43">Text (plain text)</option>
-            <option value="42">Rust (1.20.0)</option>
-            <option value="41">Ruby (2.1.9)</option>
-            <option value="40">Ruby (2.2.6)</option>
-            <option value="39">Ruby (2.3.3)</option>
-            <option value="38">Ruby (2.4.0)</option>
-            <option value="37">Python (2.6.9)</option>
-            <option value="36">Python (2.7.9)</option>
-            <option value="35">Python (3.5.3)</option>
-            <option value="34">Python (3.6.0)</option>
-            <option value="33">Pascal (fpc 3.0.0)</option>
-            <option value="32">Octave (4.2.0)</option>
-            <option value="31">OCaml (4.05.0)</option>
-            <option value="30">JavaScript (nodejs 7.10.1)</option>
-            <option value="29">JavaScript (nodejs 8.5.0)</option>
-            <option value="28">Java (OpenJDK 7)</option>
-            <option value="27">Java (OpenJDK 8)</option>
-            <option value="26">Java (OpenJDK 9 with Eclipse OpenJ9)</option>
-            <option value="25">Insect (5.0.0)</option>
-            <option value="24">Haskell (ghc 8.0.2)</option>
-            <option value="23">Haskell (ghc 8.2.1)</option>
-            <option value="22">Go (1.9)</option>
-            <option value="21">Erlang (OTP 20.0)</option>
-            <option value="20">Elixir (1.5.1)</option>
-            <option value="19">Crystal (0.23.1)</option>
-            <option value="18">Clojure (1.8.0)</option>
-            <option value="17">C# (mono 5.2.0.224)</option>
-            <option value="16">C# (mono 5.4.0.167)</option>
-            <option value="15">C++ (g++ 4.8.5)</option>
-            <option value="14">C++ (g++ 4.9.4)</option>
-            <option value="13">C++ (g++ 5.4.0)</option>
-            <option value="12">C++ (g++ 6.3.0)</option>
-            <option value="11">C++ (g++ 6.4.0)</option>
-            <option value="10">C++ (g++ 7.2.0)</option>
-            <option value="9">C (gcc 4.8.5)</option>
-            <option value="8">C (gcc 4.9.4)</option>
-            <option value="7">C (gcc 5.4.0)</option>
-            <option value="6">C (gcc 6.3.0)</option>
-            <option value="5">C (gcc 6.4.0)</option>
-            <option value="4">C (gcc 7.2.0)</option>
-            <option value="3">Basic (fbc 1.05.0)</option>
-            <option value="2">Bash (4.0)</option>
-            <option value="1">Bash (4.4)</option>
-        </select>
-        <button type="button" onclick="submitSolution();" class="btn btn-primary btn-md">Submit</button>
+            int main(){
+
+            return 0;
+            }</div>
+        <div class="submit">
+            <select id="language">
+                <option value="43">Text (plain text)</option>
+                <option value="42">Rust (1.20.0)</option>
+                <option value="41">Ruby (2.1.9)</option>
+                <option value="40">Ruby (2.2.6)</option>
+                <option value="39">Ruby (2.3.3)</option>
+                <option value="38">Ruby (2.4.0)</option>
+                <option value="37">Python (2.6.9)</option>
+                <option value="36">Python (2.7.9)</option>
+                <option value="35">Python (3.5.3)</option>
+                <option value="34">Python (3.6.0)</option>
+                <option value="33">Pascal (fpc 3.0.0)</option>
+                <option value="32">Octave (4.2.0)</option>
+                <option value="31">OCaml (4.05.0)</option>
+                <option value="30">JavaScript (nodejs 7.10.1)</option>
+                <option value="29">JavaScript (nodejs 8.5.0)</option>
+                <option value="28">Java (OpenJDK 7)</option>
+                <option value="27">Java (OpenJDK 8)</option>
+                <option value="26">Java (OpenJDK 9 with Eclipse OpenJ9)</option>
+                <option value="25">Insect (5.0.0)</option>
+                <option value="24">Haskell (ghc 8.0.2)</option>
+                <option value="23">Haskell (ghc 8.2.1)</option>
+                <option value="22">Go (1.9)</option>
+                <option value="21">Erlang (OTP 20.0)</option>
+                <option value="20">Elixir (1.5.1)</option>
+                <option value="19">Crystal (0.23.1)</option>
+                <option value="18">Clojure (1.8.0)</option>
+                <option value="17">C# (mono 5.2.0.224)</option>
+                <option value="16">C# (mono 5.4.0.167)</option>
+                <option value="15">C++ (g++ 4.8.5)</option>
+                <option value="14">C++ (g++ 4.9.4)</option>
+                <option value="13">C++ (g++ 5.4.0)</option>
+                <option value="12">C++ (g++ 6.3.0)</option>
+                <option value="11">C++ (g++ 6.4.0)</option>
+                <option value="10">C++ (g++ 7.2.0)</option>
+                <option value="9">C (gcc 4.8.5)</option>
+                <option value="8">C (gcc 4.9.4)</option>
+                <option value="7">C (gcc 5.4.0)</option>
+                <option value="6">C (gcc 6.3.0)</option>
+                <option value="5">C (gcc 6.4.0)</option>
+                <option value="4">C (gcc 7.2.0)</option>
+                <option value="3">Basic (fbc 1.05.0)</option>
+                <option value="2">Bash (4.0)</option>
+                <option value="1">Bash (4.4)</option>
+            </select>
+            <button type="button" onclick="submitSolution();" class="btn btn-primary btn-md">Submit</button>
+        </div>
     </div>
-    </div>
-	<footer>
+    <footer>
         <% include partials/footer %>
     </footer>
 </body>
@@ -84,5 +86,6 @@ int main(){
     editor.setTheme("ace/theme/chrome");
     editor.session.setMode("ace/mode/python");
 </script>
-<script src = "js/submitprob.js"></script>
+<script src="js/submitprob.js"></script>
+
 </html>
