@@ -15,10 +15,10 @@ router.get('/problemset', (req,res,next) => {
     res.render('problemset');
 })
 router.get('/question', (req,res) => {
-    res.render('question.html');
+    res.render('question');
 })
 router.get('/submit', (req,res)=> {
-    res.render('Submit.html');
+    res.render('Submit');
 })
 router.get ("/submitprob", (req, res) => {
     res.render ("submitprob");

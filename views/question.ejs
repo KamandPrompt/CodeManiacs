@@ -6,29 +6,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
-        <!-- <link rel="stylesheet" type="text/css" href="debug.css"> -->
-        <!-- <link rel="stylesheet" type="text/css" href="minireset.css"> -->
+        <link rel="stylesheet" type="text/css" href="css/sheet.css">
         <link rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+        <link rel="stylesheet" type="text/css" href="css/grid.css">        
         <script src="js/retrieve.js" defer></script>
         <style>
-.grid {
-    display: grid;
-    grid-gap: 20px;
-    justify-content: center;
-    grid-template-columns: [main-start] 1fr [content-start] minmax(300px, 800px) [content-end] 1fr [main-end];
-}
-.grid-content {
-    grid-column: content;
-}
-.grid-xl {
-    grid-column: main;
-}
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .box pre{
     white-space: pre-wrap;
 }
@@ -37,9 +20,9 @@
     </head>
 
     <body class="grid">
-        <nav class="center grid-xl" style="height:100px">
-            <h1 style="width: 200px;">Header</h1>
-        </nav>
+        <header>
+            <% include partials/header %>
+        </header>
         <div class="grid-content content">
         <div class="grid-content box" >
             <h1 id="QuesName" class="title"></h1>
@@ -84,6 +67,8 @@
 <pre id="Editorial"></pre>
         </div>
         </div>
-        <footer style="height: 100px;"></footer>
+        <footer>
+            <% include partials/footer %>
+        </footer>
     </body>
 </html>

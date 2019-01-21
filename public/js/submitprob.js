@@ -36,13 +36,21 @@ ref.on ("value", function (snapshot) {
 });
 
 const submitSolution = () => {
+	//disable button
+	$("button").prop("disabled", true);
+
 	data.code = editor.getValue();
 	data.language = $('#language').val();
 	data.qID = question_id;
 	settings.data = JSON.stringify(data);
 
 	$.ajax(settings).done(function (response) {
-		console.log(response);
-		window.alert(response);
+		//enable button
+		$("button").removeAttr('disabled');
+
+		response.forEach( (item,index) => {
+			console.log(index,item.status.description);
+			window.alert(`test ${index} : ${item.status.description}`);
+		});
 	});
 }
