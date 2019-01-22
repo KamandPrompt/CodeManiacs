@@ -4,12 +4,16 @@
     
     <title>Welcome CodeManiacs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD:views/index.html
     <script src="app.js"></script>
     <link rel="stylesheet"  href="sheet.css">
+=======
+    <link rel="stylesheet" type="text/css" href="css/sheet.css">
+>>>>>>> upstream/master:views/index.ejs
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
-	<script src = "include_html.js"></script>
 </head>
 <body>
+<<<<<<< HEAD:views/index.html
 	<div w3-include-html="header.html"></div> 
 	<script>
 	include();
@@ -38,6 +42,11 @@
 		</div>	
 
 	</div>
+=======
+    <header>
+        <% include partials/header %>
+    </header>
+>>>>>>> upstream/master:views/index.ejs
 	<div class="row">
 		<div class="slideshow-container">
 			<div class="mySlides fade">
@@ -126,9 +135,8 @@
 		</div>
 	</div>
 		
-	<div w3-include-html="footer.html"></div> 
-	<script>
-		include();
-	</script>
+	<footer>
+        <% include partials/footer %>
+    </footer>
 </body>
 </html>
