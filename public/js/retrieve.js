@@ -11,13 +11,13 @@ firebase.initializeApp(config);
 
 //getting the question ID from url
 const url = window.location.href;
-const qID = url.substring(url.lastIndexOf('qID=')+4)
+const qID = url.substring(url.lastIndexOf('qID=') + 4)
 
 //getting reference of the corresponding Questions
-const databaseRef = firebase.database().ref('questions/'+qID);
+const databaseRef = firebase.database().ref('questions/' + qID);
 
 databaseRef.once('value').then(snapshot => {
-	
+
 	const ques = snapshot.val()
 	//Put code to display question here
 	// Getting the elements
@@ -53,3 +53,7 @@ databaseRef.once('value').then(snapshot => {
 	Tags.innerHTML += ques.Tags;
 	Editorial.innerHTML += ques.Editorial;
 });
+
+const submitSolution = () => {
+	window.open(`/solution/submit?${qID}`, '_blank');
+}
