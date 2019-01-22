@@ -199,3 +199,7 @@ h3
   font-weight: bold;
   font-size: 4rem;
 }
+/* margin at top of bulma tables */
+.table {
+  margin-top: 20px;
+}

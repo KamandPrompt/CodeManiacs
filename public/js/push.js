@@ -5,27 +5,27 @@ const settings = {
 	"url": "http://localhost:3000/question/submit",
 	"method": "POST",
 	"headers": {
-	  "Content-Type": "application/json",
-	  "cache-control": "no-cache"
+		"Content-Type": "application/json",
+		"cache-control": "no-cache"
 	},
 	"processData": false,
 	"data": "_fill"
 };
 
-$('#add').on('click', ()=>{
+$('#add').on('click', () => {
 	$('#testcases').append(testFile);
 });
-$('#rem').on('click', ()=>{
+$('#rem').on('click', () => {
 	$('#testcases').children().last().remove();
 })
 
-$('.submit').on('click', function() {
+$('.submit').on('click', function () {
 
 	//disable button
 	$('.submit').toggleClass('is-loading');
 
 	// creating question object
-    const ques = {};	
+	const ques = {};
 
 	ques.Name = $("#QuesName").val();
 	ques.Description = $("#Description").val();
@@ -47,10 +47,10 @@ $('.submit').on('click', function() {
 	testcases.Time = $("#TimeLimit").val();
 	testcases.Memory = $("#MemoryLimit").val();
 	testcases.files = [];
-	$('#testcases').children('div').each( function() {
+	$('#testcases').children('div').each(function () {
 		let testfile = {
-			stdin:'_fill',
-			stdout:'_fill'
+			stdin: '_fill',
+			stdout: '_fill'
 		};
 		testfile.stdin = $(this).find('.stdin').val();
 		testfile.stdout = $(this).find('.stdout').val();
@@ -58,7 +58,10 @@ $('.submit').on('click', function() {
 	});
 
 	//send data to server;
-	const data = {testcases, ques};
+	const data = {
+		testcases,
+		ques
+	};
 	settings.data = JSON.stringify(data);
 	$.ajax(settings).done(function (response) {
 		//enable button

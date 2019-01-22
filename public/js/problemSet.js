@@ -1,11 +1,11 @@
 // Initialize Firebase
 var config = {
-	apiKey: "AIzaSyAGzg2lKl-mAFh_H_OZGOMG10IivR5xvzw",
-	authDomain: "maniacdb-123.firebaseapp.com",
-	databaseURL: "https://maniacdb-123.firebaseio.com",
-	projectId: "maniacdb-123",
-	storageBucket: "maniacdb-123.appspot.com",
-	messagingSenderId: "710862225127"
+    apiKey: "AIzaSyAGzg2lKl-mAFh_H_OZGOMG10IivR5xvzw",
+    authDomain: "maniacdb-123.firebaseapp.com",
+    databaseURL: "https://maniacdb-123.firebaseio.com",
+    projectId: "maniacdb-123",
+    storageBucket: "maniacdb-123.appspot.com",
+    messagingSenderId: "710862225127"
 };
 firebase.initializeApp(config);
 
@@ -24,13 +24,13 @@ async function addRow(Qnum) {
     const name = databaseRef.child(Qnum).child('Name').once('value');
     const tag = databaseRef.child(Qnum).child('Tags').once('value');
     const diff = databaseRef.child(Qnum).child('Difficulty').once('value');
-    let row = await Promise.all([name,tag,diff]);
+    let row = await Promise.all([name, tag, diff]);
     row = row.map(item => item.val());
     const data = {
-        number:Qnum,
-        name:row[0],
-        tag:row[1],
-        diff:row[2]
+        number: Qnum,
+        name: row[0],
+        tag: row[1],
+        diff: row[2]
     };
     const compiledRow = template(data);
 
@@ -40,11 +40,11 @@ async function addRow(Qnum) {
 
 function addMultiple(limit) {
     let i = 0;
-    for(i = start;i<=limit && i<=start+10;i++){
+    for (i = start; i <= limit && i <= start + 10; i++) {
         addRow(i);
     }
     start = i;
-    if(i>limit){
+    if (i > limit) {
         $('.button').hide();
     }
 }
@@ -53,14 +53,15 @@ databaseRef.child('Total').once('value').then(
     tot => {
         const limit = tot.val();
         $('.table')
-        .ready(() =>{
-            addMultiple(limit);
-            $('.button')
-            .on(
-                'click',
-                () =>{ addMultiple(limit);}
-            )
-        }
-        )
+            .ready(() => {
+                addMultiple(limit);
+                $('.button')
+                    .on(
+                        'click',
+                        () => {
+                            addMultiple(limit);
+                        }
+                    )
+            })
     }
 )

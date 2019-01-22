@@ -1,74 +1,76 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/sheet.css">
-        <link rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
-        <link rel="stylesheet" type="text/css" href="css/grid.css">        
-        <script src="js/retrieve.js" defer></script>
-        <style>
-.box pre{
-    white-space: pre-wrap;
-}
-        </style>
-        <title>CodeManiacs</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <script src="/js/retrieve.js" defer></script>
+    <style>
+        .box pre {
+            white-space: pre-wrap;
+        }
+    </style>
+    <title>CodeManiacs</title>
+</head>
 
-    <body class="grid">
-        <header>
-            <% include partials/header %>
-        </header>
-        <div class="grid-content content">
-        <div class="grid-content box" >
+<body class="grid">
+    <header>
+        <% include partials/header %>
+    </header>
+    <div class="grid-content content">
+        <div class="grid-content box">
             <h1 id="QuesName" class="title"></h1>
             <hr>
-            <h2 class="subtitle" >Description</h2>
-<pre id="Description"></pre>
+            <h2 class="subtitle">Description</h2>
+            <pre id="Description"></pre>
             <hr>
-            <h2 class="subtitle" >Input Format</h2>
-<pre id="InputFormat"></pre>
+            <h2 class="subtitle">Input Format</h2>
+            <pre id="InputFormat"></pre>
             <hr>
-            <h2 class="subtitle" >Output Format</h2>
-<pre id="OutputFormat"></pre>
+            <h2 class="subtitle">Output Format</h2>
+            <pre id="OutputFormat"></pre>
             <hr>
-            <h2 class="subtitle" >Constraints</h2>
-<pre id="Constraints"></pre>
+            <h2 class="subtitle">Constraints</h2>
+            <pre id="Constraints"></pre>
             <hr>
-            <h2 class="subtitle" >Sample Input</h2>
-<pre id="SampleInput"></pre>
+            <h2 class="subtitle">Sample Input</h2>
+            <pre id="SampleInput"></pre>
             <hr>
-            <h2 class="subtitle" >Sample Output</h2>
-<pre id="SampleOutput"></pre>
+            <h2 class="subtitle">Sample Output</h2>
+            <pre id="SampleOutput"></pre>
             <hr>
-            <h2 class="subtitle" >Explanation</h2>
-<pre id="Explanation"></pre>
+            <h2 class="subtitle">Explanation</h2>
+            <pre id="Explanation"></pre>
             <hr>
-            <h2 class="subtitle" >Difficulty</h2>
-<pre id="DifficultyLevel"></pre>
+            <h2 class="subtitle">Difficulty</h2>
+            <pre id="DifficultyLevel"></pre>
             <hr>
-            <h2 class="subtitle" >Problem Setter</h2>
-<pre id="ProblemSetter"></pre>
+            <h2 class="subtitle">Problem Setter</h2>
+            <pre id="ProblemSetter"></pre>
             <hr>
-            <h2 class="subtitle" >Time Limit</h2>
-<pre id="TimeLimit"></pre>
+            <h2 class="subtitle">Time Limit</h2>
+            <pre id="TimeLimit"></pre>
             <hr>
-            <h2 class="subtitle" >Memory Limit</h2>
-<pre id="MemoryLimit"></pre>
+            <h2 class="subtitle">Memory Limit</h2>
+            <pre id="MemoryLimit"></pre>
             <hr>
-            <h2 class="subtitle" >Tags</h2>
-<pre id="Tags"></pre>
+            <h2 class="subtitle">Tags</h2>
+            <pre id="Tags"></pre>
             <hr>
-            <h2 class="subtitle" >Editorial</h2>
-<pre id="Editorial"></pre>
+            <h2 class="subtitle">Editorial</h2>
+            <pre id="Editorial"></pre>
+            <hr>
+            <button class="button is-link" onclick="submitSolution();">Submit Solution</button>
         </div>
-        </div>
-        <footer>
-            <% include partials/footer %>
-        </footer>
-    </body>
+    </div>
+    <footer>
+        <% include partials/footer %>
+    </footer>
+</body>
+
 </html>

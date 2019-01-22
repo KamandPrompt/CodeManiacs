@@ -5,13 +5,21 @@
 
     <title>Submit | CodeManiacs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/sheet.css">
-    <link rel="stylesheet" type="text/css" href="css/submitprob.css">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link rel="stylesheet" type="text/css" href="/css/submitprob.css">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script id="result" type="text/x-handlebars-template">
+        <tr>
+			<td> {{number}} </td>
+            <td> {{time}} </td>
+            <td> {{memory}} </td>
+			<td> {{result}} </td>
+		</tr>
+    </script>
 </head>
 
 <body>
@@ -75,6 +83,18 @@
             </select>
             <button type="button" onclick="submitSolution();" class="btn btn-primary btn-md">Submit</button>
         </div>
+        <table class="table is-bordered is-striped is-narrow is-hoverable">
+            <thead>
+                <tr>
+                    <th>Testcase No.</th>
+                    <th>Time</th>
+                    <th>Memory</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
     <footer>
         <% include partials/footer %>
@@ -86,6 +106,7 @@
     editor.setTheme("ace/theme/chrome");
     editor.session.setMode("ace/mode/python");
 </script>
-<script src="js/submitprob.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+<script src="/js/submitprob.js"></script>
 
 </html>
