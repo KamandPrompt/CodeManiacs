@@ -18,6 +18,7 @@ class Home extends Component {
                 <span>
                     <div color = 'red'>Logged In!!!  </div>
                     <h1>Welcome to Home</h1> 
+                    <h3>This is only a sample home page,, and can be repalced with the existing home page !!!</h3>
                     <button onClick={this.logout}>Logout</button>
                     <h1>CodeManiacss {fire.auth().currentUser.displayName}</h1>
                     <img
