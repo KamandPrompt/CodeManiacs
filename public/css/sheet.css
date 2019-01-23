@@ -324,3 +324,7 @@ h3
       color: #ffffff;
       height: 100px;
     }
+/* margin at top of bulma tables */
+.table {
+  margin-top: 20px;
+}

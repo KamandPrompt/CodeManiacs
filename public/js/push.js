@@ -1,64 +1,78 @@
-// Initialize Firebase
-var config = {
-	apiKey: "AIzaSyAGzg2lKl-mAFh_H_OZGOMG10IivR5xvzw",
-	authDomain: "maniacdb-123.firebaseapp.com",
-	databaseURL: "https://maniacdb-123.firebaseio.com",
-	projectId: "maniacdb-123",
-	storageBucket: "maniacdb-123.appspot.com",
-	messagingSenderId: "710862225127"
+const testFile = '<div class="box" ><h2 class="subtitle">TestFile</h2><textarea class="textarea stdin" placeholder="Stdin"></textarea><textarea class="textarea stdout" placeholder="Stdout"></textarea></div>'
+const settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "http://localhost:3000/question/submit",
+	"method": "POST",
+	"headers": {
+		"Content-Type": "application/json",
+		"cache-control": "no-cache"
+	},
+	"processData": false,
+	"data": "_fill"
 };
-firebase.initializeApp(config);
 
-const submit = () => {
+$('#add').on('click', () => {
+	$('#testcases').append(testFile);
+});
+$('#rem').on('click', () => {
+	$('#testcases').children().last().remove();
+})
 
-    //get elements
-    const QuesName = document.getElementById("QuesName");
-	const QuesID = document.getElementById("QuesID");
-	const Description = document.getElementById("Description");
-	const InputFormat = document.getElementById("InputFormat");
-	const OutputFormat = document.getElementById("OutputFormat");
-	const Constraints = document.getElementById("Constraints");
-	const SampleInput = document.getElementById("SampleInput");
-	const SampleOutput = document.getElementById("SampleOutput");
-	const Explanation = document.getElementById("Explanation");
-	const DifficultyLevel = document.getElementById("DifficultyLevel");
-	const ProblemSetter = document.getElementById("ProblemSetter");
-	const TimeLimit = document.getElementById("TimeLimit");
-	const MemoryLimit = document.getElementById("MemoryLimit");
-	const Tags = document.getElementById("Tags");
-	const Editorial = document.getElementById("Editorial");
+$('.submit').on('click', function () {
 
-    // creating question object
-    const ques = {};
+	//disable button
+	$('.submit').toggleClass('is-loading');
 
-	ques.Name = QuesName.value ;
-	ques.Description = Description.value ;
-	ques.InputFormat = InputFormat.value ;
-	ques.OutputFormat = OutputFormat.value ;
-	ques.Constraints = Constraints.value ;
-	ques.SampleInput = SampleInput.value ;
-	ques.SampleOutput = SampleOutput.value ;
-	ques.Explanation = Explanation.value ;
-	ques.Difficulty = DifficultyLevel.value ;
-	ques.Setter = ProblemSetter.value ;
-	ques.Time = TimeLimit.value ;
-	ques.Memory = MemoryLimit.value ;
-	ques.Tags = Tags.value ;
-	ques.Editorial = Editorial.value ;
+	// creating question object
+	const ques = {};
 
-	//get reference of questions
-	const dbRef = firebase.database().ref('questions');
+	ques.Name = $("#QuesName").val();
+	ques.Description = $("#Description").val();
+	ques.InputFormat = $("#InputFormat").val();
+	ques.OutputFormat = $("#OutputFormat").val();
+	ques.Constraints = $("#Constraints").val();
+	ques.SampleInput = $("#SampleInput").val();
+	ques.SampleOutput = $("#SampleOutput").val();
+	ques.Explanation = $("#Explanation").val();
+	ques.Difficulty = $("#DifficultyLevel").val();
+	ques.Setter = $("#ProblemSetter").val();
+	ques.Time = $("#TimeLimit").val();
+	ques.Memory = $("#MemoryLimit").val();
+	ques.Tags = $("#Tags").val();
+	ques.Editorial = $("#Editorial").val();
 
-	dbRef.child('Total').once('value').then(snap => {
-
-		// get total num of problems and increment by one
-		const ProbNum = parseInt(snap.val() ) + 1;
-		dbRef.child('Total').set(ProbNum);
-
-		dbRef.child(ProbNum).set(ques);
-
-		window.alert("Question Submitted as "+ ProbNum );
-		document.location.reload();
+	// creating testcase Object
+	const testcases = {};
+	testcases.Time = $("#TimeLimit").val();
+	testcases.Memory = $("#MemoryLimit").val();
+	testcases.files = [];
+	$('#testcases').children('div').each(function () {
+		let testfile = {
+			stdin: '_fill',
+			stdout: '_fill'
+		};
+		testfile.stdin = $(this).find('.stdin').val();
+		testfile.stdout = $(this).find('.stdout').val();
+		testcases['files'].push(testfile);
 	});
-	
-}
+
+	//send data to server;
+	const data = {
+		testcases,
+		ques
+	};
+	settings.data = JSON.stringify(data);
+	$.ajax(settings).done(function (response) {
+		//enable button
+		$('.submit').toggleClass('is-loading');
+
+		//show response
+		console.log(response);
+		window.alert(response);
+
+		//empty the textarea
+		$('textarea').val('');
+	});
+
+});
