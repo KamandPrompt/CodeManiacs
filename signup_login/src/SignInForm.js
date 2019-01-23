@@ -1,35 +1,31 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import './App.css';
+import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import fire from './config/Fire';
 
 class SignInForm extends Component {
-    constructor() {
-        super();
-
-        this.state = {
+    constructor(props) {
+    super(props);
+     this.state = {
             email: '',
             password: ''
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
-        let target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
-
-        this.setState({
-          [name]: value
-        });
-    }
-
-    handleSubmit(e) {
+        this.setState({ [e.target.name]: e.target.value });
+      }
+    
+      handleSubmit(e) {
         e.preventDefault();
-
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
-    }
+        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        }).catch((error) => {
+            console.log(error);
+          });
+      }
 
     render() {
         return (
@@ -46,7 +42,7 @@ class SignInForm extends Component {
               </div>
 
               <div className="FormField">
-                  <button className="FormField__Button mr-20">Sign In</button> <Link to="/" className="FormField__Link">Create an account</Link>
+                  <button className="FormField__Button mr-20">Sign In</button> <Link to="/sign-up" className="FormField__Link">Create an account</Link>
               </div>
             </form>
           </div>

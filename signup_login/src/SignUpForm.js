@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import './App.css';
+import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import fire from './config/Fire';
 
 class SignUpForm extends Component {
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             password: '',
@@ -15,7 +16,6 @@ class SignUpForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
     handleChange(e) {
         let target = e.target;
         let value = target.type === 'checkbox' ? target.checked : target.value;
@@ -28,10 +28,12 @@ class SignUpForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
-    }
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        }).then((u)=>{console.log(u)})
+        .catch((error) => {
+            console.log(error);
+          })
+      }
 
     render() {
         return (
