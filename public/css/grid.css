@@ -1,0 +1,33 @@
+/* placement of header, footer and central content */
+.grid {
+    display: grid;
+    grid-gap: 10px;
+    justify-content: center;
+    grid-template-columns: [main-start] 1fr [content-start] minmax(300px, 1000px) [content-end] 1fr [main-end];
+    grid-template-rows: 150px auto 100px;
+}
+
+.grid-content {
+    grid-column: content;
+}
+
+header,
+footer {
+    grid-column: main;
+}
+
+header {
+    grid-row-start: 1;
+}
+
+footer {
+    grid-row-end: -1;
+    margin-top: 15px;
+    align-self: end;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

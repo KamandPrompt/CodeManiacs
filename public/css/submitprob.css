@@ -1,0 +1,29 @@
+.submit-container {
+    height: 100%;
+    width: 70%;
+    border-left: 1px solid rgb(221, 221, 221);
+    border-right: 1px solid rgb(221, 221, 221);
+    margin-left: 15%;
+    text-align: center;
+}
+#prob-no {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 25px;
+}
+#editor {
+    font-size: 15px;
+    height: 60%;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 10px;
+}
+.submit {
+    text-align: center;
+}
+.btn-md {
+    margin-left: 10px;
+}
