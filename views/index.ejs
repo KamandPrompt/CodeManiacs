@@ -4,20 +4,14 @@
     
     <title>Welcome CodeManiacs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD:views/index.html
     <script src="app.js"></script>
-    <link rel="stylesheet"  href="sheet.css">
-=======
     <link rel="stylesheet" type="text/css" href="css/sheet.css">
->>>>>>> upstream/master:views/index.ejs
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 </head>
 <body>
-<<<<<<< HEAD:views/index.html
-	<div w3-include-html="header.html"></div> 
-	<script>
-	include();
-	</script>
+	<header>
+		<% include partials/header %>
+    </header>
 	<div class="navbar">
 		<div class="dropdown">
 			<button class="dropbtn">Problems</button>
@@ -42,12 +36,8 @@
 		</div>	
 
 	</div>
-=======
-    <header>
-        <% include partials/header %>
-    </header>
->>>>>>> upstream/master:views/index.ejs
-	<div class="row">
+    
+	<div class="row" style="box-shadow: rgb(236, 236, 236) 0 0 1000px;">
 		<div class="slideshow-container">
 			<div class="mySlides fade">
 				<!-- <div class="numbertext">1 / 4</div> -->
@@ -87,7 +77,7 @@
 
 			<script src="slide-show.js"></script>
 		</div>
-		<div class="flexbox2">
+		<div class="flexbox2" style="box-shadow: rgb(223, 223, 223) 0 0 1000px;">
 			<div class="div fade">
 				<div>
 					<h3>Upcoming jung</h3>
@@ -137,6 +127,9 @@
 		
 	<footer>
         <% include partials/footer %>
-    </footer>
+	</footer>
+	<script>
+			include();
+	</script>
 </body>
 </html>

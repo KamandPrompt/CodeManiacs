@@ -214,8 +214,12 @@ h3
   background:-o-linear-gradient(top, #547506 , #334b44 100%);
   background:-ms-linear-gradient(top, #547506 , #334b44 100%);
   background:linear-gradient(to bottom, #547506 , #334b44 100%);
-  text-align: right;
+  text-align: left;
   box-shadow: #18221f 0 0 20px;
+  position: relative;
+  top: -95px;
+  width: 100%;
+
 }
 
   
@@ -239,6 +243,7 @@ h3
     .dropdown-content {
       display: none;
       position: absolute;
+      top:70px;
       background-color: #f1f1f1;
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
