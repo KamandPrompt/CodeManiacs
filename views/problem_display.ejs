@@ -5,17 +5,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/sheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
-    <script src="/js/retrieve.js" defer></script>
     <style>
         .box pre {
             white-space: pre-wrap;
         }
     </style>
-    <title>CodeManiacs</title>
+    <title>ProbName | CodeManiacs</title>
 </head>
 
 <body class="grid">
@@ -65,7 +63,9 @@
             <h2 class="subtitle">Editorial</h2>
             <pre id="Editorial"></pre>
             <hr>
-            <button class="button is-link" onclick="submitSolution();">Submit Solution</button>
+            <form method="POST" action="">
+                <input type="submit" value="Submit" class="button is-link">
+            </form>
         </div>
     </div>
     <footer>

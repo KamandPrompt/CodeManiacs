@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>CodeManiacs ProblemSet</title>
+    <title>Problem Set | CodeManiacs</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,16 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
-    <script id="problem" type="text/x-handlebars-template">
-        <tr>
-			<td> {{number}} </td>
-			<td><a href="/question/display?qID={{number}}"> {{name}} </a></td>
-			<td> {{tag}} </td>
-			<td> {{diff}} </td>
-		</tr>
-    </script>
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
-    <script src="/js/problemSet.js"></script>
 
 </head>
 
@@ -39,13 +30,25 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>No.</th>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Tags</th>
                         <th>Difficulty</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td><a href="/problem/4">4</a></td> 
+                        <td><a href="/problem/4">Dummy Name</a></td>
+                        <td>math, brute force</td>
+                        <td>easy</td>
+                    </tr>
+                    <tr>
+                        <td><a href="/problem/6">6</a></td> 
+                        <td><a href="/problem/6">Again Dummy Name</a></td>
+                        <td>math, brute force</td>
+                        <td>easy</td>
+                    </tr>
                 </tbody>
             </table>
             <button class="button is-link">More</button>

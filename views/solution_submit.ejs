@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
     <script id="result" type="text/x-handlebars-template">
         <tr>
 			<td> {{number}} </td>
@@ -29,12 +28,12 @@
     <div class="submit-container">
         <div id="prob-no">Submit your solution for the problem </div>
         <div id="editor">#include &#60;bits/stdc++.h&#62;
-            using namespace std;
+using namespace std;
 
-            int main(){
+    int main(){
 
-            return 0;
-            }</div>
+    return 0;
+}</div>
         <div class="submit">
             <select id="language">
                 <option value="43">Text (plain text)</option>
@@ -81,7 +80,7 @@
                 <option value="2">Bash (4.0)</option>
                 <option value="1">Bash (4.4)</option>
             </select>
-            <button type="button" onclick="submitSolution();" class="btn btn-primary btn-md">Submit</button>
+            <button type="button" class="btn btn-primary btn-md" onclick="submitSolution();">Submit</button>
         </div>
         <table class="table is-bordered is-striped is-narrow is-hoverable">
             <thead>
@@ -107,6 +106,6 @@
     editor.session.setMode("ace/mode/python");
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
-<script src="/js/submitprob.js"></script>
+<script src="/js/solution_submit.js"></script>
 
 </html>

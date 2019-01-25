@@ -2,7 +2,7 @@ const testFile = '<div class="box" ><h2 class="subtitle">TestFile</h2><textarea 
 const settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "http://localhost:3000/question/submit",
+	"url": "/admin/add",
 	"method": "POST",
 	"headers": {
 		"Content-Type": "application/json",
