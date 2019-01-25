@@ -1,14 +1,4 @@
-var config = {
-	apiKey: "AIzaSyAGzg2lKl-mAFh_H_OZGOMG10IivR5xvzw",
-	authDomain: "maniacdb-123.firebaseapp.com",
-	databaseURL: "https://maniacdb-123.firebaseio.com",
-	projectId: "maniacdb-123",
-	storageBucket: "maniacdb-123.appspot.com",
-	messagingSenderId: "710862225127"
-};
-firebase.initializeApp(config);
-
-const question_id = window.location.href.split("?")[1];
+const question_id = window.location.href.split("submit/")[1];
 var prob_no = $("#prob-no");
 const data = {
 	"code": "_fill",
@@ -18,7 +8,7 @@ const data = {
 const settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "http://localhost:3000/solution",
+	"url": "/submit/" + question_id,
 	"method": "POST",
 	"headers": {
 		"Content-Type": "application/json",
@@ -35,11 +25,7 @@ $('.table').hide();
 const source = document.getElementById('result').innerHTML; //get template structure
 const template = Handlebars.compile(source); //compile template
 
-var ref = firebase.database().ref('questions/' + question_id);
-ref.on("value", function (snapshot) {
-	var ques_details = snapshot.val();
-	prob_no.append("<a target = '_blank' href='/question/display?qID=" + question_id + "'>" + question_id + " - " + ques_details.Name + "</a>");
-});
+prob_no.append("<a target = '_blank' href='/problem/" + question_id + "'>" + question_id + "</a>");
 
 const submitSolution = () => {
 	//disable button
@@ -58,6 +44,13 @@ const submitSolution = () => {
 		//empty previous results
 		$('tbody').empty();
 
+		console.log(response);
+        window.alert(response);
+        
+        /**
+         * When the submitSolution function is completed from
+         * users.js file then uncomment the following lines
+         *-----------------------------------------------------
 		response.forEach((item, index) => {
 			console.log(index, item);
 
@@ -71,5 +64,7 @@ const submitSolution = () => {
 			const compiledRow = template(data);
 			$('tbody').append(compiledRow);
 		});
+		 *-----------------------------------------------------
+        **/
 	});
 }

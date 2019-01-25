@@ -1,18 +1,23 @@
 {
   "name": "codemaniacs",
   "version": "1.0.0",
-  "description": "An online judge",
+  "description": "IIT Mandi Online Judge",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "*",
-    "firebase": "^5.7.0",
-    "firebase-admin": "^6.5.0",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.3.1",
+    "mongoose": "^5.4.6",
     "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },
