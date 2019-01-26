@@ -1,4 +1,6 @@
-var Problems = mongoose.Schema({
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/myappdatabase');
+var prob = new mongoose.Schema({
     
     qID: Integer,
 
@@ -31,7 +33,8 @@ var Problems = mongoose.Schema({
     editorial: String,
 });
 
-export {Problems};
+var Problems = mongoose.model('Problems',prob);
+module.exports = Problems;
 
 
 

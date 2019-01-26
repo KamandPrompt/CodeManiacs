@@ -1,4 +1,7 @@
-var Testcases = mongoose.Schema ( {
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/myappdatabase');
+
+var test = new mongoose.Schema ( {
     
     qID: Integer,
 
@@ -10,4 +13,6 @@ var Testcases = mongoose.Schema ( {
 
 });
 
-export {Testcases};
+var Testcases = mongoose.model('Testcases',test);
+
+module.exports = Testcases;
