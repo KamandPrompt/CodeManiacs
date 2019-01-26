@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var test = new mongoose.Schema ( {
-    qID: Integer,
-    timeLimit: Integer,
-    memoryLimit: Integer,
+    qID: Number,
+    timeLimit: Number,
+    memoryLimit: Number,
     cases: [{stdin: String, stdout: String}]
 });
 var Testcases = mongoose.model('Testcases',test);

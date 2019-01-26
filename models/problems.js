@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var prob = new mongoose.Schema ({
-    qID: Integer,
+    qID: Number,
     name: String,
     description: String,
     inputFormat: String,
@@ -9,10 +9,10 @@ var prob = new mongoose.Schema ({
     sampleInput: String,
     sampleOutput: String,
     explanation: String,
-    difficulty: Integer,
+    difficulty: Number,
     problemSetter: String,
-    timeLimit: Integer,
-    memoryLimit: Integer,
+    timeLimit: Number,
+    memoryLimit: Number,
     tags: String,
     editorial: String,
 });
