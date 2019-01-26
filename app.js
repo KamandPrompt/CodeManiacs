@@ -10,7 +10,7 @@ var passport = require("passport");
 var publicRoute = require("./routes/index");
 var adminRoute = require("./routes/admin");
 var usersRoute = require("./routes/users");
-var functions = require("./routes/functions");
+var functions = require("./controls/functions");
 
 mongoose.connect(configDb.database, { useNewUrlParser: true });
 var db = mongoose.connection;
