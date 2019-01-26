@@ -3,6 +3,33 @@ var router = express.Router();
 var passport = require("passport");
 var bcrypt = require("bcryptjs");
 
+router.submitQuestion = async function (req, res, next) {
+
+    console.log(req.body.ques);
+    console.log(req.body.testcases);
+
+    /**
+     * Add the problem here.
+     * The qID of this problem will be the 
+     * largest qID from the collection plus 1
+     */
+
+    res.status(201).send('Success/ Failure');
+};
+
+router.editQuestion = async function (req, res, next) {
+
+    console.log(req.body.qID);
+    console.log(req.body.ques);
+    console.log(req.body.testcases);
+
+    /**
+     * Update the problem here
+     */
+
+    res.status(201).send('Success/ Failure');
+};
+
 router.submitSolution = async (req, res, next) => {
 
     const qID = req.body.qID;

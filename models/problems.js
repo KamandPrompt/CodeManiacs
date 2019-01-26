@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var prob = new mongoose.Schema ({
+var prob = new mongoose.Schema({
     qID: Number,
     name: String,
     description: String,
@@ -16,5 +16,5 @@ var prob = new mongoose.Schema ({
     tags: String,
     editorial: String,
 });
-var Problems = mongoose.model('Problems',prob);
+var Problems = mongoose.model('Problems', prob);
 module.exports = Problems;
