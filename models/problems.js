@@ -13,7 +13,7 @@ var prob = new mongoose.Schema({
     problemSetter: String,
     timeLimit: Number,
     memoryLimit: Number,
-    tags: String,
+    tags: [String],
     editorial: String,
 });
 var Problems = mongoose.model('Problems', prob);
