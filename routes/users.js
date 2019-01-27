@@ -15,4 +15,12 @@ router.get("/signup", (req, res, next) => {
     res.render("signup");
 });
 
+router.get("/profile", (req, res, next) => {
+    res.render("profile");
+});
+
+router.get("/submissions", (req, res, next) => {
+    res.render("submissions");
+});
+
 module.exports = router;
