@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var prob = new mongoose.Schema({
     qID: Number,
     name: String,
+    isVisible:Boolean,
     description: String,
     inputFormat: String,
     outputFormat: String,

@@ -3,25 +3,35 @@ var passport = require("passport");
 var bcrypt = require("bcryptjs");
 const Question = require("../models/problems"); 
 const TC = require("../models/testcases");
+const total = require("../models/total_questions");
 
 helper.submitQuestion = async function (req, res, next) {
 
-    const ques = req.body.ques;
-    const tc = req.body.testcases;
+    const ques = req.body.ques; // problem statement
+    const tc = req.body.testcases; // testcases
 
     try {
-        
-        const qID = 1 + await Question.estimatedDocumentCount();
-        ques.qID = qID;
-        tc.qID = qID;
+        // attach qID to tc and ques
+        const qID = await total.findOne({});
+        qID.totalProblems += 1;
+        await qID.save();
+        ques.qID = qID.totalProblems;
+        tc.qID = qID.totalProblems;
+
+        // log them to the console
+        console.log(ques);
+        console.log(tc);
+
+        // push to database
         await Question.create(ques);
         await TC.create(tc);
-        res.send("SUCCESS");
+        
+        res.send(`Problem submitted as ${qID.totalProblems}`);
     } catch (error) {
         
         console.log("couldn't submit the question/testcase");
         console.log(error);
-        res.send("FAILURE");
+        res.send("Problem could not be submitted");
     }
 };
 

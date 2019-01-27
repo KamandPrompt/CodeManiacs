@@ -28,6 +28,7 @@ $('.submit').on('click', function () {
 	const ques = {};
 
 	ques.name = $("#QuesName").val();
+	ques.isVisible = Boolean($("#isVisible").val());
 	ques.description = $("#Description").val();
 	ques.inputFormat = $("#InputFormat").val();
 	ques.outputFormat = $("#OutputFormat").val();
@@ -35,11 +36,11 @@ $('.submit').on('click', function () {
 	ques.sampleInput = $("#SampleInput").val();
 	ques.sampleOutput = $("#SampleOutput").val();
 	ques.explanation = $("#Explanation").val();
-	ques.difficulty = $("#DifficultyLevel").val();
+	ques.difficulty = Number($("#DifficultyLevel").val());
 	ques.problemSetter = $("#ProblemSetter").val();
-	ques.timeLimit = $("#TimeLimit").val();
-	ques.memoryLimit = $("#MemoryLimit").val();
-	ques.tags = $("#Tags").val().split(",");
+	ques.timeLimit = Number($("#TimeLimit").val());
+	ques.memoryLimit = Number($("#MemoryLimit").val());
+	ques.tags = $("#Tags").val().split(",").map(item => item.trim()) ;
 	ques.editorial = $("#Editorial").val();
 
 	// creating testcase Object
