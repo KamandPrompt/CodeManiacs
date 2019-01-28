@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var prob = new mongoose.Schema({
     qID: Number,
     name: String,
+    isVisible:Boolean,
     description: String,
     inputFormat: String,
     outputFormat: String,
@@ -13,7 +14,7 @@ var prob = new mongoose.Schema({
     problemSetter: String,
     timeLimit: Number,
     memoryLimit: Number,
-    tags: String,
+    tags: [String],
     editorial: String,
 });
 var Problems = mongoose.model('Problems', prob);

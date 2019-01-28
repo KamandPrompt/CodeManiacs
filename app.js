@@ -12,6 +12,7 @@ var adminRoute = require("./routes/admin");
 var usersRoute = require("./routes/users");
 var functions = require("./controls/functions");
 
+mongoose.Promise = global.Promise;
 mongoose.connect(configDb.database, { useNewUrlParser: true });
 var db = mongoose.connection;
 
