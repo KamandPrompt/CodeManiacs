@@ -1,23 +1,41 @@
-var express = require("express");
-var router = express.Router();
+var helper = {};
 var passport = require("passport");
 var bcrypt = require("bcryptjs");
+const Question = require("../models/problems"); 
+const TC = require("../models/testcases");
+const total = require("../models/total_questions");
 
-router.submitQuestion = async function (req, res, next) {
+helper.submitQuestion = async function (req, res, next) {
 
-    console.log(req.body.ques);
-    console.log(req.body.testcases);
+    const ques = req.body.ques; // problem statement
+    const tc = req.body.testcases; // testcases
 
-    /**
-     * Add the problem here.
-     * The qID of this problem will be the 
-     * largest qID from the collection plus 1
-     */
+    try {
+        // attach qID to tc and ques
+        const qID = await total.findOne({});
+        qID.totalProblems += 1;
+        await qID.save();
+        ques.qID = qID.totalProblems;
+        tc.qID = qID.totalProblems;
 
-    res.status(201).send('Success/ Failure');
+        // log them to the console
+        console.log(ques);
+        console.log(tc);
+
+        // push to database
+        await Question.create(ques);
+        await TC.create(tc);
+        
+        res.send(`Problem submitted as ${qID.totalProblems}`);
+    } catch (error) {
+        
+        console.log("couldn't submit the question/testcase");
+        console.log(error);
+        res.send("Problem could not be submitted");
+    }
 };
 
-router.editQuestion = async function (req, res, next) {
+helper.editQuestion = async function (req, res, next) {
 
     console.log(req.body.qID);
     console.log(req.body.ques);
@@ -30,7 +48,7 @@ router.editQuestion = async function (req, res, next) {
     res.status(201).send('Success/ Failure');
 };
 
-router.submitSolution = async (req, res, next) => {
+helper.submitSolution = async (req, res, next) => {
 
     const qID = req.body.qID;
     const langID = Number(req.body.language);
@@ -112,4 +130,4 @@ const checkAnswer = async (data) => {
     return judge0Response;
 }
 
-module.exports = router;
+module.exports = helper;
