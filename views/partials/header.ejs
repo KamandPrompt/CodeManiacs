@@ -9,9 +9,13 @@
             <div style="margin-right: 10px;"><span><a href="/">HOME</a></span></div>
             <div style="margin-right: 10px;"><span><a href="/problems/all">PROBLEM SET</a></span></div>
             <div style="margin-right: 10px;"><span><a href="/rankings">RANKINGS</a></span></div>
-            <div style="margin-right: 10px;"><span><a href="/user/login">LOGIN IN</a></span></div>
-            <div style="margin-right: 10px;"><span><a href="/user/signup">SIGN UP</a></span></div>
-            <div style="margin-right: 10px;"><span><a href="/user/profile">PROFILE</a></span></div>
+            <% if (locals.user) { %>
+                <div style="margin-right: 10px;"><span><a href="/user/profile">PROFILE</a></span></div>
+                <div style="margin-right: 10px;"><span><a href="/user/logout">SIGN OUT</a></span></div>                
+            <% } else { %>
+                <div style="margin-right: 10px;"><span><a href="/user/login">SIGN IN</a></span></div>
+                <div style="margin-right: 10px;"><span><a href="/user/signup">SIGN UP</a></span></div>
+            <% } %>
             <div class="photo">
                 <!the user's photo>
             </div>
