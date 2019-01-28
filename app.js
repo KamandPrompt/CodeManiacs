@@ -7,6 +7,7 @@ var expressValidator = require("express-validator");
 var session = require("express-session");
 var configDb = require("./config/database");
 var passport = require("passport");
+var localStrategy = require('passport-local').Strategy;
 var publicRoute = require("./routes/index");
 var adminRoute = require("./routes/admin");
 var usersRoute = require("./routes/users");
@@ -60,9 +61,13 @@ app.use(expressValidator({
     }
 }));
 
-/**
- * Passport-middleware
- */
+app.use(passport.initialize());
+app.use(passport.session());
+
+var account = require('./models/users');
+passport.use(new localStrategy(account.authenticate()));
+passport.serializeUser(account.serializeUser());
+passport.deserializeUser(account.deserializeUser());
 
 app.listen(port, () => {
     console.log("Server started at port " + port);
