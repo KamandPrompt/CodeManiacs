@@ -64,10 +64,12 @@ app.use(expressValidator({
 app.use(passport.initialize());
 app.use(passport.session());
 
-var account = require('./models/users');
-passport.use(new localStrategy(account.authenticate()));
-passport.serializeUser(account.serializeUser());
-passport.deserializeUser(account.deserializeUser());
+app.set("view engine", "ejs");
+
+var user = require('./models/users');
+passport.use(new localStrategy(user.authenticate()));
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 
 app.listen(port, () => {
     console.log("Server started at port " + port);
