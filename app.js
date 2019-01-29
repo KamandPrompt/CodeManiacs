@@ -10,7 +10,7 @@ var passport = require("passport");
 var publicRoute = require("./routes/index");
 var adminRoute = require("./routes/admin");
 var usersRoute = require("./routes/users");
-var functions = require("./controls/functions");
+var problems = require("./controls/problems");
 
 mongoose.Promise = global.Promise;
 mongoose.connect(configDb.database, { useNewUrlParser: true });
@@ -76,7 +76,7 @@ app.get("/submit/:qID", (req, res, next) => {
     res.render("solution_submit");
 });
 
-app.post("/submit/:qID", functions.submitSolution);
+app.post("/submit/:qID", problems.submitSolution);
 
 app.post("/problem/:qID", (req, res, next) => {
     res.redirect('/submit/' + req.params.qID);
