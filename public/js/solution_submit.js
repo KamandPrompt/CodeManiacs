@@ -44,13 +44,6 @@ const submitSolution = () => {
 		//empty previous results
 		$('tbody').empty();
 
-		console.log(response);
-        window.alert(response);
-        
-        /**
-         * When the submitSolution function is completed from
-         * users.js file then uncomment the following lines
-         *-----------------------------------------------------
 		response.forEach((item, index) => {
 			console.log(index, item);
 
@@ -64,7 +57,5 @@ const submitSolution = () => {
 			const compiledRow = template(data);
 			$('tbody').append(compiledRow);
 		});
-		 *-----------------------------------------------------
-        **/
 	});
 }

@@ -1,43 +1,35 @@
 var helper = {};
-var passport = require("passport");
-var bcrypt = require("bcryptjs");
+var testcases = require("../models/testcases");
+var request = require("request-promise");
 
 helper.submitSolution = async (req, res, next) => {
 
     const qID = req.body.qID;
-    const langID = Number(req.body.language);
 
-    const code = req.body.code;
+    testcases.findOne({ qID: qID }, async (err, tc) => {
+        if (err) {
+            console.log(err);
+        }
+        var data = {
+            qID: req.body.qID,
+            code: req.body.code,
+            langID: req.body.language,
+            timeLimit: tc.timeLimit,
+            memoryLimit: tc.memoryLimit,
+            files: tc.cases
+        }
+        var results = await checkAnswer(data);
 
-    const data = {
-        qID: qID,
-        langID: langID,
-        code: code
-    };
+        //add code to attach this submissions data to user's account
 
-    /**
-     * Add testcases field to data.
-     * Then uncomment the follwoing code
-     */
-
-    /**----------------------------------------
-    const result = await checkAnswer(data); //result is an array with results of all testcases
-    
-    //add code to attach this submissions data to user's account
-    
-    //deleting fields that user shouldn't have access to
-    result.forEach(item => {
-        item["token"] = null;
-        item["stdout"] = null;
+        //deleting fields that user shouldn't have access to
+        results.forEach(item => {
+            item["token"] = null;
+            item["stdout"] = null;
+        });
+        console.log(results);
+        res.send(results);
     });
-    *-------------------------------------------
-    */
-
-    console.log(data);
-
-    result = "AC/ WA/ TLE";
-
-    res.send(result);
 }
 
 
@@ -45,11 +37,7 @@ helper.submitSolution = async (req, res, next) => {
 const checkAnswer = async (data) => {
     const options = {
         "method": "POST",
-        "url": "http://sntc.iitmandi.ac.in:3000/submissions/",
-        "qs": {
-            "base64_encoded": "false",
-            "wait": "true"
-        },
+        "url": "http://sntc.iitmandi.ac.in:3000/submissions/?base64_encoded=false&wait=true",
         "headers": {
             "cache-control": "no-cache",
             "Content-Type": "application/json"
@@ -60,26 +48,25 @@ const checkAnswer = async (data) => {
             "stdin": "_fill",
             "expected_output": "_fill",
             "memory_limit": "_fill",
-            "wall_time_limit": "cpu_time*1.5",
-            "cpu_time_limit": "_fill"
+            "cpu_time_limit": "_fill",
         },
         "json": true
     };
-    const testAll = [];
+    const tests = [];
 
-    options.body['cpu_time_limit'] = Number(data["Time"]);
-    options.body['wall_time_limit'] = options.body['cpu_time_limit'] * 1.5;
-    options.body['memory_limit'] = data["Memory"];
+    options.body['cpu_time_limit'] = Number(data["timeLimit"]);
+    options.body['wall_time_limit'] = options.body['cpu_time_limit'] * 3;
+    options.body['memory_limit'] = Number(data["memoryLimit"]);
     options.body['source_code'] = data["code"];
     options.body['language_id'] = data["langID"];
 
     data["files"].forEach((testcase) => {
         options.body['stdin'] = testcase["stdin"];
         options.body['expected_output'] = testcase["stdout"];
-        testAll.push(request(options));
+        tests.push(request(options));
     });
 
-    const judge0Response = await Promise.all(testAll);
+    const judge0Response = await Promise.all(tests);
 
     return judge0Response;
 }
