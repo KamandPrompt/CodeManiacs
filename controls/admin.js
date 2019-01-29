@@ -40,11 +40,14 @@ helper.editQuestion = async function (req, res, next) {
     console.log(req.body.ques);
     console.log(req.body.testcases);
 
-    /**
-     * Update the problem here
-     */
-
-    res.status(201).send('Success/ Failure');
+    try{
+        await Question.findOneAndUpdate({"qID":req.body.qID}, req.body.ques) ;
+        await TC.findOneAndUpdate({"qID":req.body.qID}, req.body.testcases) ;
+        res.send("Question was updated");
+    } catch (error) {
+        res.send("Couldn't update the question");
+        console.log(error);
+    }
 };
 
 module.exports = helper;
