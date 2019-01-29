@@ -50,4 +50,10 @@ helper.editQuestion = async function (req, res, next) {
     }
 };
 
+helper.getQuestion = async (req, res, next) => {
+    const ques = await Question.findOne({"qID":req.params.qID});
+    const t_case = await TC.findOne({"qID":req.params.qID});
+    res.render("problem_edit",{ques,t_case});
+}
+
 module.exports = helper;
