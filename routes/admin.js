@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var functions = require("../controls/functions");
+var admin = require("../controls/admin");
 
 router.get("/", (req, res, next) => {
     res.render("admin");
@@ -14,8 +14,8 @@ router.get("/edit/:qID", (req, res, next) => {
     res.render("problem_edit");
 });
 
-router.post("/add", functions.submitQuestion);
+router.post("/add", admin.addQuestion);
 
-router.put("/edit/:qID", functions.editQuestion);
+router.put("/edit/:qID", admin.editQuestion);
 
 module.exports = router;
