@@ -6,15 +6,15 @@ router.get("/", (req, res) => {
 });
 
 router.get("/problems/all", (req, res) => {
-    res.render("problem_set");
+    res.render("problem_set", {user: req.user});
 });
 
 router.get("/problem/:qID", (req, res) => {
-    res.render("problem_display");
+    res.render("problem_display,", {user: req.user});
 });
 
 router.get("/rankings", (req, res) => {
-    res.render("rankings");
+    res.render("rankings", {user: req.user});
 });
 
 module.exports = router;
