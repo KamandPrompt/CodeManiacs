@@ -1,0 +1,38 @@
+/*css for submissions page ie. user/submissions */
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    border: 2px solid #9b9b9b;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #9b9b9b;
+    text-align: center;
+    padding: 8px;
+}
+ 
+/* to manage the even body rows */
+tr:nth-child(even) {
+    background-color: #e0dede;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+table thead {
+    background-color: rgb(251, 239, 222);
+}

@@ -1,4 +1,4 @@
 module.exports = {
-    database: "mongodb://code.maniacs:cmmongo123@ds145389.mlab.com:45389/codemaniacs",
+    database: "mongodb://cm_dev:cm_iitmandi@sntc.iitmandi.ac.in/codemaniacs_dev",
     secret: "code-maniac-db123"
 }

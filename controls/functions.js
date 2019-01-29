@@ -1,7 +1,7 @@
 var helper = {};
 var passport = require("passport");
 var bcrypt = require("bcryptjs");
-const Question = require("../models/problems"); 
+const Question = require("../models/problems");
 const TC = require("../models/testcases");
 const total = require("../models/total_questions");
 
@@ -25,10 +25,10 @@ helper.submitQuestion = async function (req, res, next) {
         // push to database
         await Question.create(ques);
         await TC.create(tc);
-        
+
         res.send(`Problem submitted as ${qID.totalProblems}`);
     } catch (error) {
-        
+
         console.log("couldn't submit the question/testcase");
         console.log(error);
         res.send("Problem could not be submitted");
