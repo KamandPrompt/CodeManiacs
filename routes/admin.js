@@ -10,9 +10,7 @@ router.get("/add", (req, res, next) => {
     res.render("problem_add");
 });
 
-router.get("/edit/:qID", (req, res, next) => {
-    res.render("problem_edit");
-});
+router.get("/edit/:qID",admin.getQuestion);
 
 router.post("/add", admin.addQuestion);
 

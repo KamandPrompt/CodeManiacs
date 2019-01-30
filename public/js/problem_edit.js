@@ -27,11 +27,13 @@ $('#rem').on('click', () => {
 const source = document.getElementById('fileTemplate').innerHTML; //get template structure
 const template = Handlebars.compile(source); //compile template
 
-/**
- * Fetch the problem data and show it on their
- * respective fields.
- */
-
+prev_tc.cases.forEach(item => {
+	let testfile = {
+		"stdin": item.stdin,
+		"stdout": item.stdout
+	};
+	$('#testcases').append(template(testfile));
+});
 
 $('.submit').on('click', function () {
 
@@ -41,26 +43,28 @@ $('.submit').on('click', function () {
 	// creating question object
 	const ques = {};
 
-	ques.Name = $("#QuesName").val();
-	ques.Description = $("#Description").val();
-	ques.InputFormat = $("#InputFormat").val();
-	ques.OutputFormat = $("#OutputFormat").val();
-	ques.Constraints = $("#Constraints").val();
-	ques.SampleInput = $("#SampleInput").val();
-	ques.SampleOutput = $("#SampleOutput").val();
-	ques.Explanation = $("#Explanation").val();
-	ques.Difficulty = $("#DifficultyLevel").val();
-	ques.Setter = $("#ProblemSetter").val();
-	ques.Time = $("#TimeLimit").val();
-	ques.Memory = $("#MemoryLimit").val();
-	ques.Tags = $("#Tags").val();
-	ques.Editorial = $("#Editorial").val();
+	ques.name = $("#QuesName").val();
+	ques.qID = qID;
+	ques.isVisible = Boolean($("#isVisible").val());
+	ques.description = $("#Description").val();
+	ques.inputFormat = $("#InputFormat").val();
+	ques.outputFormat = $("#OutputFormat").val();
+	ques.constraints = $("#Constraints").val();
+	ques.sampleInput = $("#SampleInput").val();
+	ques.sampleOutput = $("#SampleOutput").val();
+	ques.explanation = $("#Explanation").val();
+	ques.difficulty = Number($("#DifficultyLevel").val());
+	ques.problemSetter = $("#ProblemSetter").val();
+	ques.timeLimit = Number($("#TimeLimit").val());
+	ques.memoryLimit = Number($("#MemoryLimit").val());
+	ques.tags = $("#Tags").val().split(",").map(item => item.trim()) ;
+	ques.editorial = $("#Editorial").val();
 
 	// creating testcase Object
 	const testcases = {};
-	testcases.Time = $("#TimeLimit").val();
-	testcases.Memory = $("#MemoryLimit").val();
-	testcases.files = [];
+	testcases.timeLimit = $("#TimeLimit").val();
+	testcases.memoryLimit = $("#MemoryLimit").val();
+	testcases.cases = [];
 	$('#testcases').children('div').each(function () {
 		let testfile = {
 			stdin: '_fill',
@@ -68,8 +72,16 @@ $('.submit').on('click', function () {
 		};
 		testfile.stdin = $(this).find('.stdin').val();
 		testfile.stdout = $(this).find('.stdout').val();
-		testcases['files'].push(testfile);
+		testcases['cases'].push(testfile);
 	});
+
+	if(!testcases.cases.length) {
+		window.alert("No Testcase added");
+		//enable button
+		$('.submit').toggleClass('is-loading');
+		
+		return 0;
+	}
 
 	//send data to server;
 	const data = {
@@ -83,6 +95,7 @@ $('.submit').on('click', function () {
 		$('.submit').toggleClass('is-loading');
 
 		//show response
+		console.log(response);
 		window.alert(response);
 
 	});

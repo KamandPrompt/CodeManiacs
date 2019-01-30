@@ -27,33 +27,35 @@
             <h1 class="title center">Edit Question</h1>
             <hr>
             <h2 class="subtitle">Name</h2>
-            <textarea class="textarea" id="QuesName" class="title"></textarea>
+            <textarea class="textarea" rows="1" id="QuesName" class="title"><%= ques.name %></textarea>
+            <h2 class="subtitle">Visibility (0 or 1)</h2>
+            <textarea class="textarea" rows="1" id="isVisible" class="title"><%= ques.isVisible %></textarea>
             <h2 class="subtitle">Description</h2>
-            <textarea class="textarea" id="Description"></textarea>
+            <textarea class="textarea" id="Description"><%= ques.description %></textarea>
             <h2 class="subtitle">Input Format</h2>
-            <textarea class="textarea" id="InputFormat"></textarea>
+            <textarea class="textarea" id="InputFormat"><%= ques.inputFormat %></textarea>
             <h2 class="subtitle">Output Format</h2>
-            <textarea class="textarea" id="OutputFormat"></textarea>
+            <textarea class="textarea" id="OutputFormat"><%= ques.outputFormat %></textarea>
             <h2 class="subtitle">Constraints</h2>
-            <textarea class="textarea" id="Constraints"></textarea>
+            <textarea class="textarea" id="Constraints"><%= ques.constraints %></textarea>
             <h2 class="subtitle">Sample Input</h2>
-            <textarea class="textarea" id="SampleInput"></textarea>
+            <textarea class="textarea" id="SampleInput"><%= ques.sampleInput %></textarea>
             <h2 class="subtitle">Sample Output</h2>
-            <textarea class="textarea" id="SampleOutput"></textarea>
+            <textarea class="textarea" id="SampleOutput"><%= ques.sampleOutput %></textarea>
             <h2 class="subtitle">Explanation</h2>
-            <textarea class="textarea" id="Explanation"></textarea>
+            <textarea class="textarea" id="Explanation"><%= ques.explanation %></textarea>
             <h2 class="subtitle">Difficulty</h2>
-            <textarea class="textarea" rows="1" id="DifficultyLevel"></textarea>
+            <textarea class="textarea" rows="1" id="DifficultyLevel"><%= ques.difficulty %></textarea>
             <h2 class="subtitle">Problem Setter</h2>
-            <textarea class="textarea" rows="1" id="ProblemSetter"></textarea>
+            <textarea class="textarea" rows="1" id="ProblemSetter"><%= ques.problemSetter %></textarea>
             <h2 class="subtitle">Time Limit</h2>
-            <textarea class="textarea" rows="1" id="TimeLimit"></textarea>
+            <textarea class="textarea" rows="1" id="TimeLimit"><%= ques.timeLimit %></textarea>
             <h2 class="subtitle">Memory Limit</h2>
-            <textarea class="textarea" rows="1" id="MemoryLimit"></textarea>
+            <textarea class="textarea" rows="1" id="MemoryLimit"><%= ques.memoryLimit %></textarea>
             <h2 class="subtitle">Tags</h2>
-            <textarea class="textarea" rows="1" id="Tags"></textarea>
+            <textarea class="textarea" rows="1" id="Tags"><%= ques.tags %></textarea>
             <h2 class="subtitle">Editorial</h2>
-            <textarea class="textarea" rows="1" id="Editorial"></textarea>
+            <textarea class="textarea" rows="1" id="Editorial"><%= ques.editorial %></textarea>
             <hr>
             <h2 class="subtitle">Testcases</h2>
             <a class="button is-success is-rounded" id="add">Add</a>
@@ -67,6 +69,9 @@
         <% include partials/footer %>
     </footer>
 </body>
+<script>
+    var prev_tc = <%- JSON.stringify(t_case)%>;
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/problem_edit.js" defer></script>
