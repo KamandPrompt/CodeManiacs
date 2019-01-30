@@ -7,6 +7,7 @@ router.get("/", (req, res) => {
 
 router.get("/problems/all", (req, res) => {
     res.render("problem_set");
+    finder();
 });
 
 router.get("/problem/:qID", (req, res) => {
@@ -18,3 +19,17 @@ router.get("/rankings", (req, res) => {
 });
 
 module.exports = router;
+
+
+//to check for visibility of a question and then print it on to the required page.
+const ProblemsModel = require("../models/problems");
+function finder() { 
+        ProblemsModel.find({isVisible: 1}).then(function(doc) {
+        var table = [];
+        for(var i=0; i < doc.length ; i++ )
+        {
+            table.push([doc[i].id,doc[i].name,doc[i].tags,doc[i].difficulty]);
+        }
+        console.log(table);
+    })
+}
