@@ -3,17 +3,19 @@ var router = express.Router();
 var passport = require("passport");
 var bcrypt = require("bcryptjs");
 
-/**
- * Import the user schema
- * */
+var authController = require('../controls/auth')
 
-router.get("/login", (req, res, next) => {
-    res.render("login");
-});
+router.get("/login", authController.getLogin);
+
+router.post('/login', authController.postLogin);
+
+router.get('/logout', authController.getLogout);
 
 router.get("/signup", (req, res, next) => {
     res.render("signup");
 });
+
+router.post('/signup', authController.postSignUp);
 
 router.get("/profile", (req, res, next) => {
     res.render("profile");
