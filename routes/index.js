@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 router.get("/problems/all", (req, res) => {
     res.render("problem_set");
     const ProblemsModel = require("../models/problems");
-    ProblemsModel.find({isVisible: 1}).then(doc => console.log(doc));
+    ProblemsModel.find({isVisible: 1},{id: -1,name: 1,tags: 1,difficulty: 1}).sort({id: -1}).then(doc => console.log(doc));
 });
 
 router.get("/problem/:qID", (req, res) => {
