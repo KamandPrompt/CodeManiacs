@@ -1,74 +1,105 @@
 var helper = {};
-var testcases = require("../models/testcases");
 var request = require("request-promise");
+var fs = require('fs');
+
+var testcases = require("../models/testcases");
+var submission = require("../models/submission");
+var problem = require("../models/problems");
+var lang = require('../config/lang')
 
 helper.submitSolution = async (req, res, next) => {
-
-    const qID = req.body.qID;
-
-    testcases.findOne({ qID: qID }, async (err, tc) => {
-        if (err) {
-            console.log(err);
+    var getResult = function(data, src){
+        var verdict = 'AC', time = 0, mem = 0, flag = false;
+        var tcs = [];
+        for (var i=0; i<data.length; i++){
+            time = Math.max(time, data[i].time);
+            mem = Math.max(mem, data[i].memory);
+            tcs[i].status = 'AC';
+            if (data[i].status.id !== 3) {
+                if (data[i].status.id === 4 || data[i].status.id === 13)
+                    tcs[i].status = 'WA';
+                else if (data[i].status.id === 5)
+                    tcs[i].status = 'TLE';
+                else if (data[i].status.id === 6)
+                    tcs[i].status = 'CE';
+                else
+                    tcs[i].status = 'RE';
+            }
+            if (flag === false && tcs[i].status !== 'AC'){
+                verdict = tcs[i].status;
+                flag = true;
+            } 
+            tcs[i].time = data[i].time;
+            tcs[i].memory = data[i].memory;
         }
-        var data = {
-            qID: req.body.qID,
-            code: req.body.code,
-            langID: req.body.language,
-            timeLimit: tc.timeLimit,
-            memoryLimit: tc.memoryLimit,
-            files: tc.cases
+        var langName, subCount=0;
+        for (i=0; i<lang.length; i++){
+            if (lang[i].id == parseInt(req.body.lang)){
+                langName = lang[i].name;
+            }
         }
-        var results = await checkAnswer(data);
-
-        //add code to attach this submissions data to user's account
-
-        //deleting fields that user shouldn't have access to
-        results.forEach(item => {
-            item["token"] = null;
-            item["stdout"] = null;
+        submission.count({}, function(err, c){
+            if (err){
+                console.log(err);
+            } else {
+                subCount = c;
+            }
         });
-        console.log(results);
-        res.send(results);
-    });
-}
-
-
-// takes obj as input {files:*all test files*, Time:*time limit per file*, Memory:*memory per file*, code:*user's code*, langID:*language ID*}
-const checkAnswer = async (data) => {
-    const options = {
-        "method": "POST",
-        "url": "http://sntc.iitmandi.ac.in:3000/submissions/?base64_encoded=false&wait=true",
-        "headers": {
-            "cache-control": "no-cache",
-            "Content-Type": "application/json"
-        },
-        "body": {
-            "source_code": "_fill",
-            "language_id": "_fill",
-            "stdin": "_fill",
-            "expected_output": "_fill",
-            "memory_limit": "_fill",
-            "cpu_time_limit": "_fill",
-        },
-        "json": true
+        var newSubmission = new submission({
+            username: req.user ? req.user.username : 'Guest',
+            qID: req.params.qID,
+            subID: 1 + subCount,
+            code: src,
+            language: langName,
+            verdict: verdict,
+            time: time,
+            memory: mem,
+            isVisible: true,
+            timeStamp: new Date(),
+            tc: tcs
+        });
+        newSubmission.save(function(err){
+            if (err){
+                console.log(err);
+            }
+        });
+        problem.findOne({qID: req.params.qID}, function(err, probRes){
+            res.render('problem_display', {verdict: verdict, time: time, memory:memory, language: langName});
+        });
     };
-    const tests = [];
-
-    options.body['cpu_time_limit'] = Number(data["timeLimit"]);
-    options.body['wall_time_limit'] = options.body['cpu_time_limit'] * 3;
-    options.body['memory_limit'] = Number(data["memoryLimit"]);
-    options.body['source_code'] = data["code"];
-    options.body['language_id'] = data["langID"];
-
-    data["files"].forEach((testcase) => {
-        options.body['stdin'] = testcase["stdin"];
-        options.body['expected_output'] = testcase["stdout"];
-        tests.push(request(options));
+    fs.readFile(req.file.path, "utf8", function(err, src){
+        testcases.findOne({qID: req.params.qID}, function(err, tc){
+            if (err){
+                return console.log(err);
+            }
+            console.log(src);
+            let options = [];
+            for (var i=0; i<tc.cases.length; i++){
+                options.push({
+                    method: 'POST',
+                    uri: "http://sntc.iitmandi.ac.in:3000/submissions/?base64_encoded=false&wait=true",
+                    headers: {
+                        "cache-control": "no-cache",
+                        "Content-Type": "application/json"
+                    },
+                    body: {
+                        "source_code": src,
+                        "language_id": parseInt(req.body.lang),
+                        "stdin": tc.cases[i].stdin,
+                        "expected_output": tc.cases[i].stdout,
+                        "memory_limit": tc.timeLimit,
+                        "cpu_time_limit": tc.memoryLimit
+                    },
+                    json: true
+                });
+            }
+            const promises = options.map(opt => request(opt));
+            Promise.all(promises).then((data) => {
+                getResult(data, src);
+                fs.unlink(req.file.path);
+            });
+        });
     });
-
-    const judge0Response = await Promise.all(tests);
-
-    return judge0Response;
 }
 
 module.exports = helper;
