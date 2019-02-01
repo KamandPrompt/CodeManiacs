@@ -36,11 +36,23 @@
                         <th>Difficulty</th>
                     </tr>
                 </thead>
-                <tbody id="table_js">
-                    <script>
-                        var table = "{{table}}";
-                        console.log(table);
-                    </script>
+                <tbody>
+                 <% for(var i=0; i<db.length; i++) {%>
+                    <tr>
+                      <td>
+                        <%= db[i]._id %>
+                      </td>
+                      <td>
+                        <%= db[i].name%>
+                      </td>
+                      <td>
+                        <%= db[i].tags%>
+                      </td>
+                      <td>
+                        <%= db[i].difficulty%>
+                      </td>
+                    </tr>
+                 <% } %>
                 </tbody>
             </table>
             <button class="button is-link">More</button>
