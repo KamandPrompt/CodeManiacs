@@ -3,6 +3,7 @@ var request = require("request-promise");
 
 var testcases = require("../models/testcases");
 var submission = require("../models/submission");
+var lang = require("../config/lang")
 
 helper.submitSolution = async (req, res, next) => {
     
@@ -38,9 +39,7 @@ helper.submitSolution = async (req, res, next) => {
             options.body['expected_output'] = testcase["stdout"];
             tests.push(request(options));
         });
-    
         const judge0Response = await Promise.all(tests);
-
         return judge0Response;
     }
 
@@ -58,7 +57,6 @@ helper.submitSolution = async (req, res, next) => {
             files: tc.cases
         }
         var results = await checkAnswer(data);
-
         //code to attach this submissions data to user's account
         var tcs = [], verdict = 'Accepted', time=0, mem=0, flag = false;
         for (i=0; i<results.length; i++){
@@ -74,19 +72,20 @@ helper.submitSolution = async (req, res, next) => {
                 memory: results[i].memory
             });
         }
-        var subCount=0;
-        submission.count({}, function(err, c){
-            if (err){
-                console.log(err);
+        var langName;
+        const subCount = await submission.countDocuments({});
+        for (var i=0; i<lang.length; i++){
+            if (lang[i].id === parseInt(req.body.language)){
+                langName = lang[i].name;
+                break; 
             }
-            subCount=c;
-        });
+        }
         var newSubmission = new submission({
             username: req.user ? req.user.username : 'Guest',
             qID: req.body.qID,
             subID: 1 + subCount,
             code: req.body.code,
-            language: req.body.language,
+            language: langName,
             verdict: verdict,
             time: time,
             memory: mem,
@@ -94,11 +93,11 @@ helper.submitSolution = async (req, res, next) => {
             timeStamp: new Date(),
             tc: tcs
         });
-        
         newSubmission.save(function(err){
             if (err){
                 console.log(err);
             }
+            console.log(newSubmission);
         });
 
         //deleting fields that user shouldn't have access to

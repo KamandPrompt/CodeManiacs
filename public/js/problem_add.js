@@ -38,7 +38,7 @@ $('.submit').on('click', function () {
 	ques.explanation = $("#Explanation").val();
 	ques.difficulty = Number($("#DifficultyLevel").val());
 	ques.problemSetter = $("#ProblemSetter").val();
-	ques.timeLimit = Number($("#TimeLimit").val());
+	ques.timeLimit = $("#TimeLimit").val();
 	ques.memoryLimit = Number($("#MemoryLimit").val());
 	ques.tags = $("#Tags").val().split(",").map(item => item.trim()) ;
 	ques.editorial = $("#Editorial").val();

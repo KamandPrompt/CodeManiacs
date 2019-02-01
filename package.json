@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@mongoosejs/double": "^0.1.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",

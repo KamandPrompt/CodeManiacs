@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+const Double = require('@mongoosejs/double');
+
 var prob = new mongoose.Schema({
     qID: Number,
     name: String,
@@ -12,7 +14,7 @@ var prob = new mongoose.Schema({
     explanation: String,
     difficulty: Number,
     problemSetter: String,
-    timeLimit: Number,
+    timeLimit: Double,
     memoryLimit: Number,
     tags: [String],
     editorial: String,
