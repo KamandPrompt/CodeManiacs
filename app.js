@@ -12,6 +12,7 @@ var publicRoute = require("./routes/index");
 var adminRoute = require("./routes/admin");
 var usersRoute = require("./routes/users");
 var problems = require("./controls/problems");
+var enforceAuthentication = require('./controls/auth').enforceAuthentication;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(configDb.database, { useNewUrlParser: true });
@@ -76,19 +77,19 @@ app.listen(port, () => {
 app.get("*", (req, res, next) => {
     res.locals.user = req.user || null;
     console.log("User: " + res.locals.user);
-    next(); 
+    next();
 });
 
 app.use("/", publicRoute);
 app.use("/user", usersRoute);
 
-app.use("/admin", adminRoute);
+app.use("/admin", enforceAuthentication(true,true), adminRoute);
 
-app.get("/submit/:qID", (req, res, next) => {
+app.get("/submit/:qID", enforceAuthentication(true,false) ,(req, res, next) => {
     res.render("solution_submit");
 });
 
-app.post("/submit/:qID", problems.submitSolution);
+app.post("/submit/:qID", enforceAuthentication(true,false), problems.submitSolution);
 
 app.post("/problem/:qID", (req, res, next) => {
     res.redirect('/submit/' + req.params.qID);

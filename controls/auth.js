@@ -46,3 +46,17 @@ exports.getLogout = function(req, res){
     req.logout();
     res.redirect('/');
 }
+
+exports.enforceAuthentication = (loginRequired=true,adminRequired=false) => (req,res,next) => {
+    if(loginRequired === req.isAuthenticated()){
+        if(!adminRequired || req.user.isAdmin ){
+            next();
+        } else {
+            res.redirect('/');
+        }
+    } else if(loginRequired){
+        res.redirect('/user/login');
+    } else {
+        res.redirect('/');
+    }
+}
