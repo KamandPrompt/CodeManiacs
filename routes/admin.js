@@ -18,12 +18,12 @@ router.put("/edit/:qID", admin.editQuestion);
 
 router.get("/new-contest", (req, res, next) => {
     res.render("new_contest");
-})
+});
 
-router.post("/new-contest", admin.createContest)
+router.post("/new-contest", admin.createContest);
 
-router.get("/my-contests", (req, res, next) => {
-    res.render("my_contests");
-})
+router.get("/my-contests", admin.myContests);
+
+router.get("/edit-contest/:contCode", admin.editContest);
 
 module.exports = router;

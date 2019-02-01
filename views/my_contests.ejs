@@ -7,14 +7,52 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+
 </head>
 
-<body>
+<body class="grid">
 	<header>
 		<% include partials/header %>
-    </header>
-    
-    MY CONTESTS
+	</header>
+
+	<div class="grid-content content small">
+		<div class="grid-content box">
+			<h1 class="title center"> My Contests</h1>
+			<hr>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Starting At</th>
+						<th>Duration (minutes)</th>
+					</tr>
+				</thead>
+				<tbody id="show-all-contests">
+					<% for(var i = 0; i < data.length; i++) {%>
+					<tr>
+						<td>
+							<a href="/admin/edit-contest/<%= data[i].code %>">
+								<%= data[i].code %></a>
+						</td>
+						<td>
+							<a href="/admin/edit-contest/<%= data[i].code %>">
+								<%= data[i].name %></a>
+						</td>
+						<td>
+							<%= data[i].date %>
+						</td>
+						<td>
+							<%= data[i].duration %>
+						</td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+			<button class="button is-link">More</button>
+		</div>
+	</div>
 
 	<footer>
 		<% include partials/footer %>

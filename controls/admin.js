@@ -58,25 +58,41 @@ helper.getQuestion = async (req, res, next) => {
 }
 
 helper.createContest = async (req, res, next) => {
-    var contestName = req.body.contestName;
-    var date = req.body.date;
-    var startTime = req.body.startTime;
-    var duration = req.body.duration;
-    startTime -= (5 * 60 * 60 * 1000 + 30 * 60 * 1000);
-    console.log(contestName, date, startTime, duration);
-    res.redirect("/admin/new-contest");
+    var newContest = {
+        code: req.body.contestCode,
+        name: req.body.contestName,
+        date: req.body.date + " " + req.body.startTime,
+        duration: req.body.duration,
+        visible: req.body.visibility,
+        problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
+    };
 
-    await contests.create({
-        name: contestName,
-        date: date + " " + startTime,
-        duration: duration
-    })
+    await contests.create(newContest)
         .then((val) => {
             console.log(val);
         })
         .catch((err) => {
             console.log(err);
         })
+
+    res.redirect("/admin/my-contests");
+}
+
+helper.myContests = async (req, res, next) => {
+    contests.find({}).sort({ date: 1 })
+        .then((data) => {
+            console.log(data);
+            res.render("my_contests", { data: data });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+helper.editContest = async (req, res, next) => {
+    var code = req.params.contCode;
+    console.log(code);
+    res.render("edit_contest");
 }
 
 module.exports = helper;

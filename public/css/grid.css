@@ -31,3 +31,9 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
+.small {
+    font-size: 14px;
+    width: 80%;
+    margin-left: 10%;
+}

@@ -3,7 +3,7 @@
 
 <head>
 
-	<title>New Contest | CodeManiacs</title>
+	<title>EDIT Contest | CodeManiacs</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
@@ -14,7 +14,7 @@
 		<% include partials/header %>
 	</header>
 
-	NEW CONTEST
+	EDIT CONTEST
 
 	<form name="new-contest" action="/admin/new-contest" method="POST">
 		Contest Code: <input type="text" name="contestCode"><br>
@@ -23,8 +23,8 @@
 		Starting Time: <input type="time" name="startTime"><br>
 		Duration (minutes): <input type="text" name="duration"><br>
 		Make the contest visible to the public? (1 for yes, 0 for no) <input type="text" name="visibility"><br>
-		Problems to be included (qID "," comma separated): <input type="text" name="problemsID"><br>
-		<input type="submit" value="Create contest">
+		Problems to be included (qID "," comma separated): <textarea name="problemsID"></textarea>
+		<input type="submit" value="Edit contest">
 	</form>
 
 	<footer>
