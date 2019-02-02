@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>Contests | CodeManiacs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
+	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body class="grid">
+	<header>
+		<% include partials/header %>
+	</header>
+
+	<div class="grid-content content small">
+		<div class="grid-content box">
+			<h1 class="title center"> Upcoming Contests</h1>
+			<hr>
+			<table id="display-all-contests" class="table">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Starting in</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="show-all-contests">
+					<% for(var i = 0; i < contests.length; i++){ %>
+					<tr id="<%= i %>">
+						<td>
+							<%= contests[i].code %>
+						</td>
+						<td>
+							<%= contests[i].name %>
+						</td>
+						<td>
+							<%= contests[i].dt %>
+							<%= contests[i].tm %>
+						</td>
+						<td>
+							<button type="button" class="btn btn-success btn-sm">Enter</button>
+						</td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<footer>
+		<% include partials/footer %>
+	</footer>
+</body>
+<script src="/js/contest_countdown.js"></script>
+
+</html>

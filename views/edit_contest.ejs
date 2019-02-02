@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>EDIT Contest | CodeManiacs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
+	<link rel="stylesheet" type="text/css" href="/css/contest_admin.css">
+	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+	<header>
+		<% include partials/header %>
+	</header>
+
+	<form class="contest-form" action="/admin/edit-contest/<%= data.code %>" method="POST">
+		<h1><strong>EDIT CONTEST</strong></h1><br>
+		Contest Code: <span name="contestCode"><%= data.code %></span><br>
+		Contest Name: <input type="text" name="contestName" value="<%= data.name %>"><br>
+		Date: <input type="date" name="date" value="<%= data.YY %>-<%= data.MM %>-<%= data.DD %>"><br>
+		Starting Time: <input type="time" name="startTime" value="<%= data.TT %>"><br>
+		Duration (minutes): <input type="text" name="duration" value="<%= data.duration %>"><br>
+		Make the contest visible to the public? (1 for yes, 0 for no) <input type="text" name="visibility" value="<%= data.visible %>"><br>
+		Problems to be included (qID "," comma separated): <input type="text" name="problemsID" value="<%= data.problemsID %>"><br>
+		<button type="submit" class="btn btn-danger btn-md">Edit Contest</button>
+
+	</form>
+
+	<footer>
+		<% include partials/footer %>
+	</footer>
+</body>
+
+</html>

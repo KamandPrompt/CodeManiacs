@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>My Contests | CodeManiacs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
+	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body class="grid">
+	<header>
+		<% include partials/header %>
+	</header>
+
+	<div class="grid-content content small">
+		<div class="grid-content box">
+			<h1 class="title center"> My Contests</h1>
+			<hr>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Starting At</th>
+						<th>Duration (minutes)</th>
+						<th>Publicly visibility</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="show-all-contests">
+					<% for(var i = 0; i < data.length; i++) {%>
+					<tr>
+						<td>
+							<%= data[i].code %>
+						</td>
+						<td>
+							<%= data[i].name %>
+						</td>
+						<td>
+							<%= data[i].D %>
+						</td>
+						<td>
+							<%= data[i].duration %>
+						</td>
+						<td>
+							<%= data[i].visible %>
+						</td>
+						<td>
+							<a href="/admin/edit-contest/<%= data[i].code %>"><button type="button" class="btn btn-danger btn-sm">EDIT</button></a>
+						</td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<footer>
+		<% include partials/footer %>
+	</footer>
+</body>
+<script>
+	var URL = window.location.href;
+	var msg = URL.split("?")[1];
+	if (msg !== "") {
+		const probCode = msg.split("_")[0];
+		const res = msg.split("_")[1];
+		window.alert("Editing problem " + probCode + " " + res);
+	}
+</script>
+
+</html>

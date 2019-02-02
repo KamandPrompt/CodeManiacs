@@ -15,6 +15,9 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -25,7 +28,9 @@
 
     <div class="grid-content content">
         <div class="grid-content box" style="width: 60%; margin-left: 20%;">
-            <a href="/admin/add" style="font-size: 20px;">ADD PROBLEM</a>
+            <a href="/admin/add" style="font-size: 15px;">ADD PROBLEM</a> |
+            <a href="/admin/new-contest" style="font-size: 15px;">HOST NEW CONTEST</a> |
+            <a href="/admin/my-contests" style="font-size: 15px;">SHOW/EDIT CONTESTS</a>
             <h1 class="title center"> Admin | My Problems</h1>
             <hr>
             <table class="table">
@@ -33,20 +38,29 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Visible publicly</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    <% for(var i = 0; i < data.length; i++) { %>
                     <tr>
-                        <td><a href="/admin/edit/4">4</a></td> 
-                        <td><a href="/admin/edit/4">Dummy Name</a></td>
+                        <td>
+                            <%= data[i].qID %>
+                        </td>
+                        <td>
+                            <%= data[i].name %>
+                        </td>
+                        <td>
+                            <%= data[i].isVisible %>
+                        </td>
+                        <td>
+                            <a href="/admin/edit/<%= data[i].qID %>"><button type="button" class="btn btn-danger btn-sm">EDIT</button></a>
+                        </td>
                     </tr>
-                    <tr>
-                        <td><a href="/admin/edit/6">6</a></td> 
-                        <td><a href="/admin/edit/6">Again Dummy Name</a></td>
-                    </tr>
+                    <% } %>
                 </tbody>
             </table>
-            <button class="button is-link">More</button>
         </div>
     </div>
 
