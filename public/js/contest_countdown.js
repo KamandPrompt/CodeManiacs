@@ -16,11 +16,9 @@ var x = setInterval(function () {
         var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((t % (1000 * 60)) / 1000);
         var tr = document.getElementById(i.toString(10));
-        var td = tr.getElementsByTagName("td")
-        td[2].innerHTML = days + "d "
-            + hours + "h " + minutes + "m " + seconds + "s ";
+        var td = tr.getElementsByTagName("td");
+        td[2].innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
         if (t < 0) {
-            clearInterval(x);
             td[2].innerHTML = "Running";
         }
     }
