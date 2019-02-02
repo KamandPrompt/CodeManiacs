@@ -13,6 +13,7 @@ var adminRoute = require("./routes/admin");
 var usersRoute = require("./routes/users");
 var problems = require("./controls/problems");
 var enforceAuthentication = require('./controls/auth').enforceAuthentication;
+var lang = require("./config/lang")
 
 mongoose.Promise = global.Promise;
 mongoose.connect(configDb.database, { useNewUrlParser: true });
@@ -86,7 +87,7 @@ app.use("/user", usersRoute);
 app.use("/admin", enforceAuthentication(true,true), adminRoute);
 
 app.get("/submit/:qID", enforceAuthentication(true,false) ,(req, res, next) => {
-    res.render("solution_submit");
+    res.render("solution_submit", {langlist: lang});
 });
 
 app.post("/submit/:qID", enforceAuthentication(true,false), problems.submitSolution);
