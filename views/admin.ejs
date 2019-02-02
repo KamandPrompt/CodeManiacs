@@ -15,6 +15,10 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 </head>
 
 <body class="grid">
@@ -35,21 +39,23 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Visible publicly</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for(var i = 0; i < data.length; i++) { %>
                     <tr>
                         <td>
-                            <a href="/admin/edit/<%= data[i].qID %>">
-                                <%= data[i].qID %> </a>
+                            <%= data[i].qID %>
                         </td>
                         <td>
-                            <a href="/admin/edit/<%= data[i].qID %>">
-                                <%= data[i].name %> </a>
+                            <%= data[i].name %>
                         </td>
                         <td>
                             <%= data[i].isVisible %>
+                        </td>
+                        <td>
+                            <a href="/admin/edit/<%= data[i].qID %>"><button type="button" class="btn btn-danger btn-sm">EDIT</button></a>
                         </td>
                     </tr>
                     <% } %>
