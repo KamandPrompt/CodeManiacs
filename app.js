@@ -84,13 +84,13 @@ app.get("*", (req, res, next) => {
 app.use("/", publicRoute);
 app.use("/user", usersRoute);
 
-app.use("/admin", enforceAuthentication(true,true), adminRoute);
+app.use("/admin", enforceAuthentication(true, true), adminRoute);
 
-app.get("/submit/:qID", enforceAuthentication(true,false) ,(req, res, next) => {
-    res.render("solution_submit", {langlist: lang});
+app.get("/submit/:qID", enforceAuthentication(true, false), (req, res, next) => {
+    res.render("solution_submit", { langlist: lang });
 });
 
-app.post("/submit/:qID", enforceAuthentication(true,false), problems.submitSolution);
+app.post("/submit/:qID", enforceAuthentication(true, false), problems.submitSolution);
 
 app.post("/problem/:qID", (req, res, next) => {
     res.redirect('/submit/' + req.params.qID);

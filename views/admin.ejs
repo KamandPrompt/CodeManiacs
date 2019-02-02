@@ -15,7 +15,6 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
-
 </head>
 
 <body class="grid">
@@ -25,9 +24,9 @@
 
     <div class="grid-content content">
         <div class="grid-content box" style="width: 60%; margin-left: 20%;">
-                <a href="/admin/add" style="font-size: 15px;">ADD PROBLEM</a> |
-                <a href="/admin/new-contest" style="font-size: 15px;">HOST NEW CONTEST</a> | 
-                <a href="/admin/my-contests" style="font-size: 15px;">MY CONTESTS</a>
+            <a href="/admin/add" style="font-size: 15px;">ADD PROBLEM</a> |
+            <a href="/admin/new-contest" style="font-size: 15px;">HOST NEW CONTEST</a> |
+            <a href="/admin/my-contests" style="font-size: 15px;">SHOW/EDIT CONTESTS</a>
             <h1 class="title center"> Admin | My Problems</h1>
             <hr>
             <table class="table">
@@ -35,20 +34,27 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Visible publicly</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <% for(var i = 0; i < data.length; i++) { %>
                     <tr>
-                        <td><a href="/admin/edit/4">4</a></td> 
-                        <td><a href="/admin/edit/4">Dummy Name</a></td>
+                        <td>
+                            <a href="/admin/edit/<%= data[i].qID %>">
+                                <%= data[i].qID %> </a>
+                        </td>
+                        <td>
+                            <a href="/admin/edit/<%= data[i].qID %>">
+                                <%= data[i].name %> </a>
+                        </td>
+                        <td>
+                            <%= data[i].isVisible %>
+                        </td>
                     </tr>
-                    <tr>
-                        <td><a href="/admin/edit/6">6</a></td> 
-                        <td><a href="/admin/edit/6">Again Dummy Name</a></td>
-                    </tr>
+                    <% } %>
                 </tbody>
             </table>
-            <button class="button is-link">More</button>
         </div>
     </div>
 
