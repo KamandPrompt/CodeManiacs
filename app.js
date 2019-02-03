@@ -96,4 +96,9 @@ app.post("/problem/:qID", (req, res, next) => {
     res.redirect('/submit/' + req.params.qID);
 });
 
+app.use((req, res, next) => {
+    res.status(404);
+    res.render("not_found");
+})
+
 exports = module.exports = app;

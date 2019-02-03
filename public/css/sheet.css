@@ -203,3 +203,23 @@ h3
 .table {
   margin-top: 20px;
 }
+
+.page-not-found {
+  border: #dadada solid 1px;
+  border-radius: 10px;
+  width: 60%;
+  margin-left: 20%;
+  text-align: center;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.page-not-found h1 {
+  font-size: 70px;
+}
+
+.page-not-found h2 {
+  font-size: 20px;
+}
