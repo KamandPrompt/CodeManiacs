@@ -1,12 +1,31 @@
 var helper = {};
 var request = require("request-promise");
-
 var testcases = require("../models/testcases");
 var submission = require("../models/submission");
-var lang = require("../config/lang")
+var problems = require("../models/problems");
+var lang = require("../config/lang");
+
+helper.displayProblem = async (req, res, next) => {
+    problems.findOne({ qID: req.params.qID })
+        .then((data) => {
+            if (data === null) {
+                next();
+            }
+            if (res.locals.user && res.locals.user.isAdmin === false && data.isVisible === false) {
+                next();
+            }
+            if (res.locals.user === null && data.isVisible === false) {
+                next();
+            }
+            res.render("problem_display", { data: data });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
 
 helper.submitSolution = async (req, res, next) => {
-    
+
     // takes obj as input {files:*all test files*, Time:*time limit per file*, Memory:*memory per file*, code:*user's code*, langID:*language ID*}
     const checkAnswer = async (data) => {
         const options = {
@@ -58,11 +77,11 @@ helper.submitSolution = async (req, res, next) => {
         }
         var results = await checkAnswer(data);
         //code to attach this submissions data to user's account
-        var tcs = [], verdict = 'Accepted', time=0, mem=0, flag = false;
-        for (i=0; i<results.length; i++){
+        var tcs = [], verdict = 'Accepted', time = 0, mem = 0, flag = false;
+        for (i = 0; i < results.length; i++) {
             time = Math.max(time, results[i].time);
             mem = Math.max(mem, results[i].memory);
-            if (flag === false && results[i].status.description !== 'Accepted'){
+            if (flag === false && results[i].status.description !== 'Accepted') {
                 verdict = results[i].status.description;
                 flag = true;
             }
@@ -74,10 +93,10 @@ helper.submitSolution = async (req, res, next) => {
         }
         var langName;
         const subCount = await submission.countDocuments({});
-        for (var i=0; i<lang.length; i++){
-            if (lang[i].id === parseInt(req.body.language)){
+        for (var i = 0; i < lang.length; i++) {
+            if (lang[i].id === parseInt(req.body.language)) {
                 langName = lang[i].name;
-                break; 
+                break;
             }
         }
         var newSubmission = new submission({
@@ -93,8 +112,8 @@ helper.submitSolution = async (req, res, next) => {
             timeStamp: new Date(),
             tc: tcs
         });
-        newSubmission.save(function(err){
-            if (err){
+        newSubmission.save(function (err) {
+            if (err) {
                 console.log(err);
             }
             console.log(newSubmission);

@@ -22,46 +22,48 @@
     </header>
     <div class="grid-content content">
         <div class="grid-content box">
-            <h1 id="QuesName" class="title"></h1>
+            <h1 id="QuesName" class="title">
+                <%= data.name %>
+            </h1>
             <hr>
             <h2 class="subtitle">Description</h2>
-            <pre id="Description"></pre>
+            <pre id="Description"><%= data.description %></pre>
             <hr>
             <h2 class="subtitle">Input Format</h2>
-            <pre id="InputFormat"></pre>
+            <pre id="InputFormat"><%= data.inputFormat %></pre>
             <hr>
             <h2 class="subtitle">Output Format</h2>
-            <pre id="OutputFormat"></pre>
+            <pre id="OutputFormat"><%= data.outputFormat %></pre>
             <hr>
             <h2 class="subtitle">Constraints</h2>
-            <pre id="Constraints"></pre>
+            <pre id="Constraints"><%= data.constraints %></pre>
             <hr>
             <h2 class="subtitle">Sample Input</h2>
-            <pre id="SampleInput"></pre>
+            <pre id="SampleInput"><%= data.sampleInput %></pre>
             <hr>
             <h2 class="subtitle">Sample Output</h2>
-            <pre id="SampleOutput"></pre>
+            <pre id="SampleOutput"><%= data.sampleOutput %></pre>
             <hr>
             <h2 class="subtitle">Explanation</h2>
-            <pre id="Explanation"></pre>
+            <pre id="Explanation"><%= data.explanation %></pre>
             <hr>
             <h2 class="subtitle">Difficulty</h2>
-            <pre id="DifficultyLevel"></pre>
+            <pre id="DifficultyLevel"><%= data.difficulty %></pre>
             <hr>
             <h2 class="subtitle">Problem Setter</h2>
-            <pre id="ProblemSetter"></pre>
+            <pre id="ProblemSetter"><%= data.problemSetter %></pre>
             <hr>
             <h2 class="subtitle">Time Limit</h2>
-            <pre id="TimeLimit"></pre>
+            <pre id="TimeLimit"><%= data.timeLimit %> sec</pre>
             <hr>
             <h2 class="subtitle">Memory Limit</h2>
-            <pre id="MemoryLimit"></pre>
+            <pre id="MemoryLimit"><%= data.memoryLimit %> KB</pre>
             <hr>
             <h2 class="subtitle">Tags</h2>
-            <pre id="Tags"></pre>
+            <pre id="Tags"><%= data.tags %></pre>
             <hr>
             <h2 class="subtitle">Editorial</h2>
-            <pre id="Editorial"></pre>
+            <pre id="Editorial"><%= data.editorial %></pre>
             <hr>
             <form method="POST" action="">
                 <input type="submit" value="Submit" class="button is-link">
