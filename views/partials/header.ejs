@@ -12,13 +12,13 @@
 
 <section class="topbar">
     <div class="flexbox">
-        <div class="flexbox" style="margin-top: 20px">
+        <div class="flexbox" style="padding-top: 25px">
             <div class="nav"><span><a href="/">HOME</a></span></div>
             <div class="nav"><span><a href="/contests">CONTESTS</a></span></div>
             <div class="nav"><span><a href="/problems/all">PROBLEM SET</a></span></div>
             <div class="nav"><span><a href="/rankings">RANKINGS</a></span></div>
             <% if (locals.user && locals.user.isAdmin === true) { %>
-            <div class="nav"><span><a href="/admin">ADMIN</a></span></div>
+            <div class="nav"><span><strong><a href="/admin" style="color: rgb(153, 0, 0);">ADMIN</a></strong></span></div>
             <% } %>
             <% if (locals.user) { %>
             <div class="nav"><span><a href="/user/profile">PROFILE</a></span></div>
