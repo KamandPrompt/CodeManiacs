@@ -6,8 +6,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/problems/all", (req, res) => {    
-    const ProblemsModel = require("../models/problems");
-    var table = ProblemsModel.find({isVisible: 1},{id: -1,name: 1,tags: 1,difficulty: 1}).sort({id: -1}).then(function(doc){
+    const problems = require("../models/problems");
+    problems.find({isVisible: 1},{id: -1,name: 1,tags: 1,difficulty: 1}).sort({id: -1}).then(function(doc){
         res.render("problem_set",{db: doc});
     });
 });
