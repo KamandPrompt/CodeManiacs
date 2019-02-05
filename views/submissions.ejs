@@ -2,56 +2,79 @@
 <html>
 
 <head>
+
 	<title>Submissions | CodeManiacs</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/css/submissions.css">
 	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
-	
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 </head>
 
-<body>
+<body class="grid">
 	<header>
 		<% include partials/header %>
-    </header>
+	</header>
 
-	<h1 style="font-size: 2rem; margin: 10px;text-align: center;">MY SUBMISSIONS</h1>
-	<table>
-		<thead>
-			<th>Submission ID</th>
-			<th>Problem Name</th>
-			<th>Language</th>
-			<th>Verdict</th>
-			<th>Time</th>
-			<th>Memory</th>
-		</thead>
-		<tbody>
-			<tr>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-			</tr>
-			<tr>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-			</tr>
-			<tr>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-				<td>a</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="grid-content content">
+		<div class="grid-content box">
+			<h2 class="title center">
+				<%= locals.user.username %> submissions</h2>
+			<hr>
+			<table id="submission-history" class="table">
+				<thead>
+					<tr>
+						<th>Submission ID</th>
+						<th>Date</th>
+						<th>Problem</th>
+						<th>Language</th>
+						<th>Verdict</th>
+						<th>Time</th>
+						<th>Memory</th>
+					</tr>
+				</thead>
+				<tbody id="show-all-contests">
+					<% for(var i = 0; i < data.length; i++) { %>
+					<tr>
+						<td>
+							<%= data[i].subID %>
+						</td>
+						<td>
+							<%= data[i].date %>
+						</td>
+						<td>
+							<a href="/problem/<%=data[i].qID%>" target="_blank">
+								<%= data[i].qID %></a>
+						</td>
+						<td>
+							<%= data[i].language %>
+						</td>
+						<td>
+							<span style="color: darkblue">
+								<% if(data[i].verdict === "Accepted") { %>
+								<strong style="color:rgb(38, 134, 0);">
+									<% } %>
+									<%= data[i].verdict %>
+									<% if(data[i].verdict === "Accepted") { %>
+								</strong>
+								<% } %>
+							</span>
+						</td>
+						<td>
+							<%= data[i].time %> s
+						</td>
+						<td>
+							<%= data[i].memory %> KB
+						</td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
 	<footer>
 		<% include partials/footer %>

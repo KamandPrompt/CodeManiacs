@@ -1,7 +1,5 @@
 var express = require("express");
 var router = express.Router();
-var passport = require("passport");
-var bcrypt = require("bcryptjs");
 
 var authController = require('../controls/auth')
 var enforceAuthentication = authController.enforceAuthentication;
@@ -20,8 +18,6 @@ router.post('/signup', enforceAuthentication(false, false), authController.postS
 
 router.get("/profile", enforceAuthentication(true, false), authController.showProfile);
 
-router.get("/submissions", enforceAuthentication(true, false), (req, res, next) => {
-    res.render("submissions");
-});
+router.get("/submissions", enforceAuthentication(true, false), authController.submissionHistory);
 
 module.exports = router;

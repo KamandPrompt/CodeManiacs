@@ -9,7 +9,7 @@ exports.showContests = async (req, res, next) => {
                 data[i].dt = moment(data[i].date).format("ll");
                 data[i].tm = moment(data[i].date).format("H:mm:ss");
             }
-            res.render("all_contests", { contests: data });
+            res.render("users_contests", { contests: data });
         })
         .catch((err) => {
             console.log(err);

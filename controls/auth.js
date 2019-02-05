@@ -1,6 +1,7 @@
 var passport = require('passport');
 var user = require('../models/users');
 var submissions = require('../models/submission');
+var moment = require("moment");
 
 exports.postSignUp = function (req, res) {
     var acc = new user({
@@ -95,6 +96,24 @@ exports.showProfile = async (req, res, next) => {
             });
             console.log(stats);
             res.render("profile", { stats: stats });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
+/**To show the user submission history table when logged in
+ * route: /user/submissions
+ */
+exports.submissionHistory = async (req, res, next) => {
+    /**Collecting the user submission data from the submissions collection */
+    submissions.find({ username: res.locals.user.username }).sort({ timeStamp: -1 })
+        .then((data) => {
+            /**Changing the date-time format */
+            for (var i = 0; i < data.length; i++) {
+                data[i].date = moment(data[i].timeStamp).format("MMMM Do YYYY, h:mm:ss A");
+            }
+            res.render("submissions", { data: data });
         })
         .catch((err) => {
             console.log(err);
