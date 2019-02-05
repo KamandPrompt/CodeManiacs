@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>IDE | CodeManiacs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link rel="stylesheet" type="text/css" href="/css/submitprob.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<header>
+		<% include partials/header %>
+	</header>
+
+    <div class="submit-container">
+        <div id="prob-no">CodeManiacs IDE to test your code</div>
+        <div id="editor">#include &#60;bits/stdc++.h&#62;
+using namespace std;
+
+int main(){
+
+    return 0;
+}</div>
+    <div class="col-md-6 col-xs-12">
+        <p>Input</p>
+        <textarea id="stdin" rows="5" style="width: 85%;"></textarea>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <p>Output</p>
+        <textarea id="stdout" rows="5" style="width: 85%;" readonly></textarea>
+    </div>
+
+        <div class="submit">
+            <select id="language">
+                <% for (var i=0; i<langlist.length; i++) { %>
+                    <option value="<%= langlist[i].id %>" >
+                        <%= langlist[i].name %>
+                    </option>
+                <% } %>
+            </select>
+            <button type="button" id="submit-btn" class="btn btn-primary btn-md">Submit</button>
+        </div>
+
+    </div>
+
+	<footer>
+		<% include partials/footer %>
+    </footer>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/chrome");
+        editor.session.setMode("ace/mode/python");
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script>
+        $('#submit-btn').on('click', function() {
+            $('#submit-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+            $('#submit-btn').prop('disabled', true);
+            data = {
+                src: editor.getValue(),
+                lang: $('#language').val(),
+                stdin: $('#stdin').val()
+            };
+            $.ajax('/ide', {
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                type: 'POST'
+            }).done(function(res) {
+                if (res.status.id !== 3) {
+                    $('#stdout').css('color', 'red');
+                    if (res.compile_output == null){
+                        $('#stdout').val(res.status.description);
+                    }
+                    else{
+                        $('#stdout').val(res.compile_output + '\n' + res.status.description);
+                    }
+                } else {
+                    $('#stdout').css('color', 'black');
+                    $('#stdout').val(res.stdout + "\n====\n" + "Used: " + res.time + " s, " + res.memory + " KB");
+                }
+                $('#submit-btn').html('Submit')
+                $('#submit-btn').prop('disabled', false);
+            });
+        });
+    </script>
+</body>
+
+</html>

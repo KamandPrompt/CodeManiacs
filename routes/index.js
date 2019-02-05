@@ -19,4 +19,7 @@ router.get("/rankings", (req, res) => {
     res.render("rankings");
 });
 
+router.get("/ide", problems.getIde);
+router.post("/ide", problems.postIde);
+
 module.exports = router;
