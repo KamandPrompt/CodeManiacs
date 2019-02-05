@@ -6,7 +6,9 @@
 	<title>Profile | CodeManiacs</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
+	<link rel="stylesheet" type="text/css" href="/css/profile.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -14,11 +16,60 @@
 		<% include partials/header %>
 	</header>
 
-	<h1>MY PROFILE</h1>
+	<div class="main-container">
+		<div id="name-pic">
+			<img src="/photos/avatar.png">
+			<p>
+				<%= locals.user.name %>
+			</p>
+		</div>
+		<hr>
+		<div id="wrapper">
+			<div id="user-details">
+				<p><strong>Username: </strong>
+					<%= locals.user.username %>
+				</p>
+				<p><strong>Email: </strong>
+					<%= locals.user.email %>
+				</p>
+				<p><strong>Admin access: </strong>
+					<%= locals.user.isAdmin %>
+				</p>
+				<p>
+					[ <a href="/user/submissions">My submission history</a> ]
+				</p>
+			</div>
+			<div id="submissions-chart"></div>
+		</div>
+	</div>
 
 	<footer>
 		<% include partials/footer %>
 	</footer>
 </body>
+<script type="text/javascript">
+	// Load google charts
+	google.charts.load('current', { 'packages': ['corechart'] });
+	google.charts.setOnLoadCallback(drawChart);
+
+	// Draw the chart and set the chart values
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Verdit', 'Counts'],
+			['Time limit exceeded', Number("<%= stats.TLE %>")],
+			['Wrong answer', Number("<%= stats.WA %>")],
+			['Compilation error', Number("<%= stats.CE %>")],
+			['Accepted', Number("<%= stats.AC %>")],
+			['Runtime error', Number("<%= stats.RE %>")]
+		]);
+
+		// Optional; add a title and set the width and height of the chart
+		var options = { 'title': 'Submissions: ', 'width': 600, 'height': 300 };
+
+		// Display the chart inside the <div> element with id="submissions-chart"
+		var chart = new google.visualization.PieChart(document.getElementById('submissions-chart'));
+		chart.draw(data, options);
+	}
+</script>
 
 </html>

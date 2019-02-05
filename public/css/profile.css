@@ -1,0 +1,38 @@
+.main-container {
+    border: solid 2px #e4e4e4;
+    border-radius: 10px;
+    width: 70%;
+    height: fit-content;
+    margin-left: 15%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#wrapper {
+    display: flex;
+}
+
+#user-details {
+    flex: 0 0 30%;
+}
+
+#user-details>p {
+    margin-left: 10%;
+    margin-top: 10px;
+}
+
+#name-pic>img{
+    display: inline-block;
+    width: 100px;
+}
+
+#name-pic>p{
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+#submissions-chart {
+    flex: 1;
+}
