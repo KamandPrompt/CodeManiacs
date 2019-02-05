@@ -5,6 +5,17 @@ var submission = require("../models/submission");
 var problems = require("../models/problems");
 var lang = require("../config/lang");
 
+helper.problemSet = async (req, res, next) => {
+    problems.find({ isVisible: true }).sort({ qID: -1 })
+        .then((data) => {
+            console.log(data);
+            res.render("problem_set", { problems: data });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
 helper.displayProblem = async (req, res, next) => {
     problems.findOne({ qID: req.params.qID })
         .then((data) => {
@@ -129,11 +140,11 @@ helper.submitSolution = async (req, res, next) => {
     });
 }
 
-helper.getIde = function(req, res) {
-    res.render('ide', {langlist: lang});
+helper.getIde = function (req, res) {
+    res.render('ide', { langlist: lang });
 };
 
-helper.postIde = function(req, res) {
+helper.postIde = function (req, res) {
     var options = {
         method: 'POST',
         url: "http://sntc.iitmandi.ac.in:3000/submissions/?base64_encoded=false&wait=true",
@@ -150,10 +161,9 @@ helper.postIde = function(req, res) {
         json: true
     }
     console.log(options);
-    request(options, function(err, result, body) {
+    request(options, function (err, result, body) {
         res.send(body);
     });
 }
 
 module.exports = helper;
-

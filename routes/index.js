@@ -9,9 +9,7 @@ router.get("/", (req, res) => {
 
 router.get("/contests", contests.showContests);
 
-router.get("/problems/all", (req, res) => {
-    res.render("problem_set");
-});
+router.get("/problems/all", problems.problemSet);
 
 router.get("/problem/:qID", problems.displayProblem);
 
@@ -20,6 +18,7 @@ router.get("/rankings", (req, res) => {
 });
 
 router.get("/ide", problems.getIde);
+
 router.post("/ide", problems.postIde);
 
 module.exports = router;

@@ -37,21 +37,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% for(var i = 0; i < problems.length; i++) { %>
                     <tr>
-                        <td><a href="/problem/4">4</a></td> 
-                        <td><a href="/problem/4">Dummy Name</a></td>
-                        <td>math, brute force</td>
-                        <td>easy</td>
+                        <td><a href="/problem/<%= problems[i].qID %>">
+                                <%= problems[i].qID %></a></td>
+                        <td><a href="/problem/<%= problems[i].qID %>">
+                                <%= problems[i].name %></a></td>
+                        <td>
+                            <%= problems[i].tags %>
+                        </td>
+                        <td>
+                            <%= problems[i].difficulty %>
+                        </td>
                     </tr>
-                    <tr>
-                        <td><a href="/problem/6">6</a></td> 
-                        <td><a href="/problem/6">Again Dummy Name</a></td>
-                        <td>math, brute force</td>
-                        <td>easy</td>
-                    </tr>
+                    <% } %>
                 </tbody>
             </table>
-            <button class="button is-link">More</button>
+            <!-- 
+                This button will be added later on.
+                <button class="button is-link">More</button> 
+            -->
         </div>
     </div>
 
