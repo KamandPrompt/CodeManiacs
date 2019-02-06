@@ -119,3 +119,26 @@ exports.submissionHistory = async (req, res, next) => {
             console.log(err);
         })
 }
+
+/**To show the user submission code and testcases results when logged in
+ * route: /user/submission/subID
+ */
+exports.submission_subID = async (req, res, next) => {
+    /**Collecting the user submission data from the submissions collection */
+    submissions.findOne({ subID: req.params.subID })
+        .then((data) => {
+            console.log(data);
+            /**Assuring that the user is opening his submission only */
+            if (data.username === res.locals.user.username) {
+                /**Changing the date-time format */
+                data.date = moment(data.timeStamp).format("MMMM Do YYYY, h:mm:ss A");
+                res.render("submission_subID", { data: data });
+            }
+            else {
+                res.redirect("/user/submissions");
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}

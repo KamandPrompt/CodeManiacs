@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>My Submission | CodeManiacs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link rel="stylesheet" type="text/css" href="/css/submission_subID.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <% include partials/header %>
+    </header>
+    <div class="submit-container">
+        <table class="table">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Problem</th>
+                    <th scope="col">Lang</th>
+                    <th scope="col">Verdict</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Memory</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= data.subID %></td>
+                    <td><%= locals.user.username %></td>
+                    <td><a href="<%= data.qID %>"><%= data.qID %></a></td>
+                    <td><%= data.language %></td>
+                    <% var status_color = "nonAC_txt" %>
+                    <% if (data.verdict === "Accepted") status_color = "AC_txt" %>
+                    <td class="<%= status_color %>"><%= data.verdict %></td>
+                    <td><%= data.time %> s</td>
+                    <td><%= data.memory %> KB</td>
+                    <td><%= data.date %></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="editor">
+            NOTHING TO DISPLAY :(
+        </div>
+    </div>
+    <div class="testcase-container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Testcase #</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Memory</th>
+                    <th scope="col">Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i < data.tc.length; i++) { %>
+                    <% var status_color = "nonAC" %>
+                    <% if (data.tc[i].status === "Accepted") status_color = "AC" %>
+                    <tr class="<%= status_color %>">
+                        <td><%= i + 1 %></td>
+                        <td><%= data.tc[i].time %> s</td>
+                        <td><%= data.tc[i].memory %> KB</td>
+                        <td><%= data.tc[i].status %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        <% include partials/footer %>
+    </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setReadOnly(true);
+    editor.setTheme("ace/theme/chrome");
+    editor.session.setMode("ace/mode/python");
+    var code = <%- JSON.stringify(data.code) %>;
+    editor.getSession().setValue(code);
+</script>
+
+</html>

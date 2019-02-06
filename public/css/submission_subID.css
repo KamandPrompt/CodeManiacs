@@ -1,0 +1,51 @@
+.submit-container {
+    height: 650px;
+    width: 80%;
+    margin-top: 100px;
+    margin-left: 10%;
+    text-align: center;
+    overflow: hidden
+}
+
+.testcase-container {
+    height: fit-content;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 50px;
+    text-align: center;
+    overflow: hidden
+}
+
+.testcase-container>table {
+    font-size: 15px;
+}
+
+#editor {
+    font-size: 14px;
+    height: 600px;
+    resize: none;
+    overflow-y: scroll;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 10px;
+}
+
+.submit-container>table {
+    font-size: 12px;
+}
+
+.AC {
+    background: rgb(48, 184, 48);
+}
+
+.nonAC {
+    background:#ff5454;
+}
+
+.AC_txt {
+    color: rgb(48, 184, 48);
+    font-weight: bold;
+}
+
+.nonAC_txt {
+    color:#323fff;
+}

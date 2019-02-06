@@ -20,4 +20,6 @@ router.get("/profile", enforceAuthentication(true, false), authController.showPr
 
 router.get("/submissions", enforceAuthentication(true, false), authController.submissionHistory);
 
+router.get("/submission/:subID", enforceAuthentication(true, false), authController.submission_subID);
+
 module.exports = router;
