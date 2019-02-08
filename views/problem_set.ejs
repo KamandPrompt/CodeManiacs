@@ -34,6 +34,7 @@
                         <th>Name</th>
                         <th>Tags</th>
                         <th>Difficulty</th>
+                        <th>Solved</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +49,11 @@
                         </td>
                         <td>
                             <%= problems[i].difficulty %>
+                        </td>
+                        <% var sol = "0"; %>
+                        <% if(solved[problems[i].qID]) {sol = solved[problems[i].qID]; }%>
+                        <td>
+                            <%= sol %>
                         </td>
                     </tr>
                     <% } %>

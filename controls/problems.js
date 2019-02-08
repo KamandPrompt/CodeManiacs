@@ -6,11 +6,37 @@ var problems = require("../models/problems");
 var user = require('../models/users');
 var lang = require("../config/lang");
 
+/**To display all the problems to the users that should
+ * be visible to the users.
+ * route: /problems/all
+ */
 helper.problemSet = async (req, res, next) => {
-    problems.find({ isVisible: true }).sort({ qID: -1 })
+    /**Quering problems that should be visible to the users */
+    problems.find({ isVisible: true })
         .then((data) => {
             console.log(data);
-            res.render("problem_set", { problems: data });
+            /**Accepted questions grouping by username and qID */
+            submission.aggregate([
+                { $match: { verdict: "Accepted" } },
+                { $group: { _id: { username: "$username", qID: "$qID" } } }
+            ]).then((probSolved) => {
+                var probSolvedObj = {};
+                /**Counting the frequency of each solved questions */
+                for (var i = 0; i < probSolved.length; i++) {
+                    probSolvedObj[probSolved[i]._id.qID] = 1 + (probSolvedObj[probSolved[i]._id.qID] || 0);
+                }
+                /**Comparator function to sort the problems in descending
+                 * order of the count of solved
+                 */
+                function cmp(a, b) {
+                    if (probSolvedObj[a.qID] === null && probSolvedObj[b.qID] === null) return -1;
+                    if (probSolvedObj[a.qID] && !probSolvedObj[b.qID]) return -1;
+                    if (!probSolvedObj[a.qID] && probSolved[b.qID]) return 1;
+                    return Number(probSolvedObj[a.qID]) > Number(probSolvedObj[b.qID]) ? -1 : 1;
+                }
+                data.sort(cmp);
+                res.render("problem_set", { problems: data, solved: probSolvedObj });
+            })
         })
         .catch((err) => {
             console.log(err);
@@ -170,7 +196,7 @@ helper.postIde = function (req, res) {
 helper.renderUsers = function (req, res) {
     // Add code to display rankings here
     var data = [];
-    res.render('rankings', {data: data});
+    res.render('rankings', { data: data });
 }
 
 module.exports = helper;
