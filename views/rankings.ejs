@@ -1,117 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
- <% include partials/head %>
+
+    <title>Rankings | CodeManiacs</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+
 </head>
-<body>
-<% include partials/menu %>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class=font-of-text>
-    <div class="container-fluid bg-3 text-center">
-      <div class="row">
-        <div class="col-sm-4">
-          Practice Hard To See Yourself Ruling The Table.
+
+<body class="grid">
+    <header>
+        <% include partials/header %>
+    </header>
+
+    <div class="grid-content content">
+        <div class="grid-content box">
+            <h1 class="title center"> Rankings</h1>
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Username</th>
+                        <th>Rating</th>
+                        <th>Solved</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% for(var i = 0; i < data.length; i++) { %>
+                    <tr>
+                        <td>
+                          <%= (i+1) %>
+                        </td>
+                        <td>
+                          <%= data[i][0] %>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            <%= data[i][1] %>
+                        </td>
+                    </tr>
+                  <% } %>
+                </tbody>
+            </table>
+            <!-- 
+                This button will be added later on.
+                <button class="button is-link">More</button> 
+            -->
         </div>
-        <div class="col-sm-4">
-          <p>Join KamandPrompt on ZulipChat to get latest Updates on Contest</p>
-        </div>
-        <div class="col-sm-4">
-          <p>Remember! Coding isn't a spectators sport.You have to get your hands dirty on codes to master it.</p>
-        </div>
-      </div>
-      <h1>Rankings</h1>
     </div>
-</div>
-<input class="center-block" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" style="font-size:18pt;height:50px;width:500px;">
-<br>
-<table id="myTable" align=center style="width:80%">
-        <tr>
-           <th>Rank</th>
-           <th>Username</th>
-           <th>Rating</th>
-           <th>Questions Solved</th>
-         </tr>
-        <tr>
-           <td>1</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-        <tr>
-           <td>2</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-        <tr>
-           <td>3</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-        <tr>
-           <td>4</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-        <tr>
-           <td>5</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-        <tr>
-           <td>6</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-        <tr>
-           <td>7</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-        <tr>
-           <td>8</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-        <tr>
-           <td>9</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-        <tr>
-           <td>10</td>
-           <td></td>
-           <td></td>
-           <td></td>
-        </tr>
-   </table>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+    <footer>
+        <% include partials/footer %>
+    </footer>
 </body>
-<% include partials/script %>
-<% include partials/footer %>
+
 </html>
