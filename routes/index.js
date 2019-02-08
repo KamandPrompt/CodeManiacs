@@ -13,9 +13,7 @@ router.get("/problems/all", problems.problemSet);
 
 router.get("/problem/:qID", problems.displayProblem);
 
-router.get("/rankings", (req, res) => {
-    res.render("rankings");
-});
+router.get("/rankings", problems.renderUsers);
 
 router.get("/ide", problems.getIde);
 

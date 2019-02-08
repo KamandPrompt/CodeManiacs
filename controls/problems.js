@@ -3,6 +3,7 @@ var request = require("request-promise");
 var testcases = require("../models/testcases");
 var submission = require("../models/submission");
 var problems = require("../models/problems");
+var user = require('../models/users');
 var lang = require("../config/lang");
 
 helper.problemSet = async (req, res, next) => {
@@ -164,6 +165,12 @@ helper.postIde = function (req, res) {
     request(options, function (err, result, body) {
         res.send(body);
     });
+}
+
+helper.renderUsers = function (req, res) {
+    // Add code to display rankings here
+    var data = [];
+    res.render('rankings', {data: data});
 }
 
 module.exports = helper;
