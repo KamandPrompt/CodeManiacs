@@ -29,6 +29,7 @@
 						<th>Code</th>
 						<th>Name</th>
 						<th>Starting in</th>
+						<th>Platform</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -46,7 +47,12 @@
 							<%= contests[i].tm %>
 						</td>
 						<td>
-							<button type="button" class="btn btn-success btn-sm">Enter</button>
+							<%= contests[i].platform || "CodeManiacs" %>
+						</td>
+						<td>
+							<a href="<%= contests[i].link || '#' %>" target="_blank">
+								<button type="button" class="btn btn-success btn-sm">Enter</button>
+							</a>
 						</td>
 					</tr>
 					<% } %>

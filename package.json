@@ -10,6 +10,7 @@
     "@mongoosejs/double": "^0.1.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
     "ejs": "^2.6.1",
     "express": "*",
     "express-messages": "^1.0.1",
