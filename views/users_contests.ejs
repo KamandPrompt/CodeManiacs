@@ -20,10 +20,11 @@
 	</header>
 
 	<div class="grid-content content small">
-		<div class="grid-content box">
+
+		<div class="box">
 			<h1 class="title center"> Upcoming Contests</h1>
 			<hr>
-			<table id="display-all-contests" class="table">
+			<table class="table">
 				<thead>
 					<tr>
 						<th>Code</th>
@@ -32,7 +33,7 @@
 						<th></th>
 					</tr>
 				</thead>
-				<tbody id="show-all-contests">
+				<tbody id="show-all-contests" class="display-all-contests">
 					<% for(var i = 0; i < contests.length; i++){ %>
 					<tr id="<%= i %>">
 						<td>
@@ -47,6 +48,45 @@
 						</td>
 						<td>
 							<button type="button" class="btn btn-success btn-sm">Enter</button>
+						</td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+		<div class="box">
+			<h1 class="title center">More Contests</h1>
+			<hr>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Starting in</th>
+						<th>Platform</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="show-all-contests" class="display-all-contests">
+					<% for(var i = 0; i < external.length; i++){ %>
+					<tr id="<%= contests.length + i %>">
+						<td>
+							<%= external[i].code %>
+						</td>
+						<td>
+							<%= external[i].name %>
+						</td>
+						<td>
+							<%= external[i].dt %>
+							<%= external[i].tm %>
+						</td>
+						<td>
+							<%= external[i].platform %>
+						</td>
+						<td>
+							<a href="<%= external[i].link %>" target="_blank">
+								<button type="button" class="btn btn-success btn-sm">Enter</button>
+							</a>
 						</td>
 					</tr>
 					<% } %>
