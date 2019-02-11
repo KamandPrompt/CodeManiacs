@@ -14,7 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
-    <!--<link rel="stylesheet" type="text/css" href="/css/sheet.css">-->
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+
 
 <body>
 	<header>
@@ -22,31 +23,31 @@
     </header>
     
    <div class="main-w3layouts wrapper">
-		<div align = "center"><h1><u><b> LOGIN</b></u></h1></div>
-		<div class="main-agileinfo">
-			<div class="agileits-top">
+	   <div class="main-agileinfo"><br>
+		   <div class="agileits-top">
+				<div class ='headadd' text-align = "center"><u><b> LOGIN</b></u></div>
 				<form action="/user/login" method="post">
-					<input class="text email" type="text" name="username" placeholder="Username" required="">
-					<input class="text" type="password" name="password" placeholder="Password" required="">
+					<div class = "form-group" ><input class="text email" type="text" name="username" placeholder="Username" required=""></div>
+					<div class = "form-group" ><input class="text" type="password" name="password" placeholder="Password" required=""></div>
 					<div class="wthree-text">
 						<div class="clear"> </div>
 					</div>
 					<input type="submit" value="SIGN IN">
+					<p>Don't have an Account? <br><a href="/user/signup"> <u>SignUp Now!</u></a></p>
 				</form>
-				<p>Don't have an Account? <a href="/user/signup"> SignUp Now!</a></p>
 			</div>
-		</div>
+		</div><br><br>
 		<ul class="colorlib-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
+				<!--<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>-->
+			</ul>
 	</div>
 
 	<footer>

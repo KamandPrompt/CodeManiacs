@@ -15,6 +15,8 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
    <!-- <link rel="stylesheet" type="text/css" href="/css/sheet.css">-->
+   <link rel="stylesheet" type="text/css" href="/css/grid.css">
+
 </head>
 
 <body>
@@ -23,28 +25,25 @@
     </header>
     
     <div class="main-w3layouts wrapper">
-		<h1><u><b> SIGNUP </b></u></h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
+				<div class ='headadd' text-align = "center"><u><b> SIGNUP</b></u></div>
 				<form action="/user/signup" method="post">
-                    <input class="text" type="text" name="name" placeholder="Full Name" required="">
-					<input class="text" type="text" name="username" placeholder="Username" required="">
-					<input class="text email" type="email" name="email" placeholder="Email" required="">
-					<input class="text" type="password" name="password" placeholder="Password" required="">
-					<input class="text w3lpass" type="password" name="password2" placeholder="Confirm Password" required="">
+                    <div class = "form-group"><input class="text" type="text" name="name" placeholder="Full Name" required=""></div>
+					<div class = "form-group"><input class="text" type="text" name="username" placeholder="Username" required=""></div>
+					<div class = "form-group"><input class="text email" type="email" name="email" placeholder="Email" required=""></div>
+					<div class = "form-group"><input class="text" type="password" name="password" placeholder="Password" required=""></div>
+					<div class = "form-group"><input class="text w3lpass" type="password" name="password2" placeholder="Confirm Password" required=""></div>
 					<div class="wthree-text">
-						<label class="anim">
-							<input type="checkbox" class="checkbox" required="">
-							<span color="black">I Agree To The Terms & Conditions</span>
-						</label>
 						<div class="clear"> </div>
 					</div>
 					<input type="submit" value="SIGN UP">
+					<p>Already have an Account? <a href="/user/login"> Login Now!</a></p>
 				</form>
-				<p>Already have an Account? <a href="/user/login"> Login Now!</a></p>
 			</div>
 		</div>
 		<ul class="colorlib-bubbles">
+			<!--<li></li>
 			<li></li>
 			<li></li>
 			<li></li>
@@ -53,11 +52,9 @@
 			<li></li>
 			<li></li>
 			<li></li>
-			<li></li>
-			<li></li>
+			<li></li>-->
 		</ul>
 	</div>
-
 	<footer>
 		<% include partials/footer %>
 	</footer>

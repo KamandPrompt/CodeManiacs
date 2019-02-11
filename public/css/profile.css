@@ -1,3 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+#container {
+    min-height: 100%;
+    position : relative;
+}
 .main-container {
     border: solid 2px #e4e4e4;
     border-radius: 10px;
@@ -5,12 +18,17 @@
     height: fit-content;
     margin-left: 15%;
     margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
+    margin-bottom: 100px;
+    padding-bottom: 200px;
+    padding-top:0px;
+    min-height: 100%;
 }
 
 #wrapper {
     display: flex;
+    overflow: auto;
+    padding-bottom: 70px;
+    padding-top:0px;
 }
 
 #user-details {
@@ -36,3 +54,5 @@
 #submissions-chart {
     flex: 1;
 }
+
+
