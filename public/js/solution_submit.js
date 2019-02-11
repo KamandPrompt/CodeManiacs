@@ -45,7 +45,6 @@ const submitSolution = () => {
 		$('tbody').empty();
 
 		response.forEach((item, index) => {
-			console.log(index, item);
 
 			//compile row and add to table
 			const data = {

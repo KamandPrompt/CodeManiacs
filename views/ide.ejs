@@ -3,10 +3,10 @@
 
 <head>
 
-	<title>IDE | CodeManiacs</title>
+    <title>IDE | CodeManiacs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/sheet.css">
-    <link rel="stylesheet" type="text/css" href="/css/submitprob.css">
+    <link rel="stylesheet" type="text/css" href="/css/ide.css">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,46 +14,49 @@
 </head>
 
 <body>
-	<header>
-		<% include partials/header %>
-	</header>
-
-    <div class="submit-container">
-        <div id="prob-no">CodeManiacs IDE to test your code</div>
-        <div id="editor">#include &#60;bits/stdc++.h&#62;
+    <header>
+        <% include partials/header %>
+    </header>
+    <div id="ide-heading">CodeManiacs IDE to test your code</div>
+    <div class="main-heading">
+        <div class="submit-container">
+            <div id="editor">#include &#60;bits/stdc++.h&#62;
 using namespace std;
 
-int main(){
+    int main(){
 
     return 0;
 }</div>
-    <div class="col-md-6 col-xs-12">
-        <p>Input</p>
-        <textarea id="stdin" rows="5" style="width: 85%;"></textarea>
-    </div>
-    <div class="col-md-6 col-xs-12">
-        <p>Output</p>
-        <textarea id="stdout" rows="5" style="width: 85%;" readonly></textarea>
-    </div>
-
-        <div class="submit">
-            <select id="language">
-                <% for (var i=0; i<langlist.length; i++) { %>
-                    <option value="<%= langlist[i].id %>" >
+        </div>
+        <div class="ide-output">
+            <div class="submit">
+                <select id="language">
+                    <% for (var i=0; i<langlist.length; i++) { %>
+                    <option value="<%= langlist[i].id %>">
                         <%= langlist[i].name %>
                     </option>
-                <% } %>
-            </select>
-            <button type="button" id="submit-btn" class="btn btn-primary btn-md">Submit</button>
+                    <% } %>
+                </select>
+                <button type="button" id="submit-btn" class="btn btn-primary btn-md">Submit</button>
+            </div>
+            <div class="col-md-6 col-xs-16">
+                <p>Input</p>
+                <textarea id="stdin" rows="10" style="width: 100%;"></textarea>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <p>Output</p>
+                <textarea id="stdout" rows="10" style="width: 100%;" readonly></textarea>
+                <p id="time-memo"></p>
+            </div>
         </div>
-
     </div>
 
-	<footer>
-		<% include partials/footer %>
+    <footer>
+        <% include partials/footer %>
     </footer>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js" type="text/javascript"
+        charset="utf-8"></script>
     <script>
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/chrome");
@@ -61,7 +64,7 @@ int main(){
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <script>
-        $('#submit-btn').on('click', function() {
+        $('#submit-btn').on('click', function () {
             $('#submit-btn').html('<i class="fa fa-spinner fa-spin"></i>');
             $('#submit-btn').prop('disabled', true);
             data = {
@@ -73,18 +76,19 @@ int main(){
                 data: JSON.stringify(data),
                 contentType: 'application/json',
                 type: 'POST'
-            }).done(function(res) {
+            }).done(function (res) {
                 if (res.status.id !== 3) {
                     $('#stdout').css('color', 'red');
-                    if (res.compile_output == null){
+                    if (res.compile_output == null) {
                         $('#stdout').val(res.status.description);
                     }
-                    else{
+                    else {
                         $('#stdout').val(res.compile_output + '\n' + res.status.description);
                     }
                 } else {
                     $('#stdout').css('color', 'black');
-                    $('#stdout').val(res.stdout + "\n====\n" + "Used: " + res.time + " s, " + res.memory + " KB");
+                    $('#stdout').val(res.stdout);
+                    document.getElementById('time-memo').innerHTML = "Used: " + res.time + " s, " + res.memory + " KB";
                 }
                 $('#submit-btn').html('Submit')
                 $('#submit-btn').prop('disabled', false);

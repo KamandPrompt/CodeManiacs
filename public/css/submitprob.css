@@ -1,5 +1,5 @@
 .submit-container {
-    height: 100%;
+    height: 550px;
     width: 70%;
     border-left: 1px solid rgb(221, 221, 221);
     border-right: 1px solid rgb(221, 221, 221);
@@ -13,7 +13,7 @@
 }
 #editor {
     font-size: 15px;
-    height: 60%;
+    height: 67%;
     margin-top: 20px;
     margin-bottom: 40px;
     margin-left: 5%;
@@ -26,4 +26,9 @@
 }
 .btn-md {
     margin-left: 10px;
+}
+.submit-result {
+    width: 70%;
+    margin-bottom: 30px;
+    margin-left: 15%;
 }
