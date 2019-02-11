@@ -3,7 +3,7 @@ var request = require("request-promise");
 var testcases = require("../models/testcases");
 var submission = require("../models/submission");
 var problems = require("../models/problems");
-var user = require('../models/users');
+var users = require('../models/users');
 var lang = require("../config/lang");
 
 /**To display all the problems to the users that should
@@ -193,10 +193,64 @@ helper.postIde = function (req, res) {
     });
 }
 
-helper.renderUsers = function (req, res) {
-    // Add code to display rankings here
-    var data = [];
-    res.render('rankings', { data: data });
+/**
+ * To display the user ranklist
+ * route: /rankings
+ */
+helper.userRankings = function (req, res) {
+    /**Getting all the users */
+    users.find()
+        .then((data) => {
+            /**Accepted questions grouping by username and qID */
+            submission.aggregate([
+                { $match: { verdict: "Accepted" } },
+                { $group: { _id: { username: "$username", qID: "$qID" } } }
+            ]).then((user_questions) => {
+                var user_solved = {};
+                /**Counting the frequency of problems solved by each user */
+                for (var i = 0; i < user_questions.length; i++) {
+                    user_solved[user_questions[i]._id.username] = 1 + (user_solved[user_questions[i]._id.username] || 0);
+                }
+                /**Comparator function to sort the user in descending
+                 * order of the count of solved
+                 */
+                function cmp(a, b) {
+                    if (user_solved[a.username] === null && user_solved[b.username] === null) return -1;
+                    if (user_solved[a.username] && !user_solved[b.username]) return -1;
+                    if (!user_solved[a.username] && user_questions[b.username]) return 1;
+                    return Number(user_solved[a.username]) > Number(user_solved[b.username]) ? -1 : 1;
+                }
+                data.sort(cmp);
+                console.log(data);
+                console.log(user_solved);
+                /**Calulating the rank based on the total number of solved
+                 * problems by each user. User having same number of problems solved
+                 * has the same rank.
+                 * Initializing the current rank to 0 and current solved to INF (~100000000)
+                 */
+                var currRank = 0, currSolved = 100000000;
+                for (var i = 0; i < data.length; i++) {
+                    /**This user hasn't solved even a single question */
+                    if (!user_solved[data[i].username]) {
+                        data[i].rank = currRank + 1;
+                        data[i].solved = 0;
+                        continue;
+                    }
+                    /**This user has lesser problems solved than the previous user */
+                    else if (user_solved[data[i].username] < currSolved) {
+                        currSolved = user_solved[data[i].username];
+                        currRank += 1;
+                    }
+                    /**Else this user has same number of problems solved as the previous user */
+                    data[i].rank = currRank;
+                    data[i].solved = currSolved;
+                }
+                res.render("rankings", { data: data });
+            })
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 }
 
 module.exports = helper;

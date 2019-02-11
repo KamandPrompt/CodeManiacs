@@ -11,8 +11,8 @@
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
 
@@ -32,27 +32,23 @@
                     <tr>
                         <th>Rank</th>
                         <th>Username</th>
-                        <th>Rating</th>
                         <th>Solved</th>
                     </tr>
                 </thead>
                 <tbody>
-                  <% for(var i = 0; i < data.length; i++) { %>
-                    <tr>
-                        <td>
-                          <%= (i+1) %>
-                        </td>
-                        <td>
-                          <%= data[i][0] %>
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-                            <%= data[i][1] %>
-                        </td>
-                    </tr>
-                  <% } %>
+                    <% for(var i = 0; i < data.length; i++) { %>
+                        <tr>
+                            <td>
+                                <%= data[i].rank %>
+                            </td>
+                            <td>
+                                <%= data[i].username %>
+                            </td>
+                            <td>
+                                <%= data[i].solved %>
+                            </td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
             <!-- 

@@ -13,7 +13,7 @@ router.get("/problems/all", problems.problemSet);
 
 router.get("/problem/:qID", problems.displayProblem);
 
-router.get("/rankings", problems.renderUsers);
+router.get("/rankings", problems.userRankings);
 
 router.get("/ide", problems.getIde);
 

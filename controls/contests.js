@@ -1,6 +1,6 @@
 var contests = require("../models/contests");
 var moment = require("moment");
-const scrape = require('../scrappers/contestScrapper').scrape;
+const scrape = require('../scrapers/contestScraper').scrape;
 
 exports.showContests = async (req, res, next) => {
 	let external = await scrape();
