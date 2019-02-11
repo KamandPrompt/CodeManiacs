@@ -53,7 +53,11 @@
 							<%= data[i].visible %>
 						</td>
 						<td>
-							<a href="/admin/edit-contest/<%= data[i].code %>"><button type="button" class="btn btn-danger btn-sm">EDIT</button></a>
+							<form method="POST" action="/admin/dlt_contest/<%= data[i].code %>">
+								<a href="/admin/edit-contest/<%= data[i].code %>"><button type="button"
+										class="btn btn-success btn-sm">EDIT</button></a>
+								<button type="submit" class="btn btn-danger btn-xs">DELETE</button>
+							</form>
 						</td>
 					</tr>
 					<% } %>

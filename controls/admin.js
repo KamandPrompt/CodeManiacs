@@ -1,6 +1,4 @@
 var helper = {};
-var passport = require("passport");
-var bcrypt = require("bcryptjs");
 const Question = require("../models/problems");
 const TC = require("../models/testcases");
 const total = require("../models/total_questions");
@@ -10,7 +8,7 @@ var moment = require("moment");
 helper.displayAllProblems = async (req, res, next) => {
     Question.find({}).sort({ qID: -1 })
         .then((data) => {
-            res.render("admin", {data: data});
+            res.render("admin", { data: data });
         })
         .catch((err) => {
             console.log(err);
@@ -45,6 +43,16 @@ helper.addQuestion = async function (req, res, next) {
         res.send("Problem could not be submitted");
     }
 };
+
+helper.deleteProblem = async (req, res, next) => {
+    Question.deleteOne({ qID: req.params.qID })
+        .then((data) => {
+            res.redirect("/admin");
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
 
 helper.editQuestion = async function (req, res, next) {
 
@@ -101,6 +109,16 @@ helper.myContests = async (req, res, next) => {
         .catch((err) => {
             console.log(err);
         });
+}
+
+helper.deleteContest = async (req, res, next) => {
+    contests.deleteOne({ code: req.params.contCode })
+        .then((data) => {
+            res.redirect("/admin/my-contests");
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 }
 
 helper.displayEditContest = async (req, res, next) => {

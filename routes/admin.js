@@ -14,6 +14,10 @@ router.post("/add", admin.addQuestion);
 
 router.put("/edit/:qID", admin.editQuestion);
 
+router.post("/dlt_prob/:qID", admin.deleteProblem);
+
+router.post("/dlt_contest/:contCode", admin.deleteContest);
+
 router.get("/new-contest", (req, res, next) => {
     res.render("new_contest");
 });
