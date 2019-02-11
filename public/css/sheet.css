@@ -75,10 +75,9 @@ img {vertical-align: middle;}
   cursor: all;
   position: absolute;
   top: 40%;
-  width: 100px;
-  height: 300px;
+  width: 50px;
+  height: 200px;
   padding: 16px;
-  margin-top: -22px;
   color: white;
   font-weight: bold;
   font-size: 30px;
@@ -86,7 +85,7 @@ img {vertical-align: middle;}
   transition: 0.4s ease;
   border-radius: 12px;
   user-select: none;
-  padding-top: 110px;
+  padding-top: 75px;
   background-color: black;
   opacity: 0.2;
 }
@@ -121,6 +120,13 @@ img {vertical-align: middle;}
   padding: 8px 12px;
   position: absolute;
   top: 0;
+}
+
+.mySlides>img {
+  width:100%;
+  height: 400px;
+  box-shadow: 0 0 10px;
+  border-radius: 10px;
 }
 
 /* The dots/bullets/indicators */
@@ -222,4 +228,19 @@ h3
 
 .page-not-found h2 {
   font-size: 20px;
+}
+
+.index-content {
+  width: 70%;
+  margin-top: 20px;
+  margin-left: 15%;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border: 2px solid #dfdfdf;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.index-content>p {
+  margin-top: 20px;
 }

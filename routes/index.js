@@ -7,6 +7,10 @@ router.get("/", (req, res) => {
     res.render("index");
 });
 
+router.get("/contribution", (req, res) => {
+    res.render("contribution");
+});
+
 router.get("/contests", contests.showContests);
 
 router.get("/problems/all", problems.problemSet);

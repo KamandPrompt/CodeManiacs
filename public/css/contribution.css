@@ -1,0 +1,30 @@
+.main-wrapper {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    height: fit-content;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.body {
+    border: 1px solid #eeeeee;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.body>p {
+    margin-top: 20px;
+}
+
+.H1 {
+    font-size: 40px;
+}
+
+.H3 {
+    font-size: 20px;
+}
