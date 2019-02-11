@@ -28,9 +28,9 @@ const template = Handlebars.compile(source); //compile template
 prob_no.append("<a target = '_blank' href='/problem/" + question_id + "'>" + question_id + "</a>");
 
 const submitSolution = () => {
+	document.getElementById("running").style.display = "block";
 	//disable button
 	$("button").prop("disabled", true);
-
 	data.code = editor.getValue();
 	data.language = $('#language').val();
 	data.qID = question_id;
@@ -43,6 +43,8 @@ const submitSolution = () => {
 		$('.table').show();
 		//empty previous results
 		$('tbody').empty();
+
+		document.getElementById("running").style.display = "none";
 
 		response.forEach((item, index) => {
 

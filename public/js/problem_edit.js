@@ -27,16 +27,17 @@ $('#rem').on('click', () => {
 const source = document.getElementById('fileTemplate').innerHTML; //get template structure
 const template = Handlebars.compile(source); //compile template
 
-prev_tc.cases.forEach(item => {
-	let testfile = {
-		"stdin": item.stdin,
-		"stdout": item.stdout
-	};
-	$('#testcases').append(template(testfile));
-});
+if (prev_tc) {
+	prev_tc.cases.forEach(item => {
+		let testfile = {
+			"stdin": item.stdin,
+			"stdout": item.stdout
+		};
+		$('#testcases').append(template(testfile));
+	});
+}
 
 $('.submit').on('click', function () {
-
 	//disable button
 	$('.submit').toggleClass('is-loading');
 
@@ -57,7 +58,7 @@ $('.submit').on('click', function () {
 	ques.problemSetter = $("#ProblemSetter").val();
 	ques.timeLimit = $("#TimeLimit").val();
 	ques.memoryLimit = Number($("#MemoryLimit").val());
-	ques.tags = $("#Tags").val().split(",").map(item => item.trim()) ;
+	ques.tags = $("#Tags").val().split(",").map(item => item.trim());
 	ques.editorial = $("#Editorial").val();
 
 	// creating testcase Object
@@ -75,11 +76,11 @@ $('.submit').on('click', function () {
 		testcases['cases'].push(testfile);
 	});
 
-	if(!testcases.cases.length) {
+	if (!testcases.cases.length) {
 		window.alert("No Testcase added");
 		//enable button
 		$('.submit').toggleClass('is-loading');
-		
+
 		return 0;
 	}
 
@@ -95,7 +96,7 @@ $('.submit').on('click', function () {
 		$('.submit').toggleClass('is-loading');
 
 		//show response
-		console.log(response);
+		// console.log(response);
 		window.alert(response);
 
 	});

@@ -32,7 +32,7 @@ helper.addQuestion = async function (req, res, next) {
 
         // log them to the console
         console.log(ques);
-        console.log(tc);
+        // console.log(tc);
 
         // push to database
         await Question.create(ques);
@@ -50,7 +50,7 @@ helper.editQuestion = async function (req, res, next) {
 
     console.log(req.body.qID);
     console.log(req.body.ques);
-    console.log(req.body.testcases);
+    // console.log(req.body.testcases);
 
     try {
         await Question.findOneAndUpdate({ "qID": req.body.qID }, req.body.ques);

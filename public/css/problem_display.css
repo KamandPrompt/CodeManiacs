@@ -1,0 +1,17 @@
+.title {
+    text-align: center;
+}
+
+.sub-title {
+    text-align: center;
+    font-size: 12px;
+}
+
+.problem-body {
+    font-size: 14px;
+}
+
+form {
+    margin-top: 15px;
+    margin-left: 45%;
+}
