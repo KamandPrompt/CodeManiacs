@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
 	<link rel="stylesheet" type="text/css" href="/css/contest_admin.css">
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,7 +19,7 @@
 	<header>
 		<% include partials/header %>
 	</header>
-
+	<div class="main">
 	<form class="contest-form" action="/admin/new-contest" method="POST">
 		<h1><strong>NEW CONTEST</strong></h1><br>
 		Contest Code: <input type="text" name="contestCode"><br>
@@ -28,8 +29,9 @@
 		Duration (minutes): <input type="text" name="duration"><br>
 		Make the contest visible to the public? (1 for yes, 0 for no) <input type="text" name="visibility"><br>
 		Problems to be included (qID "," comma separated): <input type="text" name="problemsID"><br>
-		<button type="submit" class="btn btn-success btn-md">Create Contest</button>	</form>
-
+		<button type="submit" class="btn btn-success btn-md">Create Contest</button>
+	</form>
+	</div>
 	<footer>
 		<% include partials/footer %>
 	</footer>
