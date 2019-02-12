@@ -142,3 +142,45 @@ exports.submission_subID = async (req, res, next) => {
             console.log(err);
         })
 }
+
+/**Getting the webpage for user info update
+ * route: /user/updateProfile
+ */
+exports.getUpdateProfile = (req, res, next) => {
+    res.render("edit_profile", { message: null });
+}
+
+/**Updating the user info i.e. email, name and password
+ * POST: /user/updateProfile
+ */
+exports.postUpdateProfile = async (req, res, next) => {
+    let message = "";
+    console.log(req.body);
+    /**Updating the user email and/or name */
+    try {
+        if (req.body.email) {
+            await user.findByIdAndUpdate({ _id: req.user._id }, { email: req.body.email });
+            message += "Your email has been updated\n";
+        }
+        if (req.body.name) {
+            await user.findOneAndUpdate({ _id: req.user._id }, { name: req.body.name });
+            message += "Your name has been updated\n";
+        }
+    } catch (error) {
+        message += "Error updating your email/name";
+    }
+    /**Updating the user password */
+    try {
+        if (req.body.old && req.body.new) {
+            await req.user.changePassword(req.body.old, req.body.new);
+            message += "Your password has been updated";
+        }
+    } catch (error) {
+        if (error.message === "Password or username is incorrect") {
+            message += "Current Password is incorrect";
+        } else {
+            message += "Error updating your password";
+        }
+    }
+    res.render("edit_profile", { "message": (message || "try again") });
+}

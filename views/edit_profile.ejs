@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <title>Edit | Profile</title>
+    <style>
+        form {
+            max-width: 500px;
+        }
+    </style>
+</head>
+
+<body class="grid">
+    <header>
+        <% include partials/header %>
+    </header>
+    <div class="grid-content content">
+        <% if(message) { %>
+            <div class="box subtitle"><%= message%></div>
+        <% } %>
+        <div class="box">
+            <h1 class="title">Update Profile</h1>
+            <hr>
+            <form action="/user/updateProfile" method="POST">
+                <div class="field">
+                    <p class="control">
+                        Name
+                        <input class="input" name="name" type="text" placeholder="Name">
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        Email
+                        <input class="input" name="email" type="email" placeholder="Email">
+                    </p>
+                    <p class="control">
+                        <button class="button is-info">Save Changes</button>
+                    </p>
+                </div>
+            </form>
+            <hr>
+            <form action="/user/updateProfile" method="POST" >
+                <div class="field">
+                    <p class="control">
+                        Current Password
+                        <input class="input" name="old" type="password" placeholder="Current Password">
+                    </p>
+                    <p class="control">
+                        New Password
+                        <input class="input" name="new" type="password" placeholder="New Password">
+                    </p>
+                    <p class="control">
+                        <button class="button is-info">Save Changes</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <% include partials/footer %>
+    </footer>
+</body>
+
+</html>
