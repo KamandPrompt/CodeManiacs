@@ -24,6 +24,6 @@ router.get("/submission/:subID", enforceAuthentication(true, false), authControl
 
 router.get("/updateProfile", enforceAuthentication(true, false), authController.getUpdateProfile);
 
-router.post("/updateProfile", enforceAuthentication(true, false), authController.updateProfile);
+router.post("/updateProfile", enforceAuthentication(true, false), authController.postUpdateProfile);
 
 module.exports = router;
