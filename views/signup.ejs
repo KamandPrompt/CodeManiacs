@@ -5,38 +5,43 @@
 
 	<title>Sign Up | CodeManiacs</title>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-sca-e=1">
-	<link rel="stylesheet" type="text/css" href="/css/form.css">
-	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
-	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-sca-e=1">
+		<link rel="stylesheet" type="text/css" href="/css/form.css">
+		<link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+   <!-- <link rel="stylesheet" type="text/css" href="/css/sheet.css">-->
 </head>
 
 <body>
 	<header>
 		<% include partials/header %>
-	</header>
-	<div class="main-wrapper">
-		<div class="signupbox">
-			<img src="/photos/avatar.png" class="avatar">
-			<h1>Sign Up Here</h1>
-			<form action="/user/signup" method="post">
-				<p>Full Name</p>
-				<input type="text" name="name" placeholder="Enter Fullname">
-				<p>Username</p>
-				<input type="text" name="username" placeholder="Enter Username">
-				<p>Email</p>
-				<input type="email" name="email" placeholder="Enter Email">
-				<p>Password</p>
-				<input type="password" name="password" placeholder="Enter Password">
-				<p>Confirm Password</p>
-				<input type="password" name="password2" placeholder="Confirm Password">
-				<input type="submit" name="" value="Sign Up">
+    </header>
+    
+    <div class="main-w3layouts wrapper main">
+		<h1><u><b> SIGNUP </b></u></h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form action="/user/signup" method="post">
+                    <input class="text" type="text" name="name" placeholder="Full Name" required="">
+					<input class="text" type="text" name="username" placeholder="Username" required="">
+					<input class="text email" type="email" name="email" placeholder="Email" required="">
+					<input class="text" type="password" name="password" placeholder="Password" required="">
+					<input class="text w3lpass" type="password" name="password2" placeholder="Confirm Password" required="">
+					<div class="wthree-text">
+						<label class="anim">
+							<input type="checkbox" class="checkbox" required="">
+							<span color="black">I Agree To The Terms & Conditions</span>
+						</label>
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="SIGN UP">
+				</form>
 				<p>Already have an Account? <a href="/user/login"> Login Now!</a></p>
 			</form>
 		</div>
