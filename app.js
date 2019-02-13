@@ -86,16 +86,20 @@ app.use("/user", usersRoute);
 
 app.use("/admin", enforceAuthentication(true, true), adminRoute);
 
+/**Display the page to submit problem qID */
 app.get("/submit/:qID", enforceAuthentication(true, false), (req, res, next) => {
     res.render("solution_submit", { langlist: lang });
 });
 
+/**POST: submitting the problem qID */
 app.post("/submit/:qID", enforceAuthentication(true, false), problems.submitSolution);
 
+/**POST: after clicking the submit button on the problem display page */
 app.post("/problem/:qID", (req, res, next) => {
     res.redirect('/submit/' + req.params.qID);
 });
 
+/**Display page when error 404: page not found occur */
 app.use((req, res, next) => {
     res.status(404);
     res.render("not_found");

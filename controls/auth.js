@@ -3,6 +3,9 @@ var user = require('../models/users');
 var submissions = require('../models/submission');
 var moment = require("moment");
 
+/**POST: user signup 
+ * route: /user/signup
+*/
 exports.postSignUp = function (req, res) {
     user.findOne({ username: req.body.username })
         .then((data) => {
@@ -40,6 +43,9 @@ exports.postSignUp = function (req, res) {
         })
 };
 
+/**Display login page 
+ * route: /user/login
+*/
 exports.getLogin = function (req, res) {
     if (req.user) {
         res.render('login', { message: "You have already logged in" });
@@ -49,6 +55,9 @@ exports.getLogin = function (req, res) {
     }
 };
 
+/**POST: user login 
+ * route: user/login
+*/
 exports.postLogin = function (req, res) {
     passport.authenticate('local', function (err, user) {
         if (!user) {
@@ -64,11 +73,15 @@ exports.postLogin = function (req, res) {
     })(req, res);
 };
 
+/**Loggin out the user, redirected to the homepage 
+ * route: /user/logout
+*/
 exports.getLogout = function (req, res) {
     req.logout();
     res.redirect('/');
 }
 
+/**Implementing the routing guards */
 exports.enforceAuthentication = (loginRequired = true, adminRequired = false) => (req, res, next) => {
     if (loginRequired === req.isAuthenticated()) {
         if (!adminRequired || req.user.isAdmin) {
@@ -90,6 +103,7 @@ exports.showProfile = async (req, res, next) => {
     /**Collecting the user's data from the submissions collection */
     submissions.find({ username: res.locals.user.username })
         .then((data) => {
+            /**Object for storing the user submission statistics */
             stats = {
                 AC: 0,
                 WA: 0,
@@ -97,6 +111,7 @@ exports.showProfile = async (req, res, next) => {
                 RE: 0,
                 CE: 0
             };
+            /**Checking the verdict of each user submissions */
             data.forEach(subm => {
                 if (subm.verdict === "Accepted") {
                     stats.AC += 1;
@@ -126,7 +141,9 @@ exports.showProfile = async (req, res, next) => {
  * route: /user/submissions
  */
 exports.submissionHistory = async (req, res, next) => {
-    /**Collecting the user submission data from the submissions collection */
+    /**Collecting the user submission data from the submissions collection 
+     * in descending order of the timestamp (newest to oldest)
+    */
     submissions.find({ username: res.locals.user.username }).sort({ timeStamp: -1 })
         .then((data) => {
             /**Changing the date-time format */

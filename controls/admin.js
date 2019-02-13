@@ -5,7 +5,11 @@ const total = require("../models/total_questions");
 const contests = require("../models/contests");
 var moment = require("moment");
 
+/**Admin homepage displaying all the problems created till now.
+ * route: /admin
+ */
 helper.displayAllProblems = async (req, res, next) => {
+    /**Finding all the problems sorted in descending order of the qID */
     Question.find({}).sort({ qID: -1 })
         .then((data) => {
             res.render("admin", { data: data });
@@ -15,6 +19,9 @@ helper.displayAllProblems = async (req, res, next) => {
         })
 }
 
+/**POST: creating a new problem 
+ * route: /admin/add
+*/
 helper.addQuestion = async function (req, res, next) {
 
     const ques = req.body.ques; // problem statement
@@ -36,6 +43,7 @@ helper.addQuestion = async function (req, res, next) {
         await Question.create(ques);
         await TC.create(tc);
 
+        // question successfully created
         res.send(`Problem submitted as qID = ${qID.totalProblems}`);
     } catch (error) {
         console.log("couldn't submit the question/testcase");
@@ -44,9 +52,14 @@ helper.addQuestion = async function (req, res, next) {
     }
 };
 
+/**POST: deleting the problem qID 
+ * route: /admin/dlt_prob/:qID
+*/
 helper.deleteProblem = async (req, res, next) => {
+    /**Finding question by qID */
     Question.deleteOne({ qID: req.params.qID })
         .then((data) => {
+            /**Deleted successfully */
             res.redirect("/admin");
         })
         .catch((err) => {
@@ -54,6 +67,9 @@ helper.deleteProblem = async (req, res, next) => {
         })
 }
 
+/**PUT: editing the problem qID 
+ * route: /admin/edit/:qID
+*/
 helper.editQuestion = async function (req, res, next) {
 
     console.log(req.body.qID);
@@ -61,6 +77,7 @@ helper.editQuestion = async function (req, res, next) {
     // console.log(req.body.testcases);
 
     try {
+        /**Finding question and testcase by it's qID and updating */
         await Question.findOneAndUpdate({ "qID": req.body.qID }, req.body.ques);
         await TC.findOneAndUpdate({ "qID": req.body.qID }, req.body.testcases);
         res.send("Question was updated");
@@ -70,22 +87,36 @@ helper.editQuestion = async function (req, res, next) {
     }
 };
 
+/**Display page for editing the existing problem having qID = params:qID 
+ * route: /admin/edit/:qID
+*/
 helper.getQuestion = async (req, res, next) => {
+    /**Finding question and tescase using the qID */
     const ques = await Question.findOne({ "qID": req.params.qID });
     const t_case = await TC.findOne({ "qID": req.params.qID });
     res.render("problem_edit", { ques, t_case });
 }
 
+/**POST: creating a new contest 
+ * route: /admin/new-contest
+*/
 helper.createContest = async (req, res, next) => {
+
+    /**Implement checking of the uniqueness of the contest code.
+     * In case a contest is already present with the same code
+     * then asks the user to enter another code.
+    */
+    
+    /**Creating a object for new contest */
     var newContest = {
-        code: req.body.contestCode,
+        code: req.body.contestCode, // contest code needs to be unique
         name: req.body.contestName,
         date: req.body.date + " " + req.body.startTime,
         duration: req.body.duration,
         visible: req.body.visibility,
         problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
     };
-
+    
     await contests.create(newContest)
         .then((val) => {
             console.log(val);
@@ -97,9 +128,14 @@ helper.createContest = async (req, res, next) => {
     res.redirect("/admin/my-contests");
 }
 
+/**Display page consisting of all the created contests 
+ * route: /admin/my-contests
+*/
 helper.myContests = async (req, res, next) => {
+    /**Finding all the contest in ascending order of the date */
     contests.find({}).sort({ date: 1 })
         .then((data) => {
+            /**Modifying the date format */
             for (var i = 0; i < data.length; i++) {
                 data[i].D = moment(data[i].date).format('MMMM Do YYYY, h:mm:ss A');
             }
@@ -111,7 +147,11 @@ helper.myContests = async (req, res, next) => {
         });
 }
 
+/**POST: deleting the constest params:contCode 
+ * route: /admin/dlt_contest/:contCode
+*/
 helper.deleteContest = async (req, res, next) => {
+    /**Finding the contest by it's contCode */
     contests.deleteOne({ code: req.params.contCode })
         .then((data) => {
             res.redirect("/admin/my-contests");
@@ -121,9 +161,14 @@ helper.deleteContest = async (req, res, next) => {
         })
 }
 
+/**Display page to edit the contest params:contCode 
+ * route: /admin/edit-contest/:contCode
+*/
 helper.displayEditContest = async (req, res, next) => {
+    /**Finding the contest by it's contCode */
     contests.findOne({ code: req.params.contCode })
         .then((data) => {
+            /**Formatting the date in order to display in the HTML */
             data.DD = moment(data.date).format("L").split("/")[1];
             data.MM = moment(data.date).format("L").split("/")[0];
             data.YY = moment(data.date).format("L").split("/")[2];
@@ -135,13 +180,18 @@ helper.displayEditContest = async (req, res, next) => {
         })
 }
 
+/**POST: edit the contest params:contCode 
+ * route: /admin/edit-contest/:contCode
+*/
 helper.editContest = async (req, res, next) => {
+    /**Getting data from each fields in the edit contest form */
     var editContest = {
         code: req.params.contCode,
         name: req.body.contestName,
         date: req.body.date + " " + req.body.startTime,
         duration: req.body.duration,
         visible: req.body.visibility,
+        /**comma separated qID of the problems to be included in the contest */
         problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
     };
     await contests.update({ code: req.params.contCode }, editContest)

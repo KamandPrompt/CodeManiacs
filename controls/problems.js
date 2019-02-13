@@ -42,16 +42,22 @@ helper.problemSet = async (req, res, next) => {
             console.log(err);
         })
 }
-
+/**Display the problem with qID 
+ * route: /problem/:qID
+*/
 helper.displayProblem = async (req, res, next) => {
+    /**Finding the question by it's qID from the URL */
     problems.findOne({ qID: req.params.qID })
         .then((data) => {
+            /**qID not found */
             if (data === null) {
                 next();
             }
+            /**false visible questions should not be accessible by a non-admin user */
             if (res.locals.user && res.locals.user.isAdmin === false && data.isVisible === false) {
                 next();
             }
+            /**false visible questions should not be accessible by a non logged in user */
             if (res.locals.user === null && data.isVisible === false) {
                 next();
             }
@@ -61,7 +67,9 @@ helper.displayProblem = async (req, res, next) => {
             console.log(err);
         })
 }
-
+/**FILE: app.js
+ * POST: submitting the problem qID 
+ * route: /submit/:qID */
 helper.submitSolution = async (req, res, next) => {
 
     // takes obj as input {files:*all test files*, Time:*time limit per file*, Memory:*memory per file*, code:*user's code*, langID:*language ID*}
@@ -85,12 +93,14 @@ helper.submitSolution = async (req, res, next) => {
         };
         const tests = [];
 
+        /**Getting the required field values for making a user submission for a problem */
         options.body['cpu_time_limit'] = Number(data["timeLimit"]);
         options.body['wall_time_limit'] = options.body['cpu_time_limit'] * 3;
         options.body['memory_limit'] = Number(data["memoryLimit"]);
         options.body['source_code'] = data["code"];
         options.body['language_id'] = data["langID"];
 
+        /**Attaching each testcase */
         data["files"].forEach((testcase) => {
             options.body['stdin'] = testcase["stdin"];
             options.body['expected_output'] = testcase["stdout"];
@@ -167,13 +177,20 @@ helper.submitSolution = async (req, res, next) => {
     });
 }
 
+/**Display the IDE page 
+ * route: /ide
+*/
 helper.getIde = function (req, res) {
     res.render('ide', { langlist: lang });
 };
 
+/**POST: submitting the IDE code, input 
+ * route: /ide
+*/
 helper.postIde = function (req, res) {
     var options = {
         method: 'POST',
+        /**&wait=true for getting the submission result after submitting the code automatically */
         url: "http://sntc.iitmandi.ac.in:3000/submissions/?base64_encoded=false&wait=true",
         headers: {
             "cache-control": "no-cache",
@@ -183,7 +200,7 @@ helper.postIde = function (req, res) {
             "source_code": req.body.src,
             "language_id": parseInt(req.body.lang),
             "stdin": req.body.stdin,
-            "cpu_time_limit": 5
+            "cpu_time_limit": 5     // time limit to 5 sec for the IDE
         },
         json: true
     }
