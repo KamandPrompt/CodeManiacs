@@ -11,7 +11,7 @@ router.post('/login', enforceAuthentication(false, false), authController.postLo
 router.get('/logout', enforceAuthentication(true, false), authController.getLogout);
 
 router.get("/signup", enforceAuthentication(false, false), (req, res, next) => {
-    res.render("signup");
+    res.render("signup", { error: null });
 });
 
 router.post('/signup', enforceAuthentication(false, false), authController.postSignUp);

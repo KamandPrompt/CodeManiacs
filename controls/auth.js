@@ -4,20 +4,40 @@ var submissions = require('../models/submission');
 var moment = require("moment");
 
 exports.postSignUp = function (req, res) {
-    var acc = new user({
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        isAdmin: false
-    });
-    user.register(acc, req.body.password, function (err, user) {
-        if (err) {
-            return res.render('signup', { user: user });
-        }
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
-        });
-    });
+    user.findOne({ username: req.body.username })
+        .then((data) => {
+            console.log(data);
+            /**If any user with same username exists */
+            if (data) {
+                return res.render("signup", { error: "Username already exists!" });
+            }
+            /**Checking the password */
+            if (req.body.password !== req.body.password2) {
+                return res.render("signup", { error: "Password does not match" });
+            }
+            /**Everything is fine now, and ready to create a new account object */
+            var acc = new user({
+                name: req.body.name,
+                username: req.body.username,
+                email: req.body.email,
+                /**By default the admin access is not provided */
+                isAdmin: false
+            });
+            /**Registering the new user */
+            user.register(acc, req.body.password, (err, user) => {
+                if (err) {
+                    return res.render('signup', { user: user });
+                }
+                /**New user signup successfully */
+                passport.authenticate('local')(req, res, function () {
+                    /**Redirecting to homepage with the success message */
+                    res.redirect('/?msg=' + req.body.username + "-signup-successfully!");
+                });
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 };
 
 exports.getLogin = function (req, res) {

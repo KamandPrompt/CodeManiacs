@@ -96,5 +96,13 @@
 		dots[slideIndex - 1].className += " active";
 	}
 </script>
+<script>
+	var URL = window.location.href;
+	if (URL.search("msg=") != -1) {
+		var message = URL.split("msg=")[1];
+		message = message.replace(/-/g, " ");
+		window.alert(message);
+	}
+</script>
 
 </html>
