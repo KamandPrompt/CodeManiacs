@@ -160,27 +160,28 @@ exports.postUpdateProfile = async (req, res, next) => {
     try {
         if (req.body.email) {
             await user.findByIdAndUpdate({ _id: req.user._id }, { email: req.body.email });
-            message += "Your email has been updated\n";
+            message += "Your-email-has-been-updated";
         }
         if (req.body.name) {
             await user.findOneAndUpdate({ _id: req.user._id }, { name: req.body.name });
-            message += "Your name has been updated\n";
+            message += "Your-name-has-been-updated";
         }
     } catch (error) {
-        message += "Error updating your email/name";
+        message += "Error-updating-your-email,name";
     }
     /**Updating the user password */
     try {
         if (req.body.old && req.body.new) {
             await req.user.changePassword(req.body.old, req.body.new);
-            message += "Your password has been updated";
+            message += "Your-password-has-been-updated";
         }
     } catch (error) {
-        if (error.message === "Password or username is incorrect") {
-            message += "Current Password is incorrect";
+        if (error.message === "Password-or-username-is-incorrect") {
+            message += "Current-Password-is-incorrect";
         } else {
-            message += "Error updating your password";
+            message += "Error-updating-your-password";
         }
     }
-    res.render("edit_profile", { "message": (message || "try again") });
+    /**Passing the message in the form of the URL */
+    res.redirect("/user/updateProfile?msg=" + (message || "Try-Again"));
 }
