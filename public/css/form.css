@@ -19,7 +19,7 @@ body{
   height: 420px;
   background: url(../photos/box.jpeg);
   color: #fff;
-  left: 105%;
+  left: 90%;
   position: relative;
   box-sizing: border-box;
   padding: 70px 30px;
@@ -30,7 +30,7 @@ body{
   background: url(../photos/box.jpeg);
   background-repeat: repeat;
   color: #fff;
-  left:105%;
+  left:90%;
   position: relative;
   box-sizing: border-box;
   padding: 70px 30px;
