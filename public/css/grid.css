@@ -1,5 +1,8 @@
 /* placement of header, footer and central content */
-.grid {
+html,body {
+    height: 100%;
+}
+.grid,body {
     display: grid;
     grid-gap: 10px;
     justify-content: center;
@@ -11,8 +14,7 @@
     grid-column: content;
 }
 
-header,
-footer {
+header, footer, .main {
     grid-column: main;
 }
 
