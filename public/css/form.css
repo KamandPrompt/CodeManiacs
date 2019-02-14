@@ -1,42 +1,41 @@
 html{
   margin:0;
   padding: 0;
-  height: 100%;
-}
-body{
-  margin: 0;
-  padding: 0;
-  background: url(../photos/pic2.jpg);
-  background-size: cover;
-  background-position: center;
-  font-family: sans-serif;
+  min-height: 100%;
 }
 
+.main-wrapper {
+  min-height: 100%;
+  position: relative;
+}
+body{
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+* ::after, ::before{
+  box-sizing: inherit;
+}
 .loginbox{
   width: 580px;
-  min-height: 420px;
+  height: 420px;
   background: url(../photos/box.jpeg);
-  background-size: cover;
-  background-position: center;
   color: #fff;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%,-50%);
+  left: 105%;
+  position: relative;
   box-sizing: border-box;
   padding: 70px 30px;
 }
 .signupbox{
   width: 580px;
-  height: 630px;
+  height: 640px;
   background: url(../photos/box.jpeg);
-  background-size: cover;
-  background-position: center;
+  background-repeat: repeat;
   color: #fff;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%,-50%);
+  left:105%;
+  position: relative;
   box-sizing: border-box;
   padding: 70px 30px;
 }
