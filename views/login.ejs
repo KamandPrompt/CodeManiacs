@@ -4,40 +4,37 @@
 <head>
 
 	<title>Login | CodeManiacs</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/form.css">
-    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
-    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/form.css">
+	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
 
 <body>
 	<header>
 		<% include partials/header %>
-    </header>
-    
+	</header>
+
 	<div class="main-wrapper">
 		<div class="loginbox">
 			<img src="/photos/avatar.png" class="avatar">
-				<h1>Login Here</h1>
-				<form action = "/user/login" method = "post">
-					<p>Username</p>
-					<input type="text" name="username" placeholder="Enter Username">
-					<p>Password</p>
-					<input type="password" name="password" placeholder="Enter Password">
-					<input type="submit" name="" value="Login">
-					<p>Don't have an Account? <a href="/user/signup"> SignUp Now!</a></p>
-				</form>
-				
-			</div>
-			<br><br><br>
+			<h1>User/ Admin Login</h1>
+			<form action="/user/login" method="post">
+				<p>Username</p>
+				<input type="text" name="username" placeholder="Enter Username">
+				<p>Password</p>
+				<input type="password" name="password" placeholder="Enter Password">
+				<input type="submit" name="" value="Login">
+				<p>Don't have an Account? <a href="/user/signup"> SignUp Now!</a></p>
+			</form>
+		</div>
 	</div>
-
 	<footer>
 		<% include partials/footer %>
 	</footer>
