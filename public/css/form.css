@@ -23,6 +23,7 @@ body{
   position: relative;
   box-sizing: border-box;
   padding: 70px 30px;
+  margin-bottom: 60px;
 }
 .signupbox{
   width: 580px;
@@ -34,6 +35,7 @@ body{
   position: relative;
   box-sizing: border-box;
   padding: 70px 30px;
+  margin-bottom: 60px;
 }
 
 .avatar{
@@ -156,67 +158,3 @@ h1{
 {
   color: #ffc107;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
