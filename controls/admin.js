@@ -224,13 +224,26 @@ helper.getManageAdmins = async (req, res, next) => {
  * route: /admin/add-admin
 */
 helper.addAdmin = async (req, res, next) => {
+    /**Taking input from the html form */
     const addUser = req.body.username;
+    /**Finding the entry of that username in the users collection */
     users.findOne({ username: addUser })
         .then((data) => {
             console.log(data);
+            /**No user found with username = addUser */
             if(!data){
                 return res.redirect("/admin/manage-admins?msg=Username-" + addUser + "-does-not-exists");
             }
+            /**If the username is already the admin */
+            if(data.isAdmin){
+                return res.redirect("/admin/manage-admins?msg=Username-" + addUser + "-is-already-an-admin");
+            }
+            /**Else add that username as an admin */
+            users.findOneAndUpdate({username: addUser}, {$set:{isAdmin: 1}})
+            .then((result)=>{
+                console.log("ADMIN ADDED: " + result);
+                return res.redirect("/admin/manage-admins?msg=Username-" + addUser + "-added-successfully");
+            })
         })
         .catch((err) => {
             console.log(err);
