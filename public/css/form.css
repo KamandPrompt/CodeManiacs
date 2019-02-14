@@ -4,10 +4,6 @@ html{
   min-height: 100%;
 }
 
-.main-wrapper {
-  min-height: 100%;
-  position: relative;
-}
 body{
   position: relative;
   min-height: 100%;
