@@ -42,12 +42,12 @@
             </thead>
             <tbody>
                 <% for(var i = 0; i < data.length; i++) { %>
-                    <tr>
-                        <td><%= i + 1 %></td>
-                        <td><%= data[i].username %></td>
-                        <td><%= data[i].name %></td>
-                        <td><%= data[i].email %></td>
-                    </tr>
+                <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= data[i].username %></td>
+                    <td><%= data[i].name %></td>
+                    <td><%= data[i].email %></td>
+                </tr>
                 <% } %>
             </tbody>
         </table>
@@ -74,5 +74,13 @@
         <% include partials/footer %>
     </footer>
 </body>
+<script>
+    var URL = window.location.href;
+    if (URL.search("msg=") != -1) {
+        var message = URL.split("msg=")[1];
+        message = message.replace(/-/g, " ");
+        window.alert(message);
+    }
+</script>
 
 </html>

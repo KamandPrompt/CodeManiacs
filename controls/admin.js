@@ -227,7 +227,10 @@ helper.addAdmin = async (req, res, next) => {
     const addUser = req.body.username;
     users.findOne({ username: addUser })
         .then((data) => {
-            
+            console.log(data);
+            if(!data){
+                return res.redirect("/admin/manage-admins?msg=Username-" + addUser + "-does-not-exists");
+            }
         })
         .catch((err) => {
             console.log(err);
