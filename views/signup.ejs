@@ -13,7 +13,8 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
-	<!-- <link rel="stylesheet" type="text/css" href="/css/sheet.css">-->
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
 </head>
 
 <body>
@@ -21,34 +22,27 @@
 		<% include partials/header %>
 	</header>
 
-	<div class="main-w3layouts wrapper">
-		<h1><u><b> SIGNUP </b></u></h1>
-		<div class="main-agileinfo">
-			<div class="agileits-top">
-				<form action="/user/signup" method="post">
-					<input class="text w3lpass" type="text" name="name" placeholder="Full Name" required="">
-					<input class="text w3lpass" type="text" name="username" placeholder="Username" required="">
-					<input class="text email w3lpass" type="email" name="email" placeholder="Email" required="">
-					<input class="text w3lpass" type="password" name="password" placeholder="Password" required="">
-					<input class="text w3lpass" type="password" name="password2" placeholder="Confirm Password" required="">
-					<input type="submit" value="SIGN UP">
+	<div class="main-wrapper">
+		<div class="signupbox">
+			<img src="/photos/avatar.png" class="avatar">
+				<h1>Sign Up Here</h1>
+				<form action = "/user/signup" method = "post">
+					<p>Full Name</p>
+					<input type="text" name="name" placeholder="Enter Fullname">
+					<p>Username</p>
+					<input type="text" name="username" placeholder="Enter Username">
+					<p>Email</p>
+					<input type="email" name="email" placeholder="Enter Email">
+					<p>Password</p>
+					<input type="password" name="password" placeholder="Enter Password">
+					<p>Confirm Password</p>
+					<input type="password" name="password2" placeholder="Confirm Password">
+					<input type="submit" name="" value="Sign Up">
+					<p>Already have an Account? <a href="/user/login"> Login Now!</a></p>
 				</form>
-				<p>Already have an Account? <a href="/user/login"> Login Now!</a></p>
+				
 			</div>
 		</div>
-		<ul class="colorlib-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
 
 	<footer>
 		<% include partials/footer %>
