@@ -1,0 +1,11 @@
+.manage-admins-table {
+    margin-left: 100px;
+    margin-bottom: 30px;
+    padding: 20px;
+    padding-right: 100px;
+    border-right: 2px solid #eeeeee;
+}
+
+.admin-manage-form-wrapper>form {
+    margin: 20px;
+}
