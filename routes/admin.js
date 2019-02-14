@@ -36,6 +36,12 @@ router.post("/new-contest", admin.createContest);
 /**Display page consisting all the created contests */
 router.get("/my-contests", admin.myContests);
 
+/**Display the page for managing the admins */
+router.get("/manage-admins", admin.getManageAdmins);
+
+/**POST: adding a new admin */
+router.post("/add-admin", admin.addAdmin);
+
 /**Display page to edit the contest params:contCode */
 router.get("/edit-contest/:contCode", admin.displayEditContest);
 

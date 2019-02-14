@@ -3,6 +3,7 @@ const Question = require("../models/problems");
 const TC = require("../models/testcases");
 const total = require("../models/total_questions");
 const contests = require("../models/contests");
+const users = require("../models/users");
 var moment = require("moment");
 
 /**Admin homepage displaying all the problems created till now.
@@ -106,7 +107,7 @@ helper.createContest = async (req, res, next) => {
      * In case a contest is already present with the same code
      * then asks the user to enter another code.
     */
-    
+
     /**Creating a object for new contest */
     var newContest = {
         code: req.body.contestCode, // contest code needs to be unique
@@ -116,7 +117,7 @@ helper.createContest = async (req, res, next) => {
         visible: req.body.visibility,
         problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
     };
-    
+
     await contests.create(newContest)
         .then((val) => {
             console.log(val);
@@ -198,6 +199,35 @@ helper.editContest = async (req, res, next) => {
         .then((val) => {
             console.log("EDITED: " + val);
             res.redirect("/admin/my-contests?" + req.params.contCode + "_success");
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
+/**Display the page for managing the admins 
+ * route: /admin/manage-admins
+*/
+helper.getManageAdmins = async (req, res, next) => {
+    /**Finding all the users who are admins also */
+    users.find({ isAdmin: true })
+        .then((data) => {
+            console.log(data);
+            res.render("manage_admins", { data: data });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
+/**POST: adding a new admin 
+ * route: /admin/add-admin
+*/
+helper.addAdmin = async (req, res, next) => {
+    const addUser = req.body.username;
+    users.findOne({ username: addUser })
+        .then((data) => {
+            
         })
         .catch((err) => {
             console.log(err);
