@@ -75,7 +75,15 @@ app.listen(port, () => {
     console.log("Server started at port " + port);
 });
 
+/**GET: Setting global variable for the logged in user */
 app.get("*", (req, res, next) => {
+    res.locals.user = req.user || null;
+    console.log("User: " + res.locals.user);
+    next();
+});
+
+/**POST: Setting global variable for the logged in user */
+app.post("*", (req, res, next) => {
     res.locals.user = req.user || null;
     console.log("User: " + res.locals.user);
     next();

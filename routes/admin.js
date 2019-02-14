@@ -42,6 +42,9 @@ router.get("/manage-admins", admin.getManageAdmins);
 /**POST: adding a new admin */
 router.post("/add-admin", admin.addAdmin);
 
+/**POST: removing an admin */
+router.post("/remove-admin", admin.removeAdmin);
+
 /**Display page to edit the contest params:contCode */
 router.get("/edit-contest/:contCode", admin.displayEditContest);
 
