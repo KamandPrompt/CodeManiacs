@@ -24,10 +24,11 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
-<body class="grid">
+<body>
     <header>
         <% include partials/header %>
     </header>
+    <div class="main">
     <div class="manage-admins-table">
         <table class="table table-hover">
             <h1><strong>Current Admins</strong></h1>
@@ -69,6 +70,7 @@
                 <button type="submit" class="btn btn-danger">Remove admin</button>
             </div>
         </form>
+    </div>
     </div>
     <footer>
         <% include partials/footer %>
