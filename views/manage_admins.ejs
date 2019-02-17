@@ -24,51 +24,53 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
-<body class="grid">
+<body>
     <header>
         <% include partials/header %>
     </header>
-    <div class="manage-admins-table">
-        <table class="table table-hover">
-            <h1><strong>Current Admins</strong></h1>
-            <hr>
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for(var i = 0; i < data.length; i++) { %>
-                <tr>
-                    <td><%= i + 1 %></td>
-                    <td><%= data[i].username %></td>
-                    <td><%= data[i].name %></td>
-                    <td><%= data[i].email %></td>
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
-    </div>
-    <div class="admin-manage-form-wrapper">
-        <form name="add-admin" method="POST" action="/admin/add-admin">
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" name="username" class="form-control" placeholder="username">
+    <div class="grid-content">
+        <div class="manage-admins-table">
+            <table class="table table-hover">
+                <h1><strong>Current Admins</strong></h1>
+                <hr>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < data.length; i++) { %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= data[i].username %></td>
+                        <td><%= data[i].name %></td>
+                        <td><%= data[i].email %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="admin-manage-form-wrapper">
+            <form name="add-admin" method="POST" action="/admin/add-admin">
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" name="username" class="form-control" placeholder="username">
+                    </div>
+                    <button type="submit" class="btn btn-success">Add admin</button>
                 </div>
-                <button type="submit" class="btn btn-success">Add admin</button>
-            </div>
-        </form>
-        <form name="remove-admin" method="POST" action="/admin/remove-admin">
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" name="username" class="form-control" placeholder="username">
+            </form>
+            <form name="remove-admin" method="POST" action="/admin/remove-admin">
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" name="username" class="form-control" placeholder="username">
+                    </div>
+                    <button type="submit" class="btn btn-danger">Remove admin</button>
                 </div>
-                <button type="submit" class="btn btn-danger">Remove admin</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     <footer>
         <% include partials/footer %>

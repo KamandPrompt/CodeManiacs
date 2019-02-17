@@ -7,7 +7,7 @@ html,body {
     grid-gap: 10px;
     justify-content: center;
     grid-template-columns: [main-start] 1fr [content-start] minmax(300px, 1000px) [content-end] 1fr [main-end];
-    grid-template-rows: 150px auto 100px;
+    grid-template-rows: 80px auto 150px;
 }
 
 .grid-content {

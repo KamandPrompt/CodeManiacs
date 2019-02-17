@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
 	<link rel="stylesheet" type="text/css" href="/css/contest_admin.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -18,7 +19,7 @@
 	<header>
 		<% include partials/header %>
 	</header>
-
+	<div class="main">
 	<form class="contest-form" action="/admin/edit-contest/<%= data.code %>" method="POST">
 		<h1><strong>EDIT CONTEST</strong></h1><br>
 		Contest Code: <span name="contestCode"><%= data.code %></span><br>
@@ -31,7 +32,7 @@
 		<button type="submit" class="btn btn-danger btn-md">Edit Contest</button>
 
 	</form>
-
+	</div>
 	<footer>
 		<% include partials/footer %>
 	</footer>
