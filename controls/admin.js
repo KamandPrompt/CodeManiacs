@@ -29,6 +29,23 @@ helper.addQuestion = async function (req, res, next) {
     const tc = req.body.testcases; // testcases
 
     try {
+        await total.countDocuments({}, async (err, cnt) => {
+            /**If the problem is created for the very first time,
+             * then 'total' collection would be empty
+             */
+            if (!cnt) {
+                /**inserting totalProblems = 0, which increments
+                 * each time on inserting a new problem.
+                 */
+                await total.create({ totalProblems: 0 })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            }
+        });
         // attach qID to tc and ques
         const qID = await total.findOne({});
         qID.totalProblems += 1;
