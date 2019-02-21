@@ -60,3 +60,7 @@ const submitSolution = () => {
 		});
 	});
 }
+
+const goBack = () => {
+	window.location.href = "/problem/" + question_id ;
+}
