@@ -15,7 +15,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
 	<link rel="stylesheet" type="text/css" href="/css/grid.css">
-
+</head>
 <body>
 	<header>
 		<% include partials/header %>
@@ -39,5 +39,10 @@
 		<% include partials/footer %>
 	</footer>
 </body>
-
+<script>
+	var message = <%- JSON.stringify(message) %>;
+	if (message) {
+		window.alert(message);
+	}
+</script>
 </html>

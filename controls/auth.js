@@ -68,7 +68,7 @@ exports.postLogin = function (req, res) {
                 console.log(err);
                 return res.render('login', { message: "Wrong username or password" });
             }
-            return res.redirect('/');
+            return res.redirect('/?msg=' + req.body.username + "-signin-successfully!");
         });
     })(req, res);
 };
