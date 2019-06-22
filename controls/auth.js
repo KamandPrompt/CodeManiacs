@@ -2,6 +2,7 @@ var passport = require('passport');
 var user = require('../models/users');
 var submissions = require('../models/submission');
 var moment = require("moment");
+var back = require("express-back");
 
 /**POST: user signup 
  * route: /user/signup
@@ -78,7 +79,7 @@ exports.postLogin = function (req, res) {
 */
 exports.getLogout = function (req, res) {
     req.logout();
-    res.redirect('/');
+    res.redirect('back');
 }
 
 /**Implementing the routing guards */
