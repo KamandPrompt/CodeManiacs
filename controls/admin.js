@@ -27,6 +27,7 @@ helper.addQuestion = async function (req, res, next) {
 
     const ques = req.body.ques; // problem statement
     const tc = req.body.testcases; // testcases
+    req.body.ques.problemSetter=req.user.name;
 
     try {
         await total.countDocuments({}, async (err, cnt) => {
@@ -89,11 +90,11 @@ helper.deleteProblem = async (req, res, next) => {
  * route: /admin/edit/:qID
 */
 helper.editQuestion = async function (req, res, next) {
-
+    
     console.log(req.body.qID);
     console.log(req.body.ques);
     // console.log(req.body.testcases);
-
+    req.body.ques.problemSetter=req.user.name;
     try {
         /**Finding question and testcase by it's qID and updating */
         await Question.findOneAndUpdate({ "qID": req.body.qID }, req.body.ques);
