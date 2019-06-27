@@ -25,10 +25,17 @@
 <body>
     <header>
         <% include partials/header %>
+        
     </header>
     <div class="main">
-    <div class="submit-container">
+    
+    
+    <div class="submit-container ">
         <div id="prob-no">Submit your solution for the problem </div>
+        <div align=right>
+        <img src='/photos/copy.png' onclick="copyclipboard(); " width="20 " height='20' style='cursor:pointer;' border='5' >
+            <img src = '/photos/download.png 'onclick="download();"width="20 " height='20' style='cursor:pointer' border='5'  >
+            </div>
         <div id="editor">#include &#60;bits/stdc++.h&#62;
 using namespace std;
 
@@ -45,7 +52,8 @@ int main(){
                 <% } %>
             </select>
             <button type="button" class="btn btn-primary btn-md" onclick="submitSolution();">Submit</button>
-            <button type="button" class="btn btn-primary btn-md" onclick="goBack()">Cancel</button>
+            <button type="button" class="btn btn-primary btn-md" onclick="goBack();">Cancel</button>
+            
         </div>
     </div>
     <div id="running" style="display: none;">
