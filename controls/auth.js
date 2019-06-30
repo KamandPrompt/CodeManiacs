@@ -2,12 +2,12 @@ var passport = require('passport');
 var user = require('../models/users');
 var submissions = require('../models/submission');
 var moment = require("moment");
-var back = require("express-back");
 
 /**POST: user signup 
  * route: /user/signup
 */
 exports.postSignUp = function (req, res) {
+    var url = req.url;
     user.findOne({ username: req.body.username })
         .then((data) => {
             console.log(data);
@@ -79,7 +79,7 @@ exports.postLogin = function (req, res) {
 */
 exports.getLogout = function (req, res) {
     req.logout();
-    res.redirect('back');
+    res.redirect('url');
 }
 
 /**Implementing the routing guards */
