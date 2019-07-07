@@ -37,6 +37,7 @@
                     <th scope="col">Time</th>
                     <th scope="col">Memory</th>
                     <th scope="col">Date</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +52,11 @@
                     <td><%= data.time %> s</td>
                     <td><%= data.memory %> KB</td>
                     <td><%= data.date %></td>
+                    <td>
+                        <img src='/photos/copy.png' onclick="copyclipboard(); " width="20 " height='20' style='cursor:pointer;' >
+            <img src = '/photos/download.png 'onclick="download();"width="20 " height='20' style='cursor:pointer'>
+            
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -96,5 +102,31 @@
     var code = <%- JSON.stringify(data.code) %>;
     editor.getSession().setValue(code);
 </script>
+<script>
+   function copyclipboard(){
+   
+  const el = document.createElement('textarea');
+  el.value = editor.getValue();
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+    
+  document.body.removeChild(el);
+}
+
+function download() {
+  var text = editor.getValue();
+    text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
+    var blob = new Blob([text], { type: "text/plain"});
+    var anchor = document.createElement("a");
+    anchor.download = <%= data.subID %>+".txt";
+    anchor.href = window.URL.createObjectURL(blob);
+    anchor.target ="_blank";
+    anchor.style.display = "none"; // just to be safe!
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+}
+    </script>
 
 </html>
