@@ -9,18 +9,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
     <link rel="stylesheet" type="text/css" href="/css/problem_display.css">
-    <title><%= data.qID %>-<%= data.name %> | CodeManiacs</title>
+    <title>First Contest | CodeManiacs</title>
 </head>
 
 <body>
 	<header>
 		<% include partials/header %>
 	</header>
-
+<h1 class="title center"> Problems for first contest</h1>
+ <hr>
 <div class="grid-content content">
-        <div class="box">
-            <h1 class="title center"> Upcoming Contests</h1>
-            <hr>
+        <div class="box">          
+	    <aside>
+	    <h4>Contest Ends in</h4>
+	    <br>
+	    </aside>
+	</div>
+	
+	<div class="box">          
+	    <aside>
+	    <h4>Contest Ranks</h4>
+	    <br>
+	    </aside>
+	</div>
+	
+	
+	 <div class="box"> 
             <table class="table">
                 <thead>
                     <tr>
@@ -29,3 +43,12 @@
                         <th>Successful Submissions</th>
                     </tr>
                 </thead>
+	</div>
+</div>
+	<footer>
+		<% include partials/footer %>
+	</footer>
+</body>
+<script src="/js/contest_countdown.js"></script>
+
+</html>
