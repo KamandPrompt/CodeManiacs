@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
-var participation = new mongoose.Schema({
+var parti = new mongoose.Schema({
+    parID : Number,
     username: String,
     startTime: Date,
     endTime: Date,
@@ -12,6 +13,6 @@ var participation = new mongoose.Schema({
     penalty: Number
 });
 
-var Participation = mongoose.model('Participation',participation);
-module.export = Participation;
+var Participation = mongoose.model('Participation',parti);
+module.exports = Participation;
 
