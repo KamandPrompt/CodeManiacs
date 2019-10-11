@@ -121,14 +121,9 @@ helper.getQuestion = async (req, res, next) => {
 */
 helper.createContest = async (req, res, next) => {
 
-    /**Implement checking of the uniqueness of the contest code.
-     * In case a contest is already present with the same code
-     * then asks the user to enter another code.
-    */
-
     /**Creating an object for new contest */
     var newContest = {
-        code: req.body.contestCode, // contest code needs to be unique
+        code: req.body.contestCode, 
         name: req.body.contestName,
         date: req.body.date + " " + req.body.startTime,
         duration: req.body.duration,
@@ -139,20 +134,13 @@ helper.createContest = async (req, res, next) => {
     var flag_contest = 0;
     await contests.findOne({"code": newContest.code})
         .then((data) => {
-            console.log("PRAJJWAL_JHA_START: ")
-            console.log(data)
-            // res.send("ContestID already exists");
-            console.log("PRAJJWAL_JHA_END: ")
-            // res.redirect("/admin/new-contest");
             if(data) flag_contest++;
         })
         .catch((err) => {
             console.log(err)
         })
     
-    if(flag_contest == 0)
-    {
-        console.log("Inside flag_contest = 0")
+    if(flag_contest == 0){
         await contests.create(newContest)
         .then((val) => {
             console.log(val);
@@ -162,8 +150,7 @@ helper.createContest = async (req, res, next) => {
         })
         res.redirect("/admin/my-contests");
     }
-    else 
-    {
+    else {
         console.log("Inside flag_contest = 1")
         res.redirect("/admin/new-contest");
     }    
