@@ -1,4 +1,5 @@
 var contests = require("../models/contests");
+var participation = require("../models/participation");
 var moment = require("moment");
 const scrape = require('../scrapers/contestScraper').scrape;
 
@@ -37,4 +38,20 @@ exports.showContests = async (req, res, next) => {
 		.catch((err) => {
 			console.log(err);
 		})
+}
+
+exports.ranklist = async(req,res,next) =>{
+	var contest = req.params.contestCode;
+	console.log(contest);
+	contests.find({code:contest}).then((data)=>{
+		console.log(data);
+		if(data.length === 0){
+			res.render("404");
+			return;
+		}
+		console.log(contest);
+		console.log(typeof(contest));
+		var participations = participation.find({"contestCode":contest});
+		res.render("ranklist",{contest:data,list: participations});
+	});
 }
