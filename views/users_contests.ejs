@@ -22,7 +22,7 @@
 	<div class="grid-content content small">
 
 		<div class="box">
-			<h1 class="title center"> Upcoming Contests (under development)</h1>
+			<h1 class="title center">Upcoming Contests</h1>
 			<hr>
 			<table class="table">
 				<thead>
@@ -47,7 +47,9 @@
 							<%= contests[i].tm %>
 						</td>
 						<td>
-							<button type="button" class="btn btn-success btn-sm">Enter</button>
+							<a href="/contests/<%= contests[i].code %>">
+								<button type="button" class="btn btn-success btn-sm">Enter</button>
+							</a>
 						</td>
 					</tr>
 					<% } %>

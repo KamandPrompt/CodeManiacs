@@ -16,6 +16,9 @@ router.get("/contribution", (req, res) => {
 /**Display the user contest page */
 router.get("/contests", contests.showContests);
 
+/**Display the contest */
+router.get("/contests/:contestCode", contests.showContest);
+
 /**Display the ranklist */
 router.get("/contests/:contestCode/standings", contests.ranklist);
 

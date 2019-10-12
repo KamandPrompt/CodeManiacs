@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title><%= contest.name %> | CodeManiacs</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+
+</head>
+
+<body>
+    <header>
+        <% include partials/header %>
+    </header>
+
+    <div class="grid-content content">
+        <div class="box">
+            <h1 class="title center"><%= contest.name %></h1>
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Successful Submissions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < problems.length; i++) { %>
+                    <tr>
+                        <td><a href="/problem/<%= problems[i].qID %>">
+                                <%= problems[i].qID %></a></td>
+                        <td><a href="/problem/<%= problems[i].qID %>">
+                                <%= problems[i].name %></a></td>
+                        
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <% include partials/footer %>
+    </footer>
+</body>
+
+</html>
