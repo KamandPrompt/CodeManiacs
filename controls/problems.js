@@ -182,10 +182,10 @@ helper.submitSolution = async (req, res, next) => {
 }
 
 /**FILE: app.js
- * POST: submitting the problem qID 
+ * POST: submitting the problem qID from contest with id -> ContestCode
  * route: /submit/:contestCode/:qID */
- helper.submitContestSolution = async (req, res, next) => {
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+helper.submitContestSolution = async (req, res, next) => {
+
     // takes obj as input {files:*all test files*, Time:*time limit per file*, Memory:*memory per file*, code:*user's code*, langID:*language ID*}
     const checkAnswer = async (data) => {
         const options = {
@@ -223,153 +223,156 @@ helper.submitSolution = async (req, res, next) => {
         const judge0Response = await Promise.all(tests);
         return judge0Response;
     }
-    console.log(req.params.contestCode);
+    // console.log(req.params.contestCode);
     contests.find({code:req.params.contestCode}).then(async(contestData)=>{
         // console.log('TC' + contestData);
-        if(contestData.length == 0){
-            ;
-        }
-        if(contestData[0].problemsID.length >= req.params.qID)
-        {
-            ;
-        }
-        console.log(req.params.qID);
-        const qID = contestData[0].problemsID[req.params.qID];
-        testcases.findOne({ qID: qID }, async (err, tc) => {
-            console.log(tc)
-        if (err) {
-            console.log(err);
-        }
-        var data = {
-            qID: req.body.qID,
-            code: req.body.code,
-            langID: req.body.language,
-            timeLimit: tc.timeLimit,
-            memoryLimit: tc.memoryLimit,
-            files: tc.cases
-        }
-        var results = await checkAnswer(data);
-        //code to attach this submissions data to user's account
-        var tcs = [], verdict = 'Accepted', time = 0, mem = 0, flag = false;
-        for (i = 0; i < results.length; i++) {
-            time = Math.max(time, results[i].time);
-            mem = Math.max(mem, results[i].memory);
-            if (flag === false && results[i].status.description !== 'Accepted') {
-                verdict = results[i].status.description;
-                flag = true;
-            }
-            tcs.push({
-                status: results[i].status.description,
-                time: results[i].time,
-                memory: results[i].memory
-            });
-        }
-        var langName;
-        const subCount = await submission.countDocuments({});
-        for (var i = 0; i < lang.length; i++) {
-            if (lang[i].id === parseInt(req.body.language)) {
-                langName = lang[i].name;
-                break;
-            }
-        }
-        var newSubmission = new submission({
-            username: req.user ? req.user.username : 'Guest',
-            qID: req.body.qID,
-            subID: 1 + subCount,
-            code: req.body.code,
-            language: langName,
-            verdict: verdict,
-            time: time,
-            memory: mem,
-            isVisible: true,
-            timeStamp: new Date(),
-            tc: tcs
-        });
 
-        newSubmission.save(function (err) {
+        if(contestData.length == 0) {
+            ;
+        }
+
+        if(contestData[0].problemsID.length >= req.params.qID) {
+            ;
+        }
+        // console.log(req.params.qID);
+
+        const qID = contestData[0].problemsID[req.params.qID];
+        testcases.findOne( { qID: qID }, async (err, tc) => {
+            // console.log(tc)
             if (err) {
                 console.log(err);
             }
-            console.log(newSubmission);
-        });
-
-        // result.submissions.append(newSubmission.subID);
-            
-        //     var check = false;
-
-        //     if(Date.now() > startTime && Date.now() < endTime){
-        //         check = true;
-        //     }
-
-        //     if(check){
-        //         if(newSubmission.verdict === 'Accepted'){
-        //             participation.score += 1
-        //             participation.penalty += Date.now() - participation.startTime;
-        //         }
-        //     }
-
-        var temp;
-        console.log("Contest code",contestData[0].code);
-        participation.findOne({"username": newSubmission.username, "contestCode": contestData[0].code }, 
-                                function(err, result)
-        {
-            if(err){
-                throw(err);
+            var data = {
+                qID: req.body.qID,
+                code: req.body.code,
+                langID: req.body.language,
+                timeLimit: tc.timeLimit,
+                memoryLimit: tc.memoryLimit,
+                files: tc.cases
             }
-            console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            temp = result;
-            // console.log(result);
-            // console.log("--------------------------------");
-            // console.log(newSubmission.subID);
-            console.log(temp.score,"Prajjwal",check);
-            temp.submissions.push(newSubmission.subID);
-            var check = false;
-            if(Date.now() > temp.startTime && Date.now() < temp.endTime){
-                check = true;
+            var results = await checkAnswer(data);
+
+            //code to attach this submissions data to user's account
+            var tcs = [], verdict = 'Accepted', time = 0, mem = 0, flag = false;
+
+            for (i = 0; i < results.length; i++) {
+                time = Math.max(time, results[i].time);
+                mem = Math.max(mem, results[i].memory);
+                if (flag === false && results[i].status.description !== 'Accepted') {
+                    verdict = results[i].status.description;
+                    flag = true;
+                }
+                tcs.push( {
+                    status: results[i].status.description,
+                    time: results[i].time,
+                    memory: results[i].memory
+                });
             }
 
-            if(check){
-                if(newSubmission.verdict === 'Accepted'){
-                    temp.score += 1;
-                    temp.penalty += Date.now() - temp.startTime;
+            var langName;
+            const subCount = await submission.countDocuments({});
+            for (var i = 0; i < lang.length; i++) {
+                if (lang[i].id === parseInt(req.body.language)) {
+                    langName = lang[i].name;
+                    break;
                 }
             }
-            console.log(temp.score,"Prajjwal Again",check);
-            console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            
-            participation.updateOne({"username": newSubmission.username, "contestCode": contestData[0].code },
-                    {$set: {"score": temp.score}})
-            .then(async (data1)=>{
-                console.log("--------------------------------");
-                console.log(data1);
-                console.log("--------------------------------");
-            })
-            .catch(async (err) => {
-                console.log(err);
+
+            var newSubmission = new submission({
+                username: req.user ? req.user.username : 'Guest',
+                qID: req.body.qID,
+                subID: 1 + subCount,
+                code: req.body.code,
+                language: langName,
+                verdict: verdict,
+                time: time,
+                memory: mem,
+                isVisible: true,
+                timeStamp: new Date(),
+                tc: tcs
             });
 
+            newSubmission.save(function (err) {
+                if (err) {
+                console.log(err);
+                }
+                console.log(newSubmission);
+            });
+
+            var temp;
+            // console.log("Contest code",contestData[0].code);
+            participation.findOne({"username": newSubmission.username, "contestCode": contestData[0].code }, 
+                                function(err, result)
+            {
+                if(err) {
+                    throw(err);
+                }
+                console.log("------Updating the database--------------");
+                temp = result;
+                temp.submissions.push(newSubmission.subID);
+                var check = true;
+                
+                // Check if the submission is within the contest time.
+                // if(Date.now() >= temp.startTime && Date.now() <= temp.endTime){
+                //     check = true;
+                // }
+
+                if(check){
+                    // Check if the current Question is already solved or not.
+                    var current_problem_exists = false;
+                    for (var i = 0; i < (temp.solved_qID).length; i++) {
+                        if (newSubmission.qID === temp.solved_qID[i]) {
+                            current_problem_exists = true;
+                            break;
+                        }
+                    }
+
+                    /* 
+                       If Verdict is Accepted and Question was not previously solved then,
+                       update score, penalty and add it to solved questions.
+                    */
+                    if(newSubmission.verdict === 'Accepted' && current_problem_exists === false) {
+                        temp.score += 1;
+                        temp.penalty += (Date.now() - temp.startTime);
+                        temp.solved_qID.push(newSubmission.qID);
+                    }
+                    if(current_problem_exists === false && newSubmission.verdict != 'Accepted') {
+                        temp.penalty += 20*60;
+                    }
+                }
+                
+                // Update the Database with the values calculated above
+                var query = {"username": newSubmission.username, "contestCode": contestData[0].code };
+                var newValues = { $set: { "score": temp.score, 
+                                          "penalty": temp.penalty,
+                                          "solved_qID": temp.solved_qID, 
+                                          "submissions": temp.submissions } };
+
+                participation.updateOne(query, newValues)
+                .then(async (data1)=>{
+                    console.log(data1);
+                    console.log("------Completed Updating Database--------------");
+                })
+                .catch(async (err) => {
+                    console.log("------Some Error While Updating Database--------------");
+                    console.log(err);
+                });
+
+            });
+
+            //deleting fields that user shouldn't have access to
+            results.forEach(item => {
+                item["token"] = null;
+                item["stdout"] = null;
+            });
+            // console.log(results);
+            res.send(results);
         });
-
-        // participation.updateOne({"username": newSubmission.username, "contestCode": contestData.code },
-        //             {$set: {}})
-        //     .then(async(data)=>{
-        //         console.log("--------------------------------");
-        //         console.log(data);
-        //         console.log("--------------------------------");
-        // });
-                            
-
-
-        //deleting fields that user shouldn't have access to
-        results.forEach(item => {
-            item["token"] = null;
-            item["stdout"] = null;
-        });
-        console.log(results);
-        res.send(results);
+    })
+    .catch(async (err) => {
+        console.log(err);
     });
-    });
-    
+
 }
 
 /**Display the IDE page 

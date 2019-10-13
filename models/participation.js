@@ -9,6 +9,7 @@ var parti = new mongoose.Schema({
     isICPC: Boolean,
     contestCode: String,
     submissions: [Number],
+    solved_qID : [Number],
     score: Number,
     penalty: Number
 });
