@@ -45,10 +45,10 @@
                 <tbody>
                     <% for(var i=0 ; i < list.length ; i++) {%>
                         <tr>
-                            <td>{%= i %}</td>
-                            <td>{%= list[i].username %} </td>
-                            <td>{%= list[i].score %} </td>
-                            <td>{%= list[i].penalty %}</td>
+                            <td> <%= (i+1) %> </td>
+                            <td> <%= list[i].username %> </td>
+                            <td> <%= list[i].score %> </td>
+                            <td> <%= list[i].penalty %> </td>
                         </tr>
                     <% }%>
                 </tbody>

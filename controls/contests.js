@@ -62,6 +62,8 @@ exports.showContest = async (req, res, next) => {
 						contestCode:contestId,
 						username:user,
 						startTime:data.date,
+						score:0,
+						penalty:0,
 						endTime:(moment(data.date).add(data.duration,'m').toDate())
 					});
 				}
@@ -103,7 +105,8 @@ exports.ranklist = async(req,res,next) =>{
 		}
 		console.log(data);
 		console.log(typeof(contest));
-		var participations = participation.find({"contestCode":contest});
-		res.render("ranklist",{contest:data,list: participations});
+		participation.find({"contestCode":contest}).then(async(participations) => {
+			res.render("ranklist",{contest:data,list: participations});
+		});
 	});
 }
