@@ -14,6 +14,8 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -25,6 +27,11 @@
     <div class="grid-content content">
         <div class="box">
             <h1 class="title center"><%= contest.name %></h1>
+            <a href="<%= contest.code %>/standings">
+                <button type="button" class="btn btn-success btn-sm">
+                    Ranklist
+                </button>
+            </a>
             <hr>
             <table class="table">
                 <thead>
