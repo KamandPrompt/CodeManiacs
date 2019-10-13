@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var contests = require("../controls/contests");
 var problems = require("../controls/problems");
+var contest_problem = require("../controls/contest_problem");
 
 /**Getting the homepage */
 router.get("/", (req, res) => {
@@ -36,5 +37,8 @@ router.get("/ide", problems.getIde);
 
 /**POST: submitting the IDE code, input */
 router.post("/ide", problems.postIde);
+
+/**Display the contest problem */
+router.get("/contests/:contestCode/:qID", contest_problem.displayProblem);
 
 module.exports = router;
