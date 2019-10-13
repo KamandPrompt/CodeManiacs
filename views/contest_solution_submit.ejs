@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Submit | CodeManiacs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link rel="stylesheet" type="text/css" href="/css/submitprob.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script id="result" type="text/x-handlebars-template">
+        <tr>
+			<td> {{number}} </td>
+            <td> {{time}} </td>
+            <td> {{memory}} </td>
+			<td> {{result}} </td>
+		</tr>
+    </script>
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+</head>
+
+<body>
+    <header>
+        <% include partials/header %>
+    </header>
+    <div class="main">
+    <div class="submit-container">
+        <div id="prob-no">Submit your solution for the problem </div>
+        <div id="editor">#include &#60;bits/stdc++.h&#62;
+using namespace std;
+
+int main(){
+
+    return 0;
+}</div>
+        <div class="submit">
+            <select id="language">
+                <% for (var i=0; i<langlist.length; i++) { %>
+                    <option value="<%= langlist[i].id %>" >
+                        <%= langlist[i].name %>
+                    </option>
+                <% } %>
+            </select>
+            <button type="button" class="btn btn-primary btn-md" onclick="submitSolution();">Submit</button>
+            <button type="button" class="btn btn-primary btn-md" onclick="goBack()">Cancel</button>
+        </div>
+    </div>
+    <div id="running" style="display: none;">
+        <p>Running...</p>        
+    </div>
+    <div class="submit-result">
+        <table class="table is-bordered is-striped is-narrow is-hoverable">
+            <thead>
+                <tr>
+                    <th>Testcase No.</th>
+                    <th>Time (sec)</th>
+                    <th>Memory (KB)</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <footer>
+        <% include partials/footer %>
+    </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/chrome");
+    editor.session.setMode("ace/mode/python");
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+<script src="/js/contest_solution_submit.js"></script>
+
+</html>

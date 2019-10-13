@@ -15,19 +15,20 @@ helper.displayProblem = async (req, res, next) => {
             if (data === null) {
                 next();
             }
-            // /**false visible questions should not be accessible by a non-admin user */
-            // if (res.locals.user && res.locals.user.isAdmin === false && data.isVisible === false) {
-            //     next();
-            // }
+            /**false visible questions should not be accessible by a non-admin user */
+            if (res.locals.user && res.locals.user.isAdmin === false && data.isVisible === false) {
+                next();
+            }
             /**false visible questions should not be accessible by a non logged in user */
             if (res.locals.user === null && data.isVisible === false) {
                 next();
             }
-            res.render("problem_display", { data: data });
+            res.render("contest_problem", { data: data });
         })
         .catch((err) => {
             console.log(err);
         })
 }
+
 
 module.exports = helper;

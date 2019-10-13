@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <link rel="stylesheet" type="text/css" href="/css/problem_display.css">
+    <title><%= data.qID %>-<%= data.name %> | CodeManiacs</title>
+</head>
+
+<body>
+    <header>
+        <% include partials/header %>
+    </header>
+    <div class="grid-content content">
+        <div class="box">
+            <div class="title">
+                <%= data.qID %>. <%= data.name %>
+            </div>
+            <div class="sub-title">
+                Time Limit: <%= data.timeLimit %> seconds<br>
+                Memory Limit: <%= data.memoryLimit %> KB<br>
+                Problem Setter: <%= data.problemSetter %><br>
+                Difficulty: <%= data.difficulty %> / 5<br>
+                Tags: <%= data.tags %><br>
+                Editorial: link
+            </div>
+            <hr>
+            <div class="problem-body">
+                <%= data.description %><br>
+                <h2>Input</h2>
+                <pre><%= data.inputFormat %></pre>
+                <h2>Output</h2>
+                <pre><%= data.outputFormat %></pre>
+                <h2>Constraints</h2>
+                <pre><%= data.constraints %></pre>
+                <h2>Sample Input</h2>
+                <pre><%= data.sampleInput %></pre>
+                <h2>Sample Output</h2>
+                <pre><%= data.sampleOutput %></pre>
+                <h2>Explanation</h2>
+                <pre><%= data.explanation %></pre>
+            </div>
+            <form method="POST" action="<%= data.qID %>/ide">
+                <input type="submit" value="Submit" class="button is-link">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <% include partials/footer %>
+    </footer>
+    
+</body>
+
+</html>
