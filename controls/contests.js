@@ -71,7 +71,7 @@ exports.ranklist = async(req,res,next) =>{
 			res.render("404");
 			return;
 		}
-		console.log(contest);
+		console.log(data);
 		console.log(typeof(contest));
 		var participations = participation.find({"contestCode":contest});
 		res.render("ranklist",{contest:data,list: participations});
