@@ -28,7 +28,7 @@ $('.table').hide();
 const source = document.getElementById('result').innerHTML; //get template structure
 const template = Handlebars.compile(source); //compile template
 
-prob_no.append("<a target = '_blank' href='/problem/" + question_id + "'>" + question_id + "</a>");
+prob_no.append("<a target = '_blank' href='/contests/" + contest_id + "/"+ question_id +"'>" + question_id + "</a>");
 
 const submitSolution = () => {
 	document.getElementById("running").style.display = "block";
