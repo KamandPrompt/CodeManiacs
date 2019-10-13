@@ -50,16 +50,31 @@ exports.showContest = async (req, res, next) => {
 	contests.findOne({
 		code:contest
 	}).then( async (data) => {
-		var problemsList = [];
-		var problemsID = data.problemsID;
-		for (var i=0; i<problemsID.length; i++) {
-			await problems.findOne({
-				qID: problemsID[i]
-			}).then((problem) => {
-				problemsList.push(problem);
-			});
-		}
-		res.render("contest_display", {problems: problemsList, contest: data});
+		var user = req.user.username;
+		var contestId = contest;
+		participation.find({
+			contestCode:contestId,
+			username:user
+		}).then(async(partData)=>{
+			if(partData.length===0){
+				participation.create({
+					contestCode:contestId,
+					username:user,
+					startTime:data.date,
+					endTime:(moment(data.date).add(data.duration,'m').toDate())
+				});
+			}
+			var problemsList = [];
+			var problemsID = data.problemsID;
+			for (var i=0; i<problemsID.length; i++) {
+				await problems.findOne({
+					qID: problemsID[i]
+				}).then((problem) => {
+					problemsList.push(problem);
+				});
+			}
+			res.render("contest_display", {problems: problemsList, contest: data});
+		})
 	});
 }
 
