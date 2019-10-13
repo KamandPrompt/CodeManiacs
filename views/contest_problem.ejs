@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
     <link rel="stylesheet" type="text/css" href="/css/problem_display.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title><%= data.qID %>-<%= data.name %> | CodeManiacs</title>
 </head>
 
@@ -45,9 +47,11 @@
                 <h2>Explanation</h2>
                 <pre><%= data.explanation %></pre>
             </div>
-            <form method="PUT" action="submit/<%= data.qID %>">
-                <input type="submit" value="Submit" class="button is-link">
-            </form>
+            <a href="submit/<%= data.qID %>">
+                <button type="button" class="btn btn-success btn-sm">
+                    Submit
+                </button>
+            </a>
         </div>
     </div>
     <footer>

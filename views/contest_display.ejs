@@ -44,9 +44,9 @@
                 <tbody>
                     <% for(var i = 0; i < problems.length; i++) { %>
                     <tr>
-                        <td><a href="/contests/<%= contest.code %>/<%= problems[i].qID %>">
-                                <%= problems[i].qID %></a></td>
-                        <td><a href="/contests/<%= contest.code %>/<%= problems[i].qID %>">
+                        <td><a href="<%= contest.code %>/<%= i %>">
+                                <%= i %></a></td>
+                        <td><a href="<%= contest.code %>/<%= i %>">
                                 <%= problems[i].name %></a></td>
                         
                     </tr>

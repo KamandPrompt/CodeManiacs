@@ -225,7 +225,7 @@ helper.submitSolution = async (req, res, next) => {
     }
     console.log(req.params.contestCode);
     contests.find({code:req.params.contestCode}).then(async(contestData)=>{
-        console.log(contestData);
+        // console.log('TC' + contestData);
         if(contestData.length == 0){
             ;
         }
@@ -233,8 +233,8 @@ helper.submitSolution = async (req, res, next) => {
         {
             ;
         }
+        console.log(req.params.qID);
         const qID = contestData[0].problemsID[req.params.qID];
-        console.log("Questio id: ",qID)
         testcases.findOne({ qID: qID }, async (err, tc) => {
             console.log(tc)
         if (err) {
