@@ -293,17 +293,7 @@ helper.submitSolution = async (req, res, next) => {
             console.log(newSubmission);
         });
 
-        participation.findOne({"username": newSubmission.username, "contestCode": contestData.code })
-            .then(async(data)=>{
-                console.log(data);
-        });
-        //                       function(err, result){
-
-        //     if (err) {
-        //         console.log(err)
-        //     }
-
-        //     result.submissions.append(newSubmission.subID);
+        // result.submissions.append(newSubmission.subID);
             
         //     var check = false;
 
@@ -317,7 +307,57 @@ helper.submitSolution = async (req, res, next) => {
         //             participation.penalty += Date.now() - participation.startTime;
         //         }
         //     }
+
+        var temp;
+        console.log("Contest code",contestData[0].code);
+        participation.findOne({"username": newSubmission.username, "contestCode": contestData[0].code }, 
+                                function(err, result)
+        {
+            if(err){
+                throw(err);
+            }
+            console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            temp = result;
+            // console.log(result);
+            // console.log("--------------------------------");
+            // console.log(newSubmission.subID);
+            console.log(temp.score,"Prajjwal",check);
+            temp.submissions.push(newSubmission.subID);
+            var check = false;
+            if(Date.now() > temp.startTime && Date.now() < temp.endTime){
+                check = true;
+            }
+
+            if(check){
+                if(newSubmission.verdict === 'Accepted'){
+                    temp.score += 1;
+                    temp.penalty += Date.now() - temp.startTime;
+                }
+            }
+            console.log(temp.score,"Prajjwal Again",check);
+            console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            
+            participation.updateOne({"username": newSubmission.username, "contestCode": contestData[0].code },
+                    {$set: {"score": temp.score}})
+            .then(async (data1)=>{
+                console.log("--------------------------------");
+                console.log(data1);
+                console.log("--------------------------------");
+            })
+            .catch(async (err) => {
+                console.log(err);
+            });
+
+        });
+
+        // participation.updateOne({"username": newSubmission.username, "contestCode": contestData.code },
+        //             {$set: {}})
+        //     .then(async(data)=>{
+        //         console.log("--------------------------------");
+        //         console.log(data);
+        //         console.log("--------------------------------");
         // });
+                            
 
 
         //deleting fields that user shouldn't have access to
