@@ -42,10 +42,12 @@ html, body {
 }
 #logo
 {
-	top: -100px;
+  font-family: "Courier New";
+	top: -70px;
 	left: 70px;
 	width: 300px;
-	position: relative;
+  font-size: 40px;
+  position: relative;
 	z-index: 1;
 }
 .right
