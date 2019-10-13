@@ -41,4 +41,9 @@ router.post("/ide", problems.postIde);
 /**Display the contest problem */
 router.get("/contests/:contestCode/:qID", contest_problem.displayProblem);
 
+/**Display About Us page*/
+router.get('/about', (req, res) => {
+    res.render("about");
+});
+
 module.exports = router;
