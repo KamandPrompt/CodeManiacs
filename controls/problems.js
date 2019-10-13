@@ -5,6 +5,8 @@ var submission = require("../models/submission");
 var problems = require("../models/problems");
 var users = require('../models/users');
 var lang = require("../config/lang");
+var contests = require("../models/contests");
+var participation = require("../models/participation.js")
 
 /**To display all the problems to the users that should
  * be visible to the users.
@@ -111,6 +113,7 @@ helper.submitSolution = async (req, res, next) => {
     }
 
     const qID = req.body.qID;
+    console.log("ID:::",qID)
     testcases.findOne({ qID: qID }, async (err, tc) => {
         if (err) {
             console.log(err);
@@ -160,6 +163,7 @@ helper.submitSolution = async (req, res, next) => {
             timeStamp: new Date(),
             tc: tcs
         });
+
         newSubmission.save(function (err) {
             if (err) {
                 console.log(err);
@@ -175,6 +179,157 @@ helper.submitSolution = async (req, res, next) => {
         console.log(results);
         res.send(results);
     });
+}
+
+/**FILE: app.js
+ * POST: submitting the problem qID 
+ * route: /submit/:contestCode/:qID */
+ helper.submitContestSolution = async (req, res, next) => {
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    // takes obj as input {files:*all test files*, Time:*time limit per file*, Memory:*memory per file*, code:*user's code*, langID:*language ID*}
+    const checkAnswer = async (data) => {
+        const options = {
+            "method": "POST",
+            "url": "http://sntc.iitmandi.ac.in:3000/submissions/?base64_encoded=false&wait=true",
+            "headers": {
+                "cache-control": "no-cache",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "source_code": "_fill",
+                "language_id": "_fill",
+                "stdin": "_fill",
+                "expected_output": "_fill",
+                "memory_limit": "_fill",
+                "cpu_time_limit": "_fill",
+            },
+            "json": true
+        };
+        const tests = [];
+
+        /**Getting the required field values for making a user submission for a problem */
+        options.body['cpu_time_limit'] = Number(data["timeLimit"]);
+        options.body['wall_time_limit'] = options.body['cpu_time_limit'] * 3;
+        options.body['memory_limit'] = Number(data["memoryLimit"]);
+        options.body['source_code'] = data["code"];
+        options.body['language_id'] = data["langID"];
+
+        /**Attaching each testcase */
+        data["files"].forEach((testcase) => {
+            options.body['stdin'] = testcase["stdin"];
+            options.body['expected_output'] = testcase["stdout"];
+            tests.push(request(options));
+        });
+        const judge0Response = await Promise.all(tests);
+        return judge0Response;
+    }
+    console.log(req.params.contestCode);
+    contests.find({code:req.params.contestCode}).then(async(contestData)=>{
+        console.log(contestData);
+        if(contestData.length == 0){
+            ;
+        }
+        if(contestData[0].problemsID.length >= req.params.qID)
+        {
+            ;
+        }
+        const qID = contestData[0].problemsID[req.params.qID];
+        console.log("Questio id: ",qID)
+        testcases.findOne({ qID: qID }, async (err, tc) => {
+            console.log(tc)
+        if (err) {
+            console.log(err);
+        }
+        var data = {
+            qID: req.body.qID,
+            code: req.body.code,
+            langID: req.body.language,
+            timeLimit: tc.timeLimit,
+            memoryLimit: tc.memoryLimit,
+            files: tc.cases
+        }
+        var results = await checkAnswer(data);
+        //code to attach this submissions data to user's account
+        var tcs = [], verdict = 'Accepted', time = 0, mem = 0, flag = false;
+        for (i = 0; i < results.length; i++) {
+            time = Math.max(time, results[i].time);
+            mem = Math.max(mem, results[i].memory);
+            if (flag === false && results[i].status.description !== 'Accepted') {
+                verdict = results[i].status.description;
+                flag = true;
+            }
+            tcs.push({
+                status: results[i].status.description,
+                time: results[i].time,
+                memory: results[i].memory
+            });
+        }
+        var langName;
+        const subCount = await submission.countDocuments({});
+        for (var i = 0; i < lang.length; i++) {
+            if (lang[i].id === parseInt(req.body.language)) {
+                langName = lang[i].name;
+                break;
+            }
+        }
+        var newSubmission = new submission({
+            username: req.user ? req.user.username : 'Guest',
+            qID: req.body.qID,
+            subID: 1 + subCount,
+            code: req.body.code,
+            language: langName,
+            verdict: verdict,
+            time: time,
+            memory: mem,
+            isVisible: true,
+            timeStamp: new Date(),
+            tc: tcs
+        });
+
+        newSubmission.save(function (err) {
+            if (err) {
+                console.log(err);
+            }
+            console.log(newSubmission);
+        });
+
+        participation.findOne({"username": newSubmission.username, "contestCode": contestData.code })
+            .then(async(data)=>{
+                console.log(data);
+        });
+        //                       function(err, result){
+
+        //     if (err) {
+        //         console.log(err)
+        //     }
+
+        //     result.submissions.append(newSubmission.subID);
+            
+        //     var check = false;
+
+        //     if(Date.now() > startTime && Date.now() < endTime){
+        //         check = true;
+        //     }
+
+        //     if(check){
+        //         if(newSubmission.verdict === 'Accepted'){
+        //             participation.score += 1
+        //             participation.penalty += Date.now() - participation.startTime;
+        //         }
+        //     }
+        // });
+
+
+        //deleting fields that user shouldn't have access to
+        results.forEach(item => {
+            item["token"] = null;
+            item["stdout"] = null;
+        });
+        console.log(results);
+        res.send(results);
+    });
+    });
+    
 }
 
 /**Display the IDE page 

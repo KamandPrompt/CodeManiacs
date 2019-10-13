@@ -1,7 +1,9 @@
-const question_id = window.location.href.split("/")[4];
-const contest_id = window.location.href.split("/")[2];
+const question_id = window.location.href.split("/")[6];
+const contest_id = window.location.href.split("/")[4];
+console.log(question_id, contest_id);
 var prob_no = $("#prob-no");
 const data = {
+	"cid" : "_fill",
 	"code": "_fill",
 	"qID": "_fill",
 	"language": "_fill"
@@ -9,7 +11,7 @@ const data = {
 const settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "/contest/"+ contest_id + "/submit/" + question_id,
+	"url": "/contests/"+ contest_id + "/submit/" + question_id,
 	"method": "POST",
 	"headers": {
 		"Content-Type": "application/json",
@@ -32,6 +34,7 @@ const submitSolution = () => {
 	document.getElementById("running").style.display = "block";
 	//disable button
 	$("button").prop("disabled", true);
+	data.cid = contest_id
 	data.code = editor.getValue();
 	data.language = $('#language').val();
 	data.qID = question_id;
@@ -63,5 +66,5 @@ const submitSolution = () => {
 }
 
 const goBack = () => {
-	window.location.href = "/problem/" + question_id ;
+	window.location.href = "/contests/" + contest_id + "/" + question_id ;
 }

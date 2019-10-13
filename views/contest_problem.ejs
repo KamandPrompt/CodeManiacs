@@ -45,7 +45,7 @@
                 <h2>Explanation</h2>
                 <pre><%= data.explanation %></pre>
             </div>
-            <form method="POST" action="<%= data.qID %>/ide">
+            <form method="PUT" action="submit/<%= data.qID %>">
                 <input type="submit" value="Submit" class="button is-link">
             </form>
         </div>
