@@ -14,6 +14,15 @@ CodeManiacs is an online judge for IIT Mandi. Currently people working on it are
 
 [Kartik Kathuria](https://www.facebook.com/kartik.kathuria.146)
 
+### LAP Project (October 2019)
+[Dheeraj](https://github.com/dheeraj135)
+
+[Neeraj Sharma](https://github.com/99neerajsharma)
+
+[Prajjwal Jha](https://github.com/JhaPrajjwal)
+
+[Vipul Sharma](https://github.com/vsvipul)
+
 ## Getting Started
 
 Install the Node Package Manager 
