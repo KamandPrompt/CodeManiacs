@@ -5,9 +5,10 @@ var problems = require("../controls/problems");
 var contest_problem = require("../controls/contest_problem");
 
 /**Getting the homepage */
-router.get("/", (req, res) => {
-    res.render("index");
-});
+// router.get("/", (req, res) => {
+//     res.render("index");
+// });
+router.get("/", problems.recentProbNrank);
 
 /**Display the contribution page */
 router.get("/contribution", (req, res) => {

@@ -64,7 +64,7 @@
 			<div class="row">
 				<div class="col-sm-4 block">
 					<div>
-						<h3>Recent Blogs</h3>
+						<h3>Recent News</h3>
 						<hr>
 					</div>
 				</div>
@@ -72,12 +72,56 @@
 					<div>
 						<h3>Recent Problems</h3>
 						<hr>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Difficulty</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% for(var i = recentProblems.length-1; i >= Math.max(0, recentProblems.length-6); i--) { %>
+								<tr>
+									<td>
+										<%= recentProblems[i].name %>
+									</td>
+									<td>
+										<%= recentProblems[i].difficulty %>
+									</td>
+								</tr>
+								<% } %>
+							</tbody>
+						</table>
 					</div>
 				</div>
 				<div class="col-sm-4 block">
 					<div>
 						<h3>Top Users</h3>
 						<hr>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Rank</th>
+									<th>Username</th>
+									<th>Solved</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% for(var i = 0; i < Math.min(ranks.length, 6); i++) { %>
+								<tr>
+									<td>
+										<%= ranks[i].rank %>
+									</td>
+									<td>
+										<%= ranks[i].username %>
+									</td>
+									<td>
+										<%= ranks[i].solved %>
+									</td>
+								</tr>
+								<% } %>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
