@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var favicon = require('serve-favicon');
 var expressValidator = require("express-validator");
 var session = require("express-session");
 var configDb = require("./config/database");
@@ -36,6 +37,7 @@ app.use(logger("dev"));
 app.use(bodyParser.json({ limit: "30MB", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30MB", extended: true }));
 app.engine("html", require("ejs").renderFile);
+app.use(favicon(__dirname + '/public/photos/favicon.png'));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Express-session-middleware

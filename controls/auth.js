@@ -34,7 +34,7 @@ exports.postSignUp = function (req, res) {
                 /**New user signup successfully */
                 passport.authenticate('local')(req, res, function () {
                     /**Redirecting to homepage with the success message */
-                    res.redirect('/?msg=' + req.body.username + "-signup-successfully!");
+                    res.redirect('/');
                 });
             });
         })
@@ -68,7 +68,7 @@ exports.postLogin = function (req, res) {
                 console.log(err);
                 return res.render('login', { message: "Wrong username or password" });
             }
-            return res.redirect('/?msg=' + req.body.username + "-signin-successfully!");
+            return res.redirect('/');
         });
     })(req, res);
 };

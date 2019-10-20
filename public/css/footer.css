@@ -1,18 +1,18 @@
 .footer {
-    position: relative;
+    position: fixed;
     font-size: 16px;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 100px;
-    background-color: black;
-    color: white;
+    height: 70px;
+    background-color: #343a40!important;
+    color: rgba(255,255,255,.5);
     text-align: center;
     clear: both;
     margin-top: 15px;
-    }
+}
 
-.fa {
+/* .fa {
     padding: 5px;
     font-size: 20px;
     width: 80px;
@@ -23,11 +23,7 @@
 
 .fa:hover {
     opacity: 0.9;
-}
-
-.fa-linkedin {
-    color: white;
-}
+} */
 
 .fa-facebook {
     color: white;
@@ -38,10 +34,10 @@
 }
 
 .links{
-  background-color: #3498DB;
+  /* background-color: #3498DB; */
   color:white;
   padding: 16px;
   font-size: 16px;
   border: none;
   cursor: pointer;
-  }
+}

@@ -1,6 +1,10 @@
 <head>
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <style>
@@ -10,36 +14,87 @@
     }
 </style>
 
-<section class="topbar">
-    <div class="flexbox">
-        <div class="flexbox" style="padding-top: 25px">
-            <div class="nav"><span><a href="/">HOME</a></span></div>
-            <div class="nav"><span><a href="/contests">CONTESTS</a></span></div>
-            <div class="nav"><span><a href="/problems/all">PROBLEM SET</a></span></div>
-            <div class="nav"><span><a href="/rankings">RANKINGS</a></span></div>
-            <div class="nav"><span><a href="/ide">IDE</a></span></div>
-            <% if (locals.user && locals.user.isAdmin === true) { %>
-            <div class="nav"><span><strong><a href="/admin" style="color: rgb(153, 0, 0);">ADMIN</a></strong></span></div>
-            <% } %>
-            <% if (locals.user) { %>
-            <div class="nav"><span><a href="/user/profile">PROFILE</a></span></div>
-            <div class="nav"><span><a href="/user/logout">SIGN OUT</a></span></div>
-            <% } else { %>
-            <div class="nav"><span><a href="/user/login">SIGN IN</a></span></div>
-            <div class="nav"><span><a href="/user/signup">SIGN UP</a></span></div>
-            <% } %>
-            <div class="nav"><span><a href="/contribution">CONTRIBUTE</a></span></div>
-        </div>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <a class="navbar-brand" href="/">CodeManiacs</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    <i class="fa fa-home"></i>
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/problems/all">
+                    <i class="fa fa-pencil"></i>
+                    Practice
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contests">
+                    <i class="fa fa-flag-checkered"></i>
+                    Contests
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rankings">
+                    <i class="fa fa-trophy"></i>
+                    Rankings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ide">
+                    <i class="fa fa-wrench"></i>
+                    IDE
+                </a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <ul class="navbar-nav mr-auto">
+                <% if (locals.user && locals.user.isAdmin === true) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">
+                        <i class="fa fa-user-secret"></i>
+                        Admin
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.user) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/profile">
+                        <i class="fa fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">
+                        <i class="fa fa-sign-out"></i>
+                        Sign Out
+                    </a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/login">
+                        <i class="fa fa-sign-in"></i>
+                        Sign In
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/signup">
+                        <i class="fa fa-user-plus"></i>
+                        Sign Up
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+        </span>
     </div>
-</section>
+</nav>
 
-<header>
-    <h1 class="left">
-        <a href= "/">
-            <!-- <img src="/photos/logo.png" id="logo"> -->
-            <div id="logo">
-                CODEMANIACS
-            </div>
-        </a>
-    </h1>
-</header>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

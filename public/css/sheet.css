@@ -16,8 +16,8 @@ hr{
     position: relative;
     width: 100%;
     top: 0;
-    /* z-index: -1; */
 }
+
 
 .row {
     width: 100%;
@@ -25,13 +25,12 @@ hr{
     margin-right: auto;
     margin-top: 0;
     margin-bottom: 0;
-    /* max-width: 60.5rem; */
 }
 
 .block {
     max-width: 28%;
     border: 1px solid black;
-    margin: 30px;
+    /* margin: 2%; */
     box-shadow: 5px 5px #888888;
     padding: 10px;
 }
@@ -42,6 +41,7 @@ hr{
     float: right;
     height: 100%;
 }
+
 
 .photo {
     vertical-align: center;
