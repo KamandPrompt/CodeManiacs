@@ -126,11 +126,13 @@ helper.createContest = async (req, res, next) => {
         code: req.body.contestCode, 
         name: req.body.contestName,
         date: req.body.date + " " + req.body.startTime,
+        endDate: 0,
         duration: req.body.duration,
         visible: req.body.visibility,
         problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
     };
-
+    newContest.endDate = moment(newContest.date).add(newContest.duration,'m').toDate();
+    console.log(newContest)
     var flag_contest = 0;
     await contests.findOne({"code": newContest.code})
         .then((data) => {
@@ -222,6 +224,8 @@ helper.editContest = async (req, res, next) => {
         /**comma separated qID of the problems to be included in the contest */
         problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
     };
+    editContest.endDate = moment(editContest.date).add(editContest.duration,'m').toDate();
+
     await contests.update({ code: req.params.contCode }, editContest)
         .then((val) => {
             console.log("EDITED: " + val);

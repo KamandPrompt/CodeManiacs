@@ -17,24 +17,71 @@ exports.showContests = async (req, res, next) => {
 	 * in ascending order of it's starting time
 	 */
 	contests.find({
-			visible: true
+			visible: true,
+			endDate: {$gt:Date.now()}
 		}).sort({
 			date: 1
 		})
 		.then((data) => {
-			console.log(data);
 			/**Changing the date-time format to display in the contest table */
 			for (var i = 0; i < data.length; i++) {
 				data[i].dt = moment(data[i].date).format("ll");
 				data[i].tm = moment(data[i].date).format("H:mm:ss");
+				var duration = data[i].duration;
+				var x = duration%60;
+				var temp = x+"m ";
+				duration = Math.floor(duration/60);
+				x = duration%24;
+				if(duration){
+					temp = x+"h "+temp;
+					console.log(duration,temp,x)
+					duration = Math.floor(duration/24);
+					x = duration
+					if(duration){
+						temp = x+"d "+temp;
+						console.log(temp);
+					}
+				}
+				data[i].dur = temp;
 			}
+			console.log(data);
 			// for (var i = 0; i < external.length; i++) {
 				// external[i].dt = moment(external[i].date).format("ll");
 				// external[i].tm = moment(external[i].date).format("H:mm:ss");
 			// }
-			res.render("users_contests", {
-				"contests": data,		// Codemaniacs contests
-				"external": []	// Other contests (codechef, codeforces)
+			contests.find({
+				visible: true,
+				endDate: {$lt:Date.now()}
+			}). sort({
+				date:1
+			})
+			.then((pastdata)=>{
+				for (var i = 0; i < pastdata.length; i++) {
+					pastdata[i].dt = moment(pastdata[i].date).format("ll");
+					pastdata[i].tm = moment(pastdata[i].date).format("H:mm:ss");
+					var duration = pastdata[i].duration;
+					var x = duration%60;
+					var temp = x+"m ";
+					duration = Math.floor(duration/60);
+					x = duration%24;
+					if(x){
+						temp = x+"h "+temp;
+						console.log(duration,temp,x)
+						duration = Math.floor(duration/24);
+						x = duration
+						if(x){
+							temp = x+"d "+temp;
+							console.log(temp);
+						}
+					}
+					pastdata[i].dur = temp;
+				}
+				// console.log(pastdata)
+				res.render("users_contests", {
+					"contests": data,		// Codemaniacs contests
+					"external": [],	// Other contests (codechef, codeforces)
+					"pastcontests": pastdata
+				});
 			});
 		})
 		.catch((err) => {
