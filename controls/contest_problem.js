@@ -11,10 +11,8 @@ helper.displayProblem = async (req, res, next) => {
     var contestCode= req.params.contestCode;
     contests.findOne({code: contestCode}).then((contestData) => {
         /**Finding the question by it's qID from the URL */
-        console.log(contestData);
         problems.findOne({ qID: contestData.problemsID[req.params.qID] })
             .then((data) => {
-                console.log(data);
                 /**qID not found */
                 if (data === null) {
                     next();

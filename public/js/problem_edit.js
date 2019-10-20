@@ -96,7 +96,6 @@ $('.submit').on('click', function () {
 		$('.submit').toggleClass('is-loading');
 
 		//show response
-		// console.log(response);
 		window.alert(response);
 
 	});

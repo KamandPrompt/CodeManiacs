@@ -295,8 +295,6 @@ helper.submitContestSolution = async (req, res, next) => {
     }
     // console.log(req.params.contestCode);
     contests.find({code:req.params.contestCode}).then(async(contestData)=>{
-        // console.log('TC' + contestData);
-
         if(contestData.length == 0) {
             ;
         }
@@ -304,11 +302,8 @@ helper.submitContestSolution = async (req, res, next) => {
         if(contestData[0].problemsID.length >= req.params.qID) {
             ;
         }
-        // console.log(req.params.qID);
-
         const qID = contestData[0].problemsID[req.params.qID];
         testcases.findOne( { qID: qID }, async (err, tc) => {
-            // console.log(tc)
             if (err) {
                 console.log(err);
             }
@@ -370,7 +365,6 @@ helper.submitContestSolution = async (req, res, next) => {
             });
 
             var temp;
-            // console.log("Contest code",contestData[0].code);
             participation.findOne({"username": newSubmission.username, "contestCode": contestData[0].code }, 
                                 function(err, result)
             {
@@ -435,7 +429,6 @@ helper.submitContestSolution = async (req, res, next) => {
                 item["token"] = null;
                 item["stdout"] = null;
             });
-            // console.log(results);
             res.send(results);
         });
     })
@@ -506,8 +499,6 @@ helper.userRankings = function (req, res) {
                     return Number(user_solved[a.username]) > Number(user_solved[b.username]) ? -1 : 1;
                 }
                 data.sort(cmp);
-                console.log(data);
-                console.log(user_solved);
                 /**Calulating the rank based on the total number of solved
                  * problems by each user. User having same number of problems solved
                  * has the same rank.

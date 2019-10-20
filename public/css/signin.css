@@ -3,16 +3,17 @@ body {
   height: 100%;
 } */
 
-body {
+.form-signin {
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 .form-signin {
   width: 100%;
   max-width: 330px;
-  padding:50px 15px;
+  padding:30px 0px;
   margin: auto;
 }
 .form-signin .checkbox {
@@ -26,9 +27,6 @@ body {
   font-size: 16px;
   border: 1px solid #ced4da !important;
 }
-.form-signin .form-control:focus {
-  z-index: 2;
-}
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
@@ -38,4 +36,7 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+.errmsg {
+  color: red;
 }
