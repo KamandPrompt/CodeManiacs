@@ -76,8 +76,6 @@ exports.enforceAuthentication = (loginRequired = true, adminRequired = false) =>
         } else {
             res.redirect('/');
         }
-    } else if (loginRequired) {
-        res.redirect('/user/login');
     } else {
         res.redirect('/');
     }

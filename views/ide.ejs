@@ -17,19 +17,22 @@
         <% include partials/header %>
     </header>
     <div class="main">
-    <div id="ide-heading">CodeManiacs IDE to test your code</div>
-    <div class="main-heading">
-        <div class="submit-container">
-            <div id="editor">#include &#60;bits/stdc++.h&#62;
+        <div id="ide-heading">CodeManiacs IDE</div>
+        <div class="main-heading">
+            <div class="submit-container">
+                <div id="editor">
+#include &#60;bits/stdc++.h&#62;
 using namespace std;
 
-    int main(){
-
+int main(){
+    // Your code starts here
+    
     return 0;
-}</div>
-        </div>
-        <div class="ide-output">
+}
+                </div>
+            </div>
             <div class="submit">
+                <div id="time-memo"></div>
                 <select id="language">
                     <% for (var i=0; i<langlist.length; i++) { %>
                     <option value="<%= langlist[i].id %>">
@@ -39,17 +42,19 @@ using namespace std;
                 </select>
                 <button type="button" id="submit-btn" class="btn btn-primary btn-md">Submit</button>
             </div>
-            <div class="col-md-6 col-xs-16">
-                <p>Input</p>
-                <textarea id="stdin" rows="10" style="width: 100%;"></textarea>
-            </div>
-            <div class="col-md-6 col-xs-12">
-                <p>Output</p>
-                <textarea id="stdout" rows="10" style="width: 100%;" readonly></textarea>
-                <p id="time-memo"></p>
+            <div class="container">
+                <div class="ide-output row">
+                    <div class="tarea col-md-6 col-xs-12">
+                        <p>Input</p>
+                        <textarea id="stdin" rows="8"></textarea>
+                    </div>
+                    <div class="tarea col-md-6 col-xs-12">
+                        <p>Output</p>
+                        <textarea id="stdout" rows="8" readonly></textarea>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     </div>
     <footer>
         <% include partials/footer %>
@@ -61,6 +66,7 @@ using namespace std;
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/chrome");
         editor.session.setMode("ace/mode/python");
+        editor.setFontSize("16px");
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <script>
