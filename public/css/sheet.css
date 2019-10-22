@@ -23,14 +23,19 @@ hr{
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 0;
+    margin-top: 40px;
     margin-bottom: 0;
 }
 
-.block {
-    max-width: 28%;
+.box1 {
+    max-width: 20%;
+    /* margin-top: 40px; */
+    left: 15px;
+    padding: 10px;
+}
+
+.in-box1{
     border: 1px solid black;
-    /* margin: 2%; */
     box-shadow: 5px 5px #888888;
     padding: 10px;
 }

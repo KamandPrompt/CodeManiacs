@@ -20,14 +20,14 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4 block">
-					<div>
+				<div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 box1">
+					<div class="in-box1">
 						<h3>Recent News</h3>
 						<hr>
 					</div>
 				</div>
-				<div class="col-lg-4 block">
-					<div>
+				<div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 box1">
+					<div class="in-box1">
 						<h3>Recent Problems</h3>
 						<hr>
 						<table class="table">
@@ -41,7 +41,7 @@
 								<% for(var i = recentProblems.length-1; i >= Math.max(0, recentProblems.length-6); i--) { %>
 								<tr>
 									<td>
-										<%= recentProblems[i].name %>
+										<a href="/problem/<%= recentProblems[i].qID %>"><%= recentProblems[i].name %></a>
 									</td>
 									<td>
 										<%= recentProblems[i].difficulty %>
@@ -52,8 +52,8 @@
 						</table>
 					</div>
 				</div>
-				<div class="col-lg-4 block">
-					<div>
+				<div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 box1">
+					<div class="in-box1">
 						<h3>Top Users</h3>
 						<hr>
 						<table class="table">
