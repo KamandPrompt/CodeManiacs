@@ -6,10 +6,16 @@ var problems = require("../models/problems");
 var users = require('../models/users');
 var lang = require("../config/lang");
 var contests = require("../models/contests");
+var moment = require("moment")
 
 helper.displayProblem = async (req, res, next) => {
     var contestCode= req.params.contestCode;
     contests.findOne({code: contestCode}).then((contestData) => {
+        var contest_start = moment(contestData.date).format("YYYY-MM-DD H:mm:ss") > moment(Date.now()).format("YYYY-MM-DD H:mm:ss")
+		if(contest_start){
+			res.redirect("/contests/");
+			return;
+		}
         /**Finding the question by it's qID from the URL */
         problems.findOne({ qID: contestData.problemsID[req.params.qID] })
             .then((data) => {

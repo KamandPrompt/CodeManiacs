@@ -97,6 +97,13 @@ exports.showContest = async (req, res, next) => {
 	contests.findOne({
 		code:contest
 	}).then( async (data) => {
+		// console.log("data   ---------------------");
+		// console.log(data);
+		var contest_start = moment(data.date).format("YYYY-MM-DD H:mm:ss") > moment(Date.now()).format("YYYY-MM-DD H:mm:ss")
+		if(contest_start){
+			res.redirect("/contests/");
+			return;
+		}
 		if(req.user!=null){
 			var user = req.user.username;
 			var contestId = contest;

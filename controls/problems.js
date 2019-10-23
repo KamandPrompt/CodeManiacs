@@ -302,6 +302,11 @@ helper.submitContestSolution = async (req, res, next) => {
         if(contestData[0].problemsID.length >= req.params.qID) {
             ;
         }
+        var contest_start = moment(contestData.date).format("YYYY-MM-DD H:mm:ss") > moment(Date.now()).format("YYYY-MM-DD H:mm:ss")
+		if(contest_start){
+			res.redirect("/contests/");
+			return;
+		}
         const qID = contestData[0].problemsID[req.params.qID];
         testcases.findOne( { qID: qID }, async (err, tc) => {
             if (err) {
