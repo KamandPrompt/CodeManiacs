@@ -19,17 +19,17 @@
         <div class="box">
             <h1 class="title center">Submit Question</h1>
             <hr>
-            <h2 class="subtitle">Name</h2>
+            <h2 class="subtitle">Name <span style="color:red">*</span></h2>
             <textarea class="textarea" rows="1" id="QuesName" class="title"></textarea>
-            <h2 class="subtitle">Visibility (0 or 1)</h2>
+            <h2 class="subtitle">Visibility (0 or 1) <span style="color:red">*</span></h2>
             <textarea class="textarea" rows="1" id="isVisible" class="title"></textarea>
-            <h2 class="subtitle">Description</h2>
+            <h2 class="subtitle">Description <span style="color:red">*</span></h2>
             <textarea class="textarea" id="Description"></textarea>
             <h2 class="subtitle">Input Format</h2>
             <textarea class="textarea" id="InputFormat"></textarea>
             <h2 class="subtitle">Output Format</h2>
             <textarea class="textarea" id="OutputFormat"></textarea>
-            <h2 class="subtitle">Constraints</h2>
+            <h2 class="subtitle">Constraints <span style="color:red">*</span></h2>
             <textarea class="textarea" id="Constraints"></textarea>
             <h2 class="subtitle">Sample Input</h2>
             <textarea class="textarea" id="SampleInput"></textarea>
@@ -50,9 +50,12 @@
             <h2 class="subtitle">Editorial</h2>
             <textarea class="textarea" rows="1" id="Editorial"></textarea>
             <hr>
-            <h2 class="subtitle">Testcases</h2>
-            <a class="button is-success is-rounded" id="add">Add</a>
-            <a class="button is-danger is-rounded" id="rem">Remove</a>
+            <h2 class="subtitle">Testcases <span style="color:red">*</span></h2>
+            <!-- <a class="button is-success is-rounded" id="add">Add</a>
+            <a class="button is-danger is-rounded" id="rem">Remove</a> -->
+            <input type="file" id="Testcases" accept="text/plain" multiple="multiple" />
+            <!-- <input type="file" id="testcases" /> -->
+            <!-- <input type="submit" /> -->
             <div id="testcases"></div>
             <br>
             <button class="button is-link submit">Submit</button>

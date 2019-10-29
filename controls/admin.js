@@ -28,6 +28,9 @@ helper.addQuestion = async function (req, res, next) {
     const ques = req.body.ques; // problem statement
     const tc = req.body.testcases; // testcases
     req.body.ques.problemSetter=req.user.name;
+    console.log("XXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxXX");
+    console.log(tc);
+    console.log("XXXXXXXXXXXXXXXXXXXXXXX");
 
     try {
         await total.countDocuments({}, async (err, cnt) => {
@@ -56,8 +59,9 @@ helper.addQuestion = async function (req, res, next) {
 
         // log them to the console
         console.log(ques);
-        // console.log(tc);
-
+        console.log("xxxxxxxxxxxxxxxxXXXXXXXXXXXXXXXXXXXXXX")
+        console.log(tc);
+        console.log("Problem submitted as qID = xxy");
         // push to database
         await Question.create(ques);
         await TC.create(tc);

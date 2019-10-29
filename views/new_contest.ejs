@@ -20,12 +20,12 @@
 	<div class="main">
 	<form class="contest-form" action="/admin/new-contest" method="POST">
 		<h1><strong>NEW CONTEST</strong></h1><br>
-		Contest Code: <input type="text" name="contestCode"><br>
-		Contest Name: <input type="text" name="contestName"><br>
-		Date: <input type="date" name="date"><br>
-		Starting Time: <input type="time" name="startTime"><br>
-		Duration (minutes): <input type="text" name="duration"><br>
-		Make the contest visible to the public? (1 for yes, 0 for no) <input type="text" name="visibility"><br>
+		Contest Code: <span style="color:red">*</span><input type="text" name="contestCode"><br>
+		Contest Name: <span style="color:red">*</span><input type="text" name="contestName"><br>
+		Date: <span style="color:red">*</span><input type="date" name="date"><br>
+		Starting Time: <span style="color:red">*</span><input type="time" name="startTime"><br>
+		Duration (minutes): <span style="color:red">*</span><input type="text" name="duration"><br>
+		Make the contest visible to the public? (1 for yes, 0 for no) <span style="color:red">*</span><input type="text" name="visibility"><br>
 		Problems to be included (qID "," comma separated): <input type="text" name="problemsID"><br>
 		<button type="submit" class="btn btn-success btn-md">Create Contest</button>	</form>
 	</div>
