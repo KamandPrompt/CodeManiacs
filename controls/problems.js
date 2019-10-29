@@ -369,7 +369,6 @@ helper.submitContestSolution = async (req, res, next) => {
                 console.log(newSubmission);
             });
 
-            var temp;
             participation.findOne({"username": newSubmission.username, "contestCode": contestData[0].code }, 
                                 function(err, result)
             {
@@ -402,11 +401,11 @@ helper.submitContestSolution = async (req, res, next) => {
                     */
                     if(newSubmission.verdict === 'Accepted' && current_problem_exists === false) {
                         temp.score += 1;
-                        temp.penalty += (Date.now() - temp.startTime);
+                        temp.penalty += Math.floor((Date.now() - temp.startTime)/(1000*60));
                         temp.solved_qID.push(newSubmission.qID);
                     }
                     if(current_problem_exists === false && newSubmission.verdict != 'Accepted') {
-                        temp.penalty += 20*60;
+                        // temp.penalty += 20*60;
                     }
                 }
                 

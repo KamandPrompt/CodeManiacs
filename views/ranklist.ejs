@@ -11,12 +11,11 @@
     <link rel="stylesheet" type="text/css" href="/css/manage_admins.css">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="/css/grid.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+
 </head>
 
 <body>
@@ -24,11 +23,11 @@
         <% include partials/header %>
     </header>
 
-    <div class="ranklist-grid">
-        <div class="ranklist-table">
+    <div class="grid-content content">
+        <div class="box">
+            <h1 class="title center"> Rankings of&nbsp;<a href="/contests/<%= contest[0].code %>"><%= contest[0].name %> </a></h1>
+            <hr>
             <table class="table table-hover">
-                <h1><strong> <%= contest[0].name %> </strong></h1>
-                <hr>
                 <thead>
                     <tr>
                         <th>#</th>
