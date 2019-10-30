@@ -159,7 +159,7 @@ exports.ranklist = async(req,res,next) =>{
 		}
 		console.log(data);
 		console.log(typeof(contest));
-		participation.find({"contestCode":contest}).then(async(participations) => {
+		participation.find({"contestCode":contest}).sort({'score': -1, 'penalty': 1}).then(async(participations) => {
 			res.render("ranklist",{contest:data,list: participations});
 		});
 	});

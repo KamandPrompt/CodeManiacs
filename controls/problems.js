@@ -6,7 +6,8 @@ var problems = require("../models/problems");
 var users = require('../models/users');
 var lang = require("../config/lang");
 var contests = require("../models/contests");
-var participation = require("../models/participation.js")
+var participation = require("../models/participation.js");
+var moment = require('moment');
 
 /**To display all the problems to the users that should
  * be visible to the users.
