@@ -17,18 +17,29 @@
 	<header>
 		<% include partials/header %>
 	</header>
-	<div class="main">
+	<!-- <div class="main"> -->
+	
+	<div class="grid-content content small">
+		<div class="box">
+			<a href="/admin/add" style="font-size: 15px;">ADD PROBLEM</a> |
+			<a href="/admin/new-contest" style="font-size: 15px;">HOST NEW CONTEST</a> |
+			<a href="/admin/my-contests" style="font-size: 15px;">SHOW/EDIT CONTESTS</a> |
+			<a href="/admin/manage-admins" style="font-size: 15px;">MANAGE ADMINS</a>
+			<h1 class="title center"> New Contests</h1>
+			<hr>
 	<form class="contest-form" action="/admin/new-contest" method="POST">
-		<h1><strong>NEW CONTEST</strong></h1><br>
-		Contest Code: <span style="color:red">*</span><input type="text" name="contestCode"><br>
-		Contest Name: <span style="color:red">*</span><input type="text" name="contestName"><br>
-		Date: <span style="color:red">*</span><input type="date" name="date"><br>
-		Starting Time: <span style="color:red">*</span><input type="time" name="startTime"><br>
-		Duration (minutes): <span style="color:red">*</span><input type="text" name="duration"><br>
-		Make the contest visible to the public? (1 for yes, 0 for no) <span style="color:red">*</span><input type="text" name="visibility"><br>
-		Problems to be included (qID "," comma separated): <input type="text" name="problemsID"><br>
-		<button type="submit" class="btn btn-success btn-md">Create Contest</button>	</form>
+	Contest Code: <span style="color:red">*</span><input type="text" name="contestCode"><br>
+	Contest Name: <span style="color:red">*</span><input type="text" name="contestName"><br>
+	Date: <span style="color:red">*</span><input type="date" name="date"><br>
+	Starting Time: <span style="color:red">*</span><input type="time" name="startTime"><br>
+	Duration (minutes): <span style="color:red">*</span><input type="text" name="duration"><br>
+	Make the contest visible to the public? (1 for yes, 0 for no) <span style="color:red">*</span><input type="text" name="visibility"><br>
+	Problems to be included (qID "," comma separated): <input type="text" name="problemsID"><br>
+	<button type="submit" class="btn btn-success btn-md">Create Contest</button>	
+	</form>
 	</div>
+	</div>
+	<!-- </div> -->
 	<footer>
 		<% include partials/footer %>
 	</footer>
