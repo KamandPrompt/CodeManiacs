@@ -20,13 +20,13 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 box1">
+				<!-- <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 box1">
 					<div class="in-box1">
 						<h3>Recent News</h3>
 						<hr>
 					</div>
-				</div>
-				<div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 box1">
+				</div> -->
+				<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 box1">
 					<div class="in-box1">
 						<h3>Recent Problems</h3>
 						<hr>
@@ -44,7 +44,10 @@
 										<a href="/problem/<%= recentProblems[i].qID %>"><%= recentProblems[i].name %></a>
 									</td>
 									<td>
-										<%= recentProblems[i].difficulty %>
+										<% if (recentProblems[i].difficulty == 0) { %>Beginner<% } %>
+										<% if (recentProblems[i].difficulty == 1) { %>Easy<% } %>
+										<% if (recentProblems[i].difficulty == 2) { %>Medium<% } %>
+										<% if (recentProblems[i].difficulty == 3) { %>Hard<% } %>
 									</td>
 								</tr>
 								<% } %>
@@ -52,7 +55,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 box1">
+				<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 box1">
 					<div class="in-box1">
 						<h3>Top Users</h3>
 						<hr>

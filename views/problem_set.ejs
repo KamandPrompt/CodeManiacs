@@ -31,7 +31,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Tags</th>
+                        <!-- <th>Tags</th> -->
                         <th>Difficulty</th>
                         <th>Successful Submissions</th>
                     </tr>
@@ -43,12 +43,15 @@
                                 <%= problems[i].qID %></a></td>
                         <td><a href="/problem/<%= problems[i].qID %>">
                                 <%= problems[i].name %></a></td>
-                        <td>
+                        <!-- <td>
                             <%= problems[i].tags %>
-                        </td>
+                        </td> -->
                         <td>
-                            <%= problems[i].difficulty %>
-                        </td>
+                                <% if (problems[i].difficulty == 0) { %>Beginner<% } %>
+                                <% if (problems[i].difficulty == 1) { %>Easy<% } %>
+                                <% if (problems[i].difficulty == 2) { %>Medium<% } %>
+                                <% if (problems[i].difficulty == 3) { %>Hard<% } %>
+                            </td>
                         <% var sol = "0"; %>
                         <% if(solved[problems[i].qID]) {sol = solved[problems[i].qID]; }%>
                         <td>

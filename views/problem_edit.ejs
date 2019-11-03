@@ -45,7 +45,12 @@
             <h2 class="subtitle">Explanation</h2>
             <textarea class="textarea" id="Explanation"><%= ques.explanation %></textarea>
             <h2 class="subtitle">Difficulty</h2>
-            <textarea class="textarea" rows="1" id="DifficultyLevel"><%= ques.difficulty %></textarea>
+            <select id="DifficultyLevel">
+                <option value="0" <% if (ques.difficulty == 0) { %>selected<% } %> >Beginner</option>
+                <option value="1" <% if (ques.difficulty == 1) { %>selected<% } %> >Easy</option>
+                <option value="2" <% if (ques.difficulty == 2) { %>selected<% } %> >Medium</option>
+                <option value="3" <% if (ques.difficulty == 3) { %>selected<% } %> >Hard</option>
+            </select>
             <h2 class="subtitle">Problem Setter</h2>
             <textarea class="textarea" rows="1" id="ProblemSetter" disabled><%= ques.problemSetter %></textarea>
             <h2 class="subtitle">Time Limit(seconds)</h2>

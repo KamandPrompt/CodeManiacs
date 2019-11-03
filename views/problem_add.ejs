@@ -42,7 +42,13 @@
             <h2 class="subtitle">Explanation</h2>
             <textarea class="textarea" id="Explanation"></textarea>
             <h2 class="subtitle">Difficulty</h2>
-            <textarea class="textarea" rows="1" id="DifficultyLevel"></textarea>
+            <select id="DifficultyLevel">
+                <option value="0">Beginner</option>
+                <option value="1">Easy</option>
+                <option value="2">Medium</option>
+                <option value="3">Hard</option>
+            </select>
+            <!-- <textarea class="textarea" rows="1" id="DifficultyLevel"></textarea> -->
             <h2 class="subtitle" >Problem Setter</h2>
             <textarea class="textarea" rows="1" id="ProblemSetter" disabled><%=locals.user.name%></textarea>
             <h2 class="subtitle">Time Limit</h2>
