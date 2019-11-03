@@ -19,7 +19,7 @@
 			<td> {{result}} </td>
 		</tr>
     </script>
-	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
 </head>
 
 <body>
@@ -27,44 +27,44 @@
         <% include partials/header %>
     </header>
     <div class="main">
-    <div class="submit-container">
-        <div id="prob-no">Submit your solution for the problem </div>
-        <div id="editor">#include &#60;bits/stdc++.h&#62;
-using namespace std;
+        <div class="submit-container">
+            <div id="prob-no">Submit your solution for the problem </div>
+            <div id="editor">#include &#60;bits/stdc++.h&#62;
+                using namespace std;
 
-int main(){
+                int main(){
 
-    return 0;
-}</div>
-        <div class="submit">
-            <select id="language">
-                <% for (var i=0; i<langlist.length; i++) { %>
-                    <option value="<%= langlist[i].id %>" >
+                return 0;
+                }</div>
+            <div class="submit">
+                <select id="language">
+                    <% for (var i=0; i<langlist.length; i++) { %>
+                    <option value="<%= langlist[i].id %>">
                         <%= langlist[i].name %>
                     </option>
-                <% } %>
-            </select>
-            <button type="button" class="btn btn-primary btn-md" onclick="submitSolution();">Submit</button>
-            <button type="button" class="btn btn-primary btn-md" onclick="goBack()">Cancel</button>
+                    <% } %>
+                </select>
+                <button type="button" class="btn btn-primary btn-md" onclick="submitSolution();">Submit</button>
+                <button type="button" class="btn btn-primary btn-md" onclick="goBack()">Cancel</button>
+            </div>
         </div>
-    </div>
-    <div id="running" style="display: none;">
-        <p>Running...</p>        
-    </div>
-    <div class="submit-result">
-        <table class="table is-bordered is-striped is-narrow is-hoverable">
-            <thead>
-                <tr>
-                    <th>Testcase No.</th>
-                    <th>Time (sec)</th>
-                    <th>Memory (KB)</th>
-                    <th>Result</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+        <div id="running" style="display: none;">
+            <p>Running...</p>
+        </div>
+        <div class="submit-result">
+            <table class="table is-bordered is-striped is-narrow is-hoverable">
+                <thead>
+                    <tr>
+                        <th>Testcase No.</th>
+                        <th>Time (sec)</th>
+                        <th>Memory (KB)</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
     <footer>
         <% include partials/footer %>
@@ -74,7 +74,20 @@ int main(){
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/chrome");
-    editor.session.setMode("ace/mode/python");
+    editor.session.setMode("ace/mode/c_cpp");
+    $("#language").change(function () {
+        var lang_enum = $(this).val();
+        if (lang_enum == 10 || lang_enum == 4) {
+            editor.session.setMode("ace/mode/c_cpp");
+        }
+        else if (lang_enum == 34 || lang_enum == 36) {
+            editor.session.setMode("ace/mode/python");
+        }
+        else if (lang_enum == 27) {
+            editor.session.setMode("ace/mode/java");
+        }
+    });
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
 <script src="/js/solution_submit.js"></script>

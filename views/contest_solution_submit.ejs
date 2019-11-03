@@ -72,7 +72,19 @@ int main(){
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/chrome");
-    editor.session.setMode("ace/mode/python");
+    editor.session.setMode("ace/mode/c_cpp");
+    $("#language").change(function () {
+        var lang_enum = $(this).val();
+        if (lang_enum == 10 || lang_enum == 4) {
+            editor.session.setMode("ace/mode/c_cpp");
+        }
+        else if (lang_enum == 34 || lang_enum == 36) {
+            editor.session.setMode("ace/mode/python");
+        }
+        else if (lang_enum == 27) {
+            editor.session.setMode("ace/mode/java");
+        }
+    });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
 <script src="/js/contest_solution_submit.js"></script>

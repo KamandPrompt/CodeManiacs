@@ -6,7 +6,7 @@
     <title>IDE | CodeManiacs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/sheet.css">
-	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
     <link rel="stylesheet" type="text/css" href="/css/ide.css">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,14 +21,14 @@
         <div class="main-heading">
             <div class="submit-container">
                 <div id="editor">
-#include &#60;bits/stdc++.h&#62;
-using namespace std;
+                    #include &#60;bits/stdc++.h&#62;
+                    using namespace std;
 
-int main(){
-    // Your code starts here
-    
-    return 0;
-}
+                    int main(){
+                    // Your code starts here
+
+                    return 0;
+                    }
                 </div>
             </div>
             <div class="submit">
@@ -65,7 +65,7 @@ int main(){
     <script>
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/chrome");
-        editor.session.setMode("ace/mode/python");
+        editor.session.setMode("ace/mode/c_cpp");
         editor.setFontSize("16px");
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
@@ -99,6 +99,18 @@ int main(){
                 $('#submit-btn').html('Submit')
                 $('#submit-btn').prop('disabled', false);
             });
+        });
+        $("#language").change(function () {
+            var lang_enum = $(this).val();
+            if (lang_enum == 10 || lang_enum == 4) {
+                editor.session.setMode("ace/mode/c_cpp");
+            }
+            else if (lang_enum == 34 || lang_enum == 36) {
+                editor.session.setMode("ace/mode/python");
+            }
+            else if (lang_enum == 27) {
+                editor.session.setMode("ace/mode/java");
+            }
         });
     </script>
 </body>

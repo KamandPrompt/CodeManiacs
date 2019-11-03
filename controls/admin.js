@@ -28,9 +28,9 @@ helper.addQuestion = async function (req, res, next) {
     const ques = req.body.ques; // problem statement
     const tc = req.body.testcases; // testcases
     req.body.ques.problemSetter=req.user.name;
-    console.log("XXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxXX");
-    console.log(tc);
-    console.log("XXXXXXXXXXXXXXXXXXXXXXX");
+    // console.log("XXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxXX");
+    // console.log(tc);
+    // console.log("XXXXXXXXXXXXXXXXXXXXXXX");
 
     try {
         await total.countDocuments({}, async (err, cnt) => {
