@@ -1,27 +1,6 @@
 # CodeManiacs
 
-CodeManiacs is an online judge for IIT Mandi. Currently people working on it are:
-
-### Mentors
-[Vishal Anand](https://www.facebook.com/vishal.nnd1)
-
-[Aashish Kumar](https://www.facebook.com/akumar118)
-
-### Current Mentees (As assigned on 05/06/2019)
-[Kairav Bansal](https://www.facebook.com/kairav.bansal.3)
-
-[Anjali Deep](https://www.facebook.com/profile.php?id=100012359647365)
-
-[Kartik Kathuria](https://www.facebook.com/kartik.kathuria.146)
-
-### LAP Project (October 2019)
-[Dheeraj](https://github.com/dheeraj135)
-
-[Neeraj Sharma](https://github.com/99neerajsharma)
-
-[Prajjwal Jha](https://github.com/JhaPrajjwal)
-
-[Vipul Sharma](https://github.com/vsvipul)
+CodeManiacs is an online judge for IIT Mandi. It helps students of IIT Mandi practice problems, host contests and allows them to compete on a personal platform, specifically made for them.
 
 ## Getting Started
 
@@ -48,6 +27,14 @@ $ nodemon
 
 The server runs at port 3000 i.e. http://localhost:3000/
 
+## File Structure
+
+The file structure of this repo is same as any other NodeJS project. The routes are in ```routes/``` directory, the logics for the routes are in ```controllers/``` directory, the models for the database used are in ```models/``` directory. The client side files are in ```public/``` directory, and the EJS (HTML Structures) files are in ```views/``` directory.
+
 ## Want to help? [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/KamandPrompt/CodeManiacs/issues)
 
 Want to file a bug, request a feature, contribute some code, or improve documentation? Excellent! Read up on our guidelines for [contributing](CONTRIBUTING.md) and then check out one of our [issues](https://github.com/KamandPrompt/CodeManiacs/issues). Make sure you follow the guidelines before sending a contribution!
+
+## Contributors
+
+Peoples currently contributing to this project are in [CONTRIBUTING.md](/CONTRIBUTING.md) file.
