@@ -294,21 +294,24 @@ helper.submitContestSolution = async (req, res, next) => {
         const judge0Response = await Promise.all(tests);
         return judge0Response;
     }
-    // console.log(req.params.contestCode);
+    
     contests.find({code:req.params.contestCode}).then(async(contestData)=>{
+        // The Contest should not be empty.
         if(contestData.length == 0) {
             ;
         }
-
+        // Number of questions in the contest are less than the number of question asked.
         if(contestData[0].problemsID.length >= req.params.qID) {
             ;
         }
+        // Has the contest started yet?
         var contest_start = moment(contestData.date).format("YYYY-MM-DD H:mm:ss") > moment(Date.now()).format("YYYY-MM-DD H:mm:ss")
 		if(contest_start){
 			res.redirect("/contests/");
 			return;
 		}
         const qID = contestData[0].problemsID[req.params.qID];
+        // Get all the test cases of this question.
         testcases.findOne( { qID: qID }, async (err, tc) => {
             if (err) {
                 console.log(err);
@@ -339,7 +342,7 @@ helper.submitContestSolution = async (req, res, next) => {
                     memory: results[i].memory
                 });
             }
-
+            // Which language are we using?
             var langName;
             const subCount = await submission.countDocuments({});
             for (var i = 0; i < lang.length; i++) {
@@ -348,7 +351,7 @@ helper.submitContestSolution = async (req, res, next) => {
                     break;
                 }
             }
-
+            // Create the submission object.
             var newSubmission = new submission({
                 username: req.user ? req.user.username : 'Guest',
                 qID: req.body.qID,
@@ -362,14 +365,14 @@ helper.submitContestSolution = async (req, res, next) => {
                 timeStamp: new Date(),
                 tc: tcs
             });
-
+            // Update the database.
             newSubmission.save(function (err) {
                 if (err) {
                 console.log(err);
                 }
                 console.log(newSubmission);
             });
-
+            // Get the user's participation in this contest.
             participation.findOne({"username": newSubmission.username, "contestCode": contestData[0].code }, 
                                 function(err, result)
             {

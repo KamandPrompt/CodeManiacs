@@ -89,7 +89,8 @@ exports.showContests = async (req, res, next) => {
 		})
 }
 
-/**Display a user contest with problems 
+/* 
+ * Display a user contest with problems 
  * route: /contests/:contestCode
 */
 exports.showContest = async (req, res, next) => {
@@ -148,6 +149,10 @@ exports.showContest = async (req, res, next) => {
 	});
 }
 
+/*
+ * Sort the participation collection based on score and render the ranklist.
+ * /contests/:code/standings/
+ */
 exports.ranklist = async(req,res,next) =>{
 	var contest = req.params.contestCode;
 	console.log(contest);

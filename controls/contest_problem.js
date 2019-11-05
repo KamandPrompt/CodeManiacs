@@ -8,6 +8,10 @@ var lang = require("../config/lang");
 var contests = require("../models/contests");
 var moment = require("moment")
 
+/*
+ *  Display a problem which is part of a contest.
+ *  /contests/:code/:qId
+ */
 helper.displayProblem = async (req, res, next) => {
     var contestCode= req.params.contestCode;
     contests.findOne({code: contestCode}).then((contestData) => {
