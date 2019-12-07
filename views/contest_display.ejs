@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Problem Set | CodeManiacs</title>
+    <title><%= contest.name %> | CodeManiacs</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,47 +24,33 @@
 
     <div class="grid-content content">
         <div class="box">
-            <h1 class="title center"> ProblemSet</h1>
+            <h1 class="title center"><%= contest.name %></h1>
+            <a href="<%= contest.code %>/standings">
+                <button type="button" class="btn btn-success btn-sm">
+                    Ranklist
+                </button>
+            </a>
             <hr>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <!-- <th>Tags</th> -->
-                        <th>Difficulty</th>
                         <th>Successful Submissions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for(var i = 0; i < problems.length; i++) { %>
                     <tr>
-                        <td><a href="/problem/<%= problems[i].qID %>">
-                                <%= problems[i].qID %></a></td>
-                        <td><a href="/problem/<%= problems[i].qID %>">
+                        <td><a href="<%= contest.code %>/<%= i %>">
+                                <%= i %></a></td>
+                        <td><a href="<%= contest.code %>/<%= i %>">
                                 <%= problems[i].name %></a></td>
-                        <!-- <td>
-                            <%= problems[i].tags %>
-                        </td> -->
-                        <td>
-                                <% if (problems[i].difficulty == 0) { %>Beginner<% } %>
-                                <% if (problems[i].difficulty == 1) { %>Easy<% } %>
-                                <% if (problems[i].difficulty == 2) { %>Medium<% } %>
-                                <% if (problems[i].difficulty == 3) { %>Hard<% } %>
-                            </td>
-                        <% var sol = "0"; %>
-                        <% if(solved[problems[i].qID]) {sol = solved[problems[i].qID]; }%>
-                        <td>
-                            <%= sol %>
-                        </td>
+                        
                     </tr>
                     <% } %>
                 </tbody>
             </table>
-            <!-- 
-                This button will be added later on.
-                <button class="button is-link">More</button> 
-            -->
         </div>
     </div>
 

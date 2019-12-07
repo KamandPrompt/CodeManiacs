@@ -8,9 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 	<link rel="stylesheet" type="text/css" href="/css/grid.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -22,7 +20,7 @@
 	<div class="grid-content content small">
 
 		<div class="box">
-			<h1 class="title center"> Upcoming Contests (under development)</h1>
+			<h1 class="title center">Upcoming Contests</h1>
 			<hr>
 			<table class="table">
 				<thead>
@@ -30,6 +28,7 @@
 						<th>Code</th>
 						<th>Name</th>
 						<th>Starting in</th>
+						<th>Duration</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -47,14 +46,60 @@
 							<%= contests[i].tm %>
 						</td>
 						<td>
-							<button type="button" class="btn btn-success btn-sm">Enter</button>
+							<%= contests[i].dur %>
+						</td>
+						<td>
+							<a href="/contests/<%= contests[i].code %>">
+								<button type="button" class="btn btn-success btn-sm">Enter</button>
+							</a>
 						</td>
 					</tr>
 					<% } %>
 				</tbody>
 			</table>
 		</div>
+
 		<div class="box">
+			<h1 class="title center">Past Contests</h1>
+			<hr>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Started at</th>
+						<th>Duration</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="show-all-contests" class="display-past-contests">
+					<% for(var i = 0; i < pastcontests.length; i++){ %>
+					<tr id="past_<%= i %>">
+						<td>
+							<%= pastcontests[i].code %>
+						</td>
+						<td>
+							<%= pastcontests[i].name %>
+						</td>
+						<td>
+							<%= pastcontests[i].dt %>
+							<%= pastcontests[i].tm %>
+						</td>
+						<td>
+							<%= pastcontests[i].dur %>
+						</td>
+						<td>
+							<a href="/contests/<%= pastcontests[i].code %>">
+								<button type="button" class="btn btn-success btn-sm">Enter</button>
+							</a>
+						</td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+		<h1 class="title center">More Contests</h1>
+		<!-- <div class="box">
 			<h1 class="title center">More Contests</h1>
 			<hr>
 			<table class="table">
@@ -92,7 +137,7 @@
 					<% } %>
 				</tbody>
 			</table>
-		</div>
+		</div> -->
 	</div>
 
 	<footer>

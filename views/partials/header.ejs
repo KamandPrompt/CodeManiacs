@@ -1,6 +1,12 @@
 <head>
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/signin.css">
 </head>
 
 <style>
@@ -10,31 +16,144 @@
     }
 </style>
 
-<section class="topbar">
-    <div class="flexbox">
-        <div class="flexbox" style="padding-top: 25px">
-            <div class="nav"><span><a href="/">HOME</a></span></div>
-            <div class="nav"><span><a href="/contests">CONTESTS</a></span></div>
-            <div class="nav"><span><a href="/problems/all">PROBLEM SET</a></span></div>
-            <div class="nav"><span><a href="/rankings">RANKINGS</a></span></div>
-            <div class="nav"><span><a href="/ide">IDE</a></span></div>
-            <% if (locals.user && locals.user.isAdmin === true) { %>
-            <div class="nav"><span><strong><a href="/admin" style="color: rgb(153, 0, 0);">ADMIN</a></strong></span></div>
-            <% } %>
-            <% if (locals.user) { %>
-            <div class="nav"><span><a href="/user/profile">PROFILE</a></span></div>
-            <div class="nav"><span><a href="/user/logout">SIGN OUT</a></span></div>
-            <% } else { %>
-            <div class="nav"><span><a href="/user/login">SIGN IN</a></span></div>
-            <div class="nav"><span><a href="/user/signup">SIGN UP</a></span></div>
-            <% } %>
-            <div class="nav"><span><a href="/contribution">CONTRIBUTE</a></span></div>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <a class="navbar-brand" href="/">CodeManiacs</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    <i class="fa fa-home"></i>
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/problems/all">
+                    <i class="fa fa-pencil"></i>
+                    Practice
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contests">
+                    <i class="fa fa-flag-checkered"></i>
+                    Contests
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rankings">
+                    <i class="fa fa-trophy"></i>
+                    Rankings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ide">
+                    <i class="fa fa-wrench"></i>
+                    IDE
+                </a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <ul class="navbar-nav mr-auto">
+                <% if (locals.user && locals.user.isAdmin === true) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">
+                        <i class="fa fa-user-secret"></i>
+                        Admin
+                    </a>
+                </li>
+                <% } %>
+                <% if (locals.user) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/profile">
+                        <i class="fa fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">
+                        <i class="fa fa-sign-out"></i>
+                        Sign Out
+                    </a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#loginModal">
+                        <i class="fa fa-sign-in"></i>
+                        Sign In
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#signupModal">
+                        <i class="fa fa-user-plus"></i>
+                        Sign Up
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+        </span>
+    </div>
+</nav>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="/user/login" method="post" class="form-signin" id="loginform">
+            <img class="mb-4" src="/photos/avatar.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+            <label for="username" class="sr-only">Username</label>
+                <input type="text" name="username" id="inputEmailSignIn" class="form-control" placeholder="Username" required autofocus>
+            <label for="inputPasswordSignIn" class="sr-only">Password</label>
+                <input type="password" name="password" id="inputPasswordSignIn" class="form-control" placeholder="Password" required>
+            <input type="submit" name="" class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in">
+            <p class="mt-5 mb-3 text-muted">Don't have an Account? <a class="close-modal" data-toggle="modal" href="#signupModal"> Sign Up Now!</a></p>
+            <label id="errormsg" class="errmsg"></label>
+        </form>
         </div>
     </div>
-</section>
+</div>
 
-<header>
-    <h1 class="left">
-        <a href= "/"><img src="/photos/logo.png" id="logo"></a>
-    </h1>
-</header>
+
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="/user/signup" method="post" class="form-signin" id ="signupform">
+            <img class="mb-4" src="/photos/avatar.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+            <label for="name" class="sr-only">Username</label>
+            <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+            <label for="name" class="sr-only">Name</label>
+            <input type="text" name="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" name="email" id="inputEmailSignUp" class="form-control" placeholder="Email" required autofocus>
+            <label for="inputPasswordSignUp" class="sr-only">Password</label>
+            <input type="password" name="password" id="inputPasswordSignUp" class="form-control" placeholder="Password" required>
+            <label for="inputPasswordSignUp" class="sr-only">Confirm Password</label>
+            <input type="password" name="password2" id="inputPasswordSignUp2" class="form-control" placeholder="Confirm Password" required>
+            <input type="submit" name="" class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up">
+            <p class="mt-5 mb-3 text-muted">Already have an Account? <a class="close-modal" data-toggle="modal" href="#loginModal"> Sign In Now!</a></p>
+            <label id="errormsg2" class="errmsg"></label>
+        </form>
+        </div>
+    </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="/js/modals_change.js"></script>

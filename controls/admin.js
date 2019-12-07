@@ -28,6 +28,9 @@ helper.addQuestion = async function (req, res, next) {
     const ques = req.body.ques; // problem statement
     const tc = req.body.testcases; // testcases
     req.body.ques.problemSetter=req.user.name;
+    // console.log("XXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxXX");
+    // console.log(tc);
+    // console.log("XXXXXXXXXXXXXXXXXXXXXXX");
 
     try {
         await total.countDocuments({}, async (err, cnt) => {
@@ -56,8 +59,9 @@ helper.addQuestion = async function (req, res, next) {
 
         // log them to the console
         console.log(ques);
-        // console.log(tc);
-
+        console.log("xxxxxxxxxxxxxxxxXXXXXXXXXXXXXXXXXXXXXX")
+        console.log(tc);
+        console.log("Problem submitted as qID = xxy");
         // push to database
         await Question.create(ques);
         await TC.create(tc);
@@ -121,30 +125,41 @@ helper.getQuestion = async (req, res, next) => {
 */
 helper.createContest = async (req, res, next) => {
 
-    /**Implement checking of the uniqueness of the contest code.
-     * In case a contest is already present with the same code
-     * then asks the user to enter another code.
-    */
-
-    /**Creating a object for new contest */
+    /**Creating an object for new contest */
     var newContest = {
-        code: req.body.contestCode, // contest code needs to be unique
+        code: req.body.contestCode, 
         name: req.body.contestName,
         date: req.body.date + " " + req.body.startTime,
+        endDate: 0,
         duration: req.body.duration,
         visible: req.body.visibility,
         problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
     };
-
-    await contests.create(newContest)
+    newContest.endDate = moment(newContest.date).add(newContest.duration,'m').toDate();
+    console.log(newContest)
+    var flag_contest = 0;
+    await contests.findOne({"code": newContest.code})
+        .then((data) => {
+            if(data) flag_contest++;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    
+    if(flag_contest == 0){
+        await contests.create(newContest)
         .then((val) => {
             console.log(val);
         })
         .catch((err) => {
             console.log(err);
         })
-
-    res.redirect("/admin/my-contests");
+        res.redirect("/admin/my-contests");
+    }
+    else {
+        console.log("Inside flag_contest = 1")
+        res.redirect("/admin/new-contest");
+    }    
 }
 
 /**Display page consisting of all the created contests 
@@ -213,6 +228,8 @@ helper.editContest = async (req, res, next) => {
         /**comma separated qID of the problems to be included in the contest */
         problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
     };
+    editContest.endDate = moment(editContest.date).add(editContest.duration,'m').toDate();
+
     await contests.update({ code: req.params.contCode }, editContest)
         .then((val) => {
             console.log("EDITED: " + val);

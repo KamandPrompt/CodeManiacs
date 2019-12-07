@@ -9,14 +9,13 @@ var moment = require("moment");
 exports.postSignUp = function (req, res) {
     user.findOne({ username: req.body.username })
         .then((data) => {
-            console.log(data);
             /**If any user with same username exists */
             if (data) {
-                return res.render("signup", { error: "Username already exists!" });
+                return res.send({ message: "Username already exists!"});
             }
             /**Checking the password */
             if (req.body.password !== req.body.password2) {
-                return res.render("signup", { error: "Password does not match" });
+                return res.send({ message: "Password does not match" });
             }
             /**Everything is fine now, and ready to create a new account object */
             var acc = new user({
@@ -29,12 +28,12 @@ exports.postSignUp = function (req, res) {
             /**Registering the new user */
             user.register(acc, req.body.password, (err, user) => {
                 if (err) {
-                    return res.render('signup', { user: user });
+                    return res.send( { message: err });
                 }
                 /**New user signup successfully */
                 passport.authenticate('local')(req, res, function () {
                     /**Redirecting to homepage with the success message */
-                    res.redirect('/?msg=' + req.body.username + "-signup-successfully!");
+                    res.send({valid: true});
                 });
             });
         })
@@ -43,32 +42,20 @@ exports.postSignUp = function (req, res) {
         })
 };
 
-/**Display login page 
- * route: /user/login
-*/
-exports.getLogin = function (req, res) {
-    if (req.user) {
-        res.render('login', { message: "You have already logged in" });
-    }
-    else {
-        res.render('login', { user: null, message: null });
-    }
-};
-
 /**POST: user login 
  * route: user/login
 */
 exports.postLogin = function (req, res) {
     passport.authenticate('local', function (err, user) {
         if (!user) {
-            return res.render('login', { message: "Wrong username or password" });
+            return res.send({ message: "Wrong username or password" });
         }
         req.logIn(user, function (err) {
             if (err) {
                 console.log(err);
-                return res.render('login', { message: "Wrong username or password" });
+                return res.send({ message: "Wrong username or password" });
             }
-            return res.redirect('/?msg=' + req.body.username + "-signin-successfully!");
+            return res.send({valid: true});
         });
     })(req, res);
 };
@@ -89,8 +76,6 @@ exports.enforceAuthentication = (loginRequired = true, adminRequired = false) =>
         } else {
             res.redirect('/');
         }
-    } else if (loginRequired) {
-        res.redirect('/user/login');
     } else {
         res.redirect('/');
     }
@@ -129,7 +114,6 @@ exports.showProfile = async (req, res, next) => {
                     stats.RE += 1;
                 }
             });
-            console.log(stats);
             res.render("profile", { stats: stats });
         })
         .catch((err) => {
@@ -164,7 +148,6 @@ exports.submission_subID = async (req, res, next) => {
     /**Collecting the user submission data from the submissions collection */
     submissions.findOne({ subID: req.params.subID })
         .then((data) => {
-            console.log(data);
             /**Assuring that the user is opening his submission only */
             if (data.username === res.locals.user.username) {
                 /**Changing the date-time format */
@@ -192,7 +175,6 @@ exports.getUpdateProfile = (req, res, next) => {
  */
 exports.postUpdateProfile = async (req, res, next) => {
     let message = "";
-    console.log(req.body);
     /**Updating the user email and/or name */
     try {
         if (req.body.email) {
