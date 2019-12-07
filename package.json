@@ -12,18 +12,20 @@
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "ejs": "^2.6.1",
-    "express": "*",
+    "express": "^4.17.1",
     "express-messages": "^1.0.1",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.1",
+    "formidable": "^1.2.1",
     "moment": "^2.24.0",
-    "mongoose": "^5.4.6",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",
     "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "serve-favicon": "^2.5.0"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Ranklist</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link rel="stylesheet" type="text/css" href="/css/manage_admins.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+
+</head>
+
+<body>
+    <header>
+        <% include partials/header %>
+    </header>
+
+    <div class="grid-content content">
+        <div class="box">
+            <h1 class="title center"> Rankings of&nbsp;<a href="/contests/<%= contest[0].code %>"><%= contest[0].name %> </a></h1>
+            <hr>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Score</th>
+                        <th>Penalty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0 ; i < list.length ; i++) {%>
+                        <tr>
+                            <td> <%= (i+1) %> </td>
+                            <td> <%= list[i].username %> </td>
+                            <td> <%= list[i].score %> </td>
+                            <td> <%= list[i].penalty %> </td>
+                        </tr>
+                    <% }%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <footer>
+        <% include partials/footer %>
+    </footer>
+</body>
+
+<script>
+
+</script>
+
+</html>

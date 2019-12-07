@@ -18,7 +18,7 @@ body{
   width: 580px;
   height: 420px;
   background: url(../photos/box.jpeg);
-  color: #fff;
+  /* color: #fff; */
   left: 90%;
   position: relative;
   box-sizing: border-box;
@@ -30,7 +30,7 @@ body{
   height: 640px;
   background: url(../photos/box.jpeg);
   background-repeat: repeat;
-  color: #fff;
+  /* color: #fff; */
   left:90%;
   position: relative;
   box-sizing: border-box;
@@ -72,7 +72,7 @@ h1{
   background: transparent;
   outline: none;
   height: 40px;
-  color: #fff;
+  /* color: #fff; */
   font-size: 16px;
     -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
     transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
@@ -89,7 +89,7 @@ h1{
   outline: none;
   height: 40px;
   background: #fb2525;
-  color: #fff;
+  /* color: #fff; */
   font-size: 18px;
   border-radius: 20px;
 }
@@ -128,7 +128,7 @@ h1{
   background: transparent;
   outline: none;
   height: 40px;
-  color: #fff;
+  /* color: #fff; */
   font-size: 16px;
 }
 .signupbox input[type="submit"]
@@ -137,7 +137,7 @@ h1{
   outline: none;
   height: 40px;
   background: #fb2525;
-  color: #fff;
+  /* color: #fff; */
   font-size: 18px;
   border-radius: 20px;
 }

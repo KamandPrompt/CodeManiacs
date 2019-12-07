@@ -4,19 +4,11 @@ var router = express.Router();
 var authController = require('../controls/auth')
 var enforceAuthentication = authController.enforceAuthentication;   // for checking the user/ admin logged in
 
-/**Display login page */
-router.get("/login", enforceAuthentication(false, false), authController.getLogin);
-
 /**POST: user login */
 router.post('/login', enforceAuthentication(false, false), authController.postLogin);
 
 /**Loggin out the user, redirected to the homepage */
 router.get('/logout', enforceAuthentication(true, false), authController.getLogout);
-
-/**Display the signup page */
-router.get("/signup", enforceAuthentication(false, false), (req, res, next) => {
-    res.render("signup", { error: null });
-});
 
 /**POST: user signup */
 router.post('/signup', enforceAuthentication(false, false), authController.postSignUp);

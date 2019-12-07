@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var favicon = require('serve-favicon');
 var expressValidator = require("express-validator");
 var session = require("express-session");
 var configDb = require("./config/database");
@@ -20,7 +21,7 @@ mongoose.connect(configDb.database, { useNewUrlParser: true });
 var db = mongoose.connection;
 
 db.once("open", () => {
-    console.log("MongoDB connected!");
+    ("MongoDB connected!");
 });
 
 db.on("error", (err) => {
@@ -36,6 +37,7 @@ app.use(logger("dev"));
 app.use(bodyParser.json({ limit: "30MB", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30MB", extended: true }));
 app.engine("html", require("ejs").renderFile);
+app.use(favicon(__dirname + '/public/photos/favicon.png'));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Express-session-middleware
@@ -94,10 +96,16 @@ app.use("/user", usersRoute);
 
 app.use("/admin", enforceAuthentication(true, true), adminRoute);
 
+app.get("/contests/:contestCode/submit/:qID",enforceAuthentication(true,false),(req,res,next) => {
+    res.render("contest_solution_submit" ,{ langlist: lang});
+});
+
 /**Display the page to submit problem qID */
 app.get("/submit/:qID", enforceAuthentication(true, false), (req, res, next) => {
     res.render("solution_submit", { langlist: lang });
 });
+
+app.post("/contests/:contestCode/submit/:qID",enforceAuthentication(true,false), problems.submitContestSolution); 
 
 /**POST: submitting the problem qID */
 app.post("/submit/:qID", enforceAuthentication(true, false), problems.submitSolution);

@@ -25,6 +25,11 @@
     <div class="grid-content content">
         <div class="box">
             <h1 class="title center"><%= contest.name %></h1>
+            <a href="<%= contest.code %>/standings">
+                <button type="button" class="btn btn-success btn-sm">
+                    Ranklist
+                </button>
+            </a>
             <hr>
             <table class="table">
                 <thead>
@@ -37,9 +42,9 @@
                 <tbody>
                     <% for(var i = 0; i < problems.length; i++) { %>
                     <tr>
-                        <td><a href="/problem/<%= problems[i].qID %>">
-                                <%= problems[i].qID %></a></td>
-                        <td><a href="/problem/<%= problems[i].qID %>">
+                        <td><a href="<%= contest.code %>/<%= i %>">
+                                <%= i %></a></td>
+                        <td><a href="<%= contest.code %>/<%= i %>">
                                 <%= problems[i].name %></a></td>
                         
                     </tr>

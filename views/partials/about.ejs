@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>About Us | CodeManiacs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+</head>
+
+<body>
+	<header>
+		<% include partials/header %>
+	</header>
+	<div class="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 block">
+					<div>
+						<h3>Recent Blogs</h3>
+						<hr>
+					</div>
+				</div>
+				<div class="col-sm-4 block">
+					<div>
+						<h3>Recent Problems</h3>
+						<hr>
+					</div>
+				</div>
+				<div class="col-sm-4 block">
+					<div>
+						<h3>Top Users</h3>
+						<hr>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="index-content">
+			<p>CodeManiacs is an online judge, like Codechef and SPOJ made by and for the students of IIT Mandi.</p>
+			<p>Here you can practice all the problems that were asked in the previous contests hosted by IIT Mandi
+				(intra/
+				inter college). We'll be very pleased if you contribute to this online judge to make it more awesome.
+			</p>
+			<p>For contributing, visit our <a href="/contribution">Contribution page</a>.</p>
+		</div>
+	</div>
+	<footer>
+		<% include partials/footer %>
+	</footer>
+</body>
+<script>
+	var URL = window.location.href;
+	if (URL.search("msg=") != -1) {
+		var message = URL.split("msg=")[1];
+		message = message.replace(/-/g, " ");
+		window.alert(message);
+	}
+</script>
+
+</html>
