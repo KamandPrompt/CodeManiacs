@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>Editorials | CodeManics</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/sheet.css">
+	<link rel="stylesheet" type="text/css" href="/css/contest_admin.css">
+	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+
+</head>
+
+<body>
+	<header>
+		<% include partials/header %>
+    </header>
+    <div class="grid-content content">
+        <div class="box">
+            <h1 class="title center"> Editorial for Question <%= questionNo %> </h1>
+            <hr>
+        <%= editorial %>
+        </div>
+    </div>
+
+    <footer>
+		<% include partials/footer %>
+	</footer>
+</body>
+
+</html>
