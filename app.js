@@ -12,6 +12,7 @@ var localStrategy = require('passport-local').Strategy;
 var publicRoute = require("./routes/index");
 var adminRoute = require("./routes/admin");
 var usersRoute = require("./routes/users");
+var editorialRoute = require("./routes/editorials");
 var problems = require("./controls/problems");
 var enforceAuthentication = require('./controls/auth').enforceAuthentication;
 var lang = require("./config/lang")
@@ -93,6 +94,7 @@ app.post("*", (req, res, next) => {
 
 app.use("/", publicRoute);
 app.use("/user", usersRoute);
+app.use("/editorials", editorialRoute);
 
 app.use("/admin", enforceAuthentication(true, true), adminRoute);
 
