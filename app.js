@@ -94,7 +94,7 @@ app.post("*", (req, res, next) => {
 
 app.use("/", publicRoute);
 app.use("/user", usersRoute);
-app.use("/editorials", editorialRoute);
+app.use("/editorial", editorialRoute);
 
 app.use("/admin", enforceAuthentication(true, true), adminRoute);
 

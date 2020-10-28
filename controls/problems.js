@@ -17,7 +17,6 @@ helper.problemSet = async (req, res, next) => {
     /**Quering problems that should be visible to the users */
     problems.find({ isVisible: true })
         .then((data) => {
-            console.log(data);
             /**Accepted questions grouping by username and qID */
             submission.aggregate([
                 { $match: { verdict: "Accepted" } },
