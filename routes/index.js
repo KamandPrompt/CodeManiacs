@@ -47,4 +47,7 @@ router.get('/about', (req, res) => {
     res.render("about");
 });
 
+/*Displaying the editorials */
+router.get('/editorial/:qID', problems.showEditorials);
+
 module.exports = router;
