@@ -20,8 +20,7 @@
         <div id="ide-heading">CodeManiacs IDE</div>
         <div class="main-heading">
             <div class="submit-container">
-                <div id="editor">
-#include &#60;bits/stdc++.h&#62;
+                <div id="editor">#include &#60;bits/stdc++.h&#62;
 using namespace std;
 
 int main(){
@@ -104,8 +103,8 @@ int main(){
             var lang_enum = $(this).val();
             if (lang_enum == 10 || lang_enum == 4) {
                 editor.session.setMode("ace/mode/c_cpp");
-                var dummyc = 
-`#include bits/stdc++.h;
+                var dummycpp = 
+`#include <bits/stdc++.h>;
 using namespace std;
 
 int main(){
@@ -113,7 +112,17 @@ int main(){
 
     return 0;
 }`
-                editor.setValue(dummyc);
+                var dummyc = 
+`#include <stdio.h>;
+int main(void){
+    // Your code starts here
+
+    return 0;
+}`
+                if(lang_enum == 4)
+                    editor.setValue(dummyc);
+                else
+                    editor.setValue(dummycpp);
             }
             else if (lang_enum == 34 || lang_enum == 36) {
                 editor.session.setMode("ace/mode/python");
@@ -122,16 +131,10 @@ int main(){
             else if (lang_enum == 27) {
                 editor.session.setMode("ace/mode/java");
                 var dummyjava = 
-`import java.util.*;
-import java.lang.*;
-import java.io.*;
-
-class CodeManiacs
-{
-	public static void main (String[] args) throws java.lang.Exception
-	{
-		// your code goes here
-	}
+`public class Main {
+    public static void main(String[] args) {
+        System.out.println("hello, world");
+    }
 }`
                 editor.setValue(dummyjava);
             }
