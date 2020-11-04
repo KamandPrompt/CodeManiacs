@@ -89,6 +89,17 @@ function fileInputControl(event) {
 	}
 }
 
+function addTestcasesFromTextbox() {
+	$('#testcases').children('div').each(function () {
+		let testfile = {
+			stdin: '_fill',
+			stdout: '_fill'
+		};
+		testfile.stdin = $(this).find('.stdin').val();
+		testfile.stdout = $(this).find('.stdout').val();
+		testcases['cases'].push(testfile);
+	});
+}
 
 
 $('.submit').on('click', function () {
@@ -96,6 +107,8 @@ $('.submit').on('click', function () {
 	//disable button
 	$('.submit').toggleClass('is-loading');
 
+	// Calling function to append all text cases to testcases.cases variable
+	addTestcasesFromTextbox();
 	// creating question object
 	const ques = {};
 
