@@ -547,7 +547,8 @@ helper.showEditorials = async (req, res, next) => {
             if (data.isVisible === false && ((res.locals.user && res.locals.user.isAdmin === false) || (res.locals.user === null)) ) {
                 next();
             }
-            res.render("editorial", { editorial: data['editorial'] , questionNo : req.params.qID });
+            console.log("Data" , data);
+            res.render("editorial", { editorial: data['editorial'] , questionNo : req.params.qID  , qName : data["name"]});
         })
 };
 
