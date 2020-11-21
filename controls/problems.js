@@ -17,7 +17,6 @@ helper.problemSet = async (req, res, next) => {
     /**Quering problems that should be visible to the users */
     problems.find({ isVisible: true })
         .then((data) => {
-            console.log(data);
             /**Accepted questions grouping by username and qID */
             submission.aggregate([
                 { $match: { verdict: "Accepted" } },
@@ -536,5 +535,21 @@ helper.userRankings = function (req, res) {
             console.log(err);
         })
 }
+
+// To show editorials for individual pages 
+helper.showEditorials = async (req, res, next) => {
+    problems.findOne({ qID: req.params.qID })
+        .then((data) => {
+            if (data === null || data['editorial'] === null) {
+                next();
+            }
+            /**false visible questions should not be accessible by a non-admin user or non logged in user */
+            if (data.isVisible === false && ((res.locals.user && res.locals.user.isAdmin === false) || (res.locals.user === null)) ) {
+                next();
+            }
+            console.log("Data" , data);
+            res.render("editorial", { editorial: data['editorial'] , questionNo : req.params.qID  , qName : data["name"]});
+        })
+};
 
 module.exports = helper;
