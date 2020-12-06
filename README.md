@@ -20,12 +20,36 @@ Open the folder CodeManiacs and install the dependencies
 $ npm install
 ```
 
-Run the application
+Next you need to set the database configurations. Create a `database.js` file in the config folder, and add the following to it.
+```
+module.exports = {
+    database: "mongodb://localhost/codemaniacs",
+    secret: "Ask-Secret-From-Us"
+}
+```
+
+Make sure you have mongodb installed. Then, run the following 
+```bash
+$ sudo service mongod start
+```
+
+Now, run the application
 ```bash
 $ nodemon
 ```
 
 The server runs at port 3000 i.e. http://localhost:3000/
+
+## Next Steps
+Open localhost:3000 in your browser and create a new user profile.
+
+You will need admin access to create problems, make contests etc. 
+So to gain admin access, open MongoDB compass (or use command line) and edit the users collection by setting `isAdmin` to true.
+
+Doing this will provide you admin access, and then you can explore the full functionality.
+
+**Explore the features, get familiar with the codebase, read the contribution guide and check out the issues to get started**
+
 
 ## File Structure
 
@@ -35,6 +59,6 @@ The file structure of this repo is same as any other NodeJS project. The routes 
 
 Want to file a bug, request a feature, contribute some code, or improve documentation? Excellent! Read up on our guidelines for [contributing](CONTRIBUTING.md) and then check out one of our [issues](https://github.com/KamandPrompt/CodeManiacs/issues). Make sure you follow the guidelines before sending a contribution!
 
-## Contributors
+## Contribution
 
-Peoples currently contributing to this project are in [CONTRIBUTING.md](/CONTRIBUTING.md) file.
+People looking to contribute can checkout the [CONTRIBUTING.md](/CONTRIBUTING.md) file.
