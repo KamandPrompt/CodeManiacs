@@ -24,9 +24,16 @@
             <h1 class="title center">Submit Question</h1>
             <hr>
             <h2 class="subtitle">Name <span style="color:red">*</span></h2>
-            <textarea class="textarea" rows="1" id="QuesName" class="title"></textarea>
-            <h2 class="subtitle">Visibility (0 or 1) <span style="color:red">*</span></h2>
-            <textarea class="textarea" rows="1" id="isVisible" class="title"></textarea>
+            <textarea class="textarea title" rows="1" id="QuesName"></textarea>
+
+            <div class="form-group">
+                <h2 class="subtitle">Visibility</h2>
+                <select class="form-control" id="isVisible">
+                    <option value="true" selected>true</option>
+                    <option value="false">false</option>
+                </select>
+            </div>
+
             <h2 class="subtitle">Description <span style="color:red">*</span></h2>
             <textarea class="textarea" id="Description"></textarea>
             <h2 class="subtitle">Input Format</h2>
@@ -49,7 +56,7 @@
                 <option value="3">Hard</option>
             </select>
             <!-- <textarea class="textarea" rows="1" id="DifficultyLevel"></textarea> -->
-            <h2 class="subtitle" >Problem Setter</h2>
+            <h2 class="subtitle">Problem Setter</h2>
             <textarea class="textarea" rows="1" id="ProblemSetter" disabled><%=locals.user.name%></textarea>
             <h2 class="subtitle">Time Limit</h2>
             <textarea class="textarea" rows="1" id="TimeLimit"></textarea>

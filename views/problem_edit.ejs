@@ -27,10 +27,23 @@
             <h1 class="title center">Edit Question</h1>
             <hr>
             <h2 class="subtitle">Name</h2>
-            <textarea class="textarea" rows="1" id="QuesName" class="title"><%= ques.name %></textarea>
-            <h2 class="subtitle">Visibility (0 or 1)</h2>
-            <textarea class="textarea" rows="1" id="isVisible" class="title"><%= ques.isVisible %></textarea>
-            <h2 class="subtitle">Description</h2>
+            <textarea class="textarea title" rows="1" id="QuesName"><%= ques.name %></textarea>
+
+            <div class="form-group">
+                <h2 class="subtitle">Visibility</h2>
+                <select class="form-control" id="isVisible">
+
+                    <% if(ques.isVisible) { %>
+                    <option value="true" selected>true</option>
+                    <option value="false">false</option>
+                    <% } else { %>
+                    <option value="true">true</option>
+                    <option value="false" selected>false</option>
+                    <% } %>
+                </select>
+            </div>
+            
+            <h2 class="subtitle">Description <span style="color:red">*</span></h2>
             <textarea class="textarea" id="Description"><%= ques.description %></textarea>
             <h2 class="subtitle">Input Format</h2>
             <textarea class="textarea" id="InputFormat"><%= ques.inputFormat %></textarea>
