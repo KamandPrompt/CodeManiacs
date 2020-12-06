@@ -113,7 +113,7 @@ $('.submit').on('click', function () {
 	const ques = {};
 
 	ques.name = $("#QuesName").val();
-	ques.isVisible = Boolean($("#isVisible").val());
+	ques.isVisible = ($("#isVisible").val() === 'true');
 	ques.description = $("#Description").val();
 	ques.inputFormat = $("#InputFormat").val();
 	ques.outputFormat = $("#OutputFormat").val();
