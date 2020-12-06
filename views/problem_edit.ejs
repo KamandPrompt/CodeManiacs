@@ -62,12 +62,19 @@
             <h2 class="subtitle">Editorial</h2>
             <textarea class="textarea" rows="1" id="Editorial"><%= ques.editorial %></textarea>
             <hr>
-            <h2 class="subtitle">Testcases</h2>
+            <h2 class="subtitle">Edit existing testcases</h2>
             <!-- <input type="file" id="Testcases" accept="text/plain" multiple="multiple" /> -->
             <!-- <a class="button is-success is-rounded" id="add">Add</a>
             <a class="button is-danger is-rounded" id="rem">Remove</a> -->
             <div id="testcases"></div>
             <br>
+            <h2 class="subtitle">Add new testcases</h2>
+            <h4 class="">Add testcases through files</h4>
+            <input type="file" id="NewTestcasesFiles" accept="text/plain" multiple="multiple" /><br><br>
+            <h4 class="">Add testcases through textbox</h4>
+            <a class="button is-success is-rounded" id="add">Add</a>
+            <a class="button is-danger is-rounded" id="rem">Remove</a> <br> <br>
+            <div id="newtestcases"></div>
             <button class="button is-link submit">Publish changes</button>
         </div>
     </div>
