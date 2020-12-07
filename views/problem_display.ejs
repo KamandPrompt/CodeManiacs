@@ -37,11 +37,13 @@
                 <h2>Output</h2>
                 <pre><%= data.outputFormat %></pre>
                 <h2>Constraints</h2>
-                <pre><%= data.constraints %></pre>
+                <pre><%= data.constraints %></pre> 
                 <h2>Sample Input</h2>
-                <pre><%= data.sampleInput %></pre>
+                <pre id = "one"><%= data.sampleInput %></pre>
+                <button class="btn btn-light btn-sm" onclick="copyToClipboard(one)">Copy text to clipboard</button>
                 <h2>Sample Output</h2>
-                <pre><%= data.sampleOutput %></pre>
+                <pre id = "two"><%= data.sampleOutput %></pre>
+                <button class="btn btn-light btn-sm" onclick = copyToClipboard(two) %>>Copy text to clipboard</button>
                 <h2>Explanation</h2>
                 <pre><%= data.explanation %></pre>
             </div>
@@ -53,7 +55,21 @@
     <footer>
         <% include partials/footer %>
     </footer>
-    
+    <script>
+    function copyToClipboard(id) {
+    const str = id.innerHTML;
+    const el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    alert("Copied text to clipboard!")
+    document.body.removeChild(el);
+}
+    </script>
 </body>
 
 </html>
