@@ -76,17 +76,45 @@ int main(){
     editor.setTheme("ace/theme/chrome");
     editor.session.setMode("ace/mode/c_cpp");
     $("#language").change(function () {
-        var lang_enum = $(this).val();
-        if (lang_enum == 10 || lang_enum == 4) {
-            editor.session.setMode("ace/mode/c_cpp");
-        }
-        else if (lang_enum == 34 || lang_enum == 36) {
-            editor.session.setMode("ace/mode/python");
-        }
-        else if (lang_enum == 27) {
-            editor.session.setMode("ace/mode/java");
-        }
-    });
+            var lang_enum = $(this).val();
+            if (lang_enum == 10 || lang_enum == 4) {
+                editor.session.setMode("ace/mode/c_cpp");
+                var dummycpp = 
+`#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    // Your code starts here
+
+    return 0;
+}`
+                var dummyc = 
+`#include <stdio.h>
+int main(void){
+    // Your code starts here
+
+    return 0;
+}`
+                if(lang_enum == 4)
+                    editor.setValue(dummyc);
+                else
+                    editor.setValue(dummycpp);
+            }
+            else if (lang_enum == 34 || lang_enum == 36) {
+                editor.session.setMode("ace/mode/python");
+                editor.setValue("#Your code here")
+            }
+            else if (lang_enum == 27) {
+                editor.session.setMode("ace/mode/java");
+                var dummyjava = 
+`public class Main {
+    public static void main(String[] args) {
+        System.out.println("hello, world");
+    }
+}`
+                editor.setValue(dummyjava);
+            }
+        });
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
