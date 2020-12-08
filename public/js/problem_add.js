@@ -136,7 +136,7 @@ $('.submit').on('click', function () {
 		return false;
 	}
 
-	if(check(ques.name) && check(ques.isVisible) && check(ques.description) && check(ques.constraints)) {
+	if(check(ques.name) && check(ques.isVisible) && check(ques.description) && check(ques.constraints) && check(ques.memoryLimit) && check(ques.timeLimit)) {
 		// Works fine;
 		;
 	}
