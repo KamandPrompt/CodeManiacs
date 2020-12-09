@@ -23,7 +23,7 @@ router.get("/submissions", enforceAuthentication(true, false), authController.su
 router.get("/submission/:subID", enforceAuthentication(true, false), authController.submission_subID);
 
 /**Display the user update profile page */
-router.get("/updateProfile", enforceAuthentication(true, false), authController.getUpdateProfile);
+router.get("/updateProfile/:id", enforceAuthentication(true, false), authController.getUpdateProfile);
 
 /**POST: user profile update */
 router.post("/updateProfile", enforceAuthentication(true, false), authController.postUpdateProfile);
