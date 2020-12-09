@@ -17,15 +17,17 @@ const settings = {
 $('#add').on('click', () => {
 	//compile testfile box and add to table
 	const testfile = template({});
-	$('#testcases').append(testfile);
+	$('#newtestcases').append(testfile);
 });
 $('#rem').on('click', () => {
-	$('#testcases').children().last().remove();
+	$('#newtestcases').children().last().remove();
 })
 
 //Handlebar template
 const source = document.getElementById('fileTemplate').innerHTML; //get template structure
 const template = Handlebars.compile(source); //compile template
+const testcases = {};
+testcases.cases = [];
 
 if (prev_tc) {
 	prev_tc.cases.forEach(item => {
@@ -37,6 +39,35 @@ if (prev_tc) {
 	});
 }
 
+$("#NewTestcasesFiles").on('change', fileInputControl);
+// fileInputControl(event);
+function fileInputControl(event) {
+	let fileInpControl = event.target;
+	let files = fileInpControl.files;
+
+	for(var i=0; i<files.length; i++) {
+		let reader = new FileReader();
+		reader.onload = function(event) {
+
+			let data = event.target.result;
+	
+			let testfile = {
+				stdin: '_fill',
+				stdout: '_fill'
+			};
+			console.log(data);
+			var x = data.split("\n\n");
+			x[0] += "\n";
+			console.log(x);
+			testfile.stdin = x[0];
+			testfile.stdout = x[1];
+			testcases['cases'].push(testfile);
+			// console.log();
+		}
+		reader.readAsText(files[i]);
+	}
+}
+
 $('.submit').on('click', function () {
 	//disable button
 	$('.submit').toggleClass('is-loading');
@@ -46,7 +77,7 @@ $('.submit').on('click', function () {
 
 	ques.name = $("#QuesName").val();
 	ques.qID = qID;
-	ques.isVisible = Boolean($("#isVisible").val());
+	ques.isVisible = ($("#isVisible").val() === 'true');
 	ques.description = $("#Description").val();
 	ques.inputFormat = $("#InputFormat").val();
 	ques.outputFormat = $("#OutputFormat").val();
@@ -62,10 +93,8 @@ $('.submit').on('click', function () {
 	ques.editorial = $("#Editorial").val();
 
 	// creating testcase Object
-	const testcases = {};
 	testcases.timeLimit = $("#TimeLimit").val();
 	testcases.memoryLimit = $("#MemoryLimit").val();
-	testcases.cases = [];
 	$('#testcases').children('div').each(function () {
 		let testfile = {
 			stdin: '_fill',
@@ -75,6 +104,16 @@ $('.submit').on('click', function () {
 		testfile.stdout = $(this).find('.stdout').val();
 		testcases['cases'].push(testfile);
 	});
+	$('#newtestcases').children('div').each(function () {
+		let testfile = {
+			stdin: '_fill',
+			stdout: '_fill'
+		};
+		testfile.stdin = $(this).find('.stdin').val();
+		testfile.stdout = $(this).find('.stdout').val();
+		testcases['cases'].push(testfile);
+	});
+
 
 	if (!testcases.cases.length) {
 		window.alert("No Testcase added");
