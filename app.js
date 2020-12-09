@@ -14,7 +14,7 @@ var adminRoute = require("./routes/admin");
 var usersRoute = require("./routes/users");
 var problems = require("./controls/problems");
 var enforceAuthentication = require('./controls/auth').enforceAuthentication;
-var lang = require("./config/lang");
+var lang = require("./config/lang")
 
 mongoose.Promise = global.Promise;
 mongoose.connect(configDb.database, { useNewUrlParser: true });
