@@ -145,7 +145,14 @@ $('.submit').on('click', function () {
 		//enable button
 		$('.submit').toggleClass('is-loading');
 		return 0;
-	}
+  }
+  
+  if (ques.timeLimit < 1 || ques.memoryLimit < 1) {
+    window.alert("Memory Limit and Time Limit must be greater than 0");
+    //enable button
+    $(".submit").toggleClass("is-loading");
+    return 0;
+  }
 
 	
 	testcases.timeLimit = $("#TimeLimit").val();
