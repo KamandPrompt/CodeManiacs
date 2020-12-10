@@ -66,10 +66,10 @@
             </select>
             <h2 class="subtitle">Problem Setter</h2>
             <textarea class="textarea" rows="1" id="ProblemSetter" disabled><%= ques.problemSetter %></textarea>
-            <h2 class="subtitle">Time Limit(seconds)</h2>
-            <textarea class="textarea" rows="1" id="TimeLimit"><%= ques.timeLimit %></textarea>
-            <h2 class="subtitle">Memory Limit(kB)</h2>
-            <textarea class="textarea" rows="1" id="MemoryLimit"><%= ques.memoryLimit %></textarea>
+            <h2 class="subtitle">Time Limit (seconds) <span style="color: red">*</span></h2>
+            <input type="number" min="1" class="textarea" rows="1" id="TimeLimit" value="<%= ques.timeLimit %>"></input>
+            <h2 class="subtitle">Memory Limit (kB) <span style="color: red">*</span></h2>
+            <input type="number" min="1" class="textarea" rows="1" id="MemoryLimit" value="<%= ques.memoryLimit %>"></input>
             <h2 class="subtitle">Tags</h2>
             <textarea class="textarea" rows="1" id="Tags"><%= ques.tags %></textarea>
             <h2 class="subtitle">Editorial</h2>
