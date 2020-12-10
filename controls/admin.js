@@ -12,7 +12,19 @@ var moment = require("moment");
 helper.displayAllProblems = async (req, res, next) => {
     /**Finding all the problems sorted in descending order of the qID */
     Question.find({}).sort({ qID: -1 })
-        .then((data) => {
+        .then(async (data) => {
+            var contestsData= await contests.find({});
+            console.log(contestsData);
+            for(var i = 0; i < data.length; i++) {
+                
+                var contestsList = [];
+                for(var j = 0; j <contestsData.length; j++) {
+                    if (contestsData[j].problemsID.includes(String(data[i].qID)))
+                        contestsList.push(contestsData[j].code);
+                }
+                data[i].contests = contestsList;
+            }
+            
             res.render("admin", { data: data });
         })
         .catch((err) => {
