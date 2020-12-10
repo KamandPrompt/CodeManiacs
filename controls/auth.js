@@ -167,7 +167,7 @@ exports.submission_subID = async (req, res, next) => {
  * route: /user/updateProfile
  */
 exports.getUpdateProfile = (req, res, next) => {
-    res.render("edit_profile", { message: null });
+    res.render("edit_profile", { 'data' : data });
 }
 
 /**Updating the user info i.e. email, name and password
