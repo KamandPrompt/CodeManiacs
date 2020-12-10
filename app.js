@@ -28,7 +28,7 @@ db.once("open", () => {
 });
 
 db.on("error", (err) => {
-  console.log(err);
+  console.log("Something went wrong", err);
 });
 
 var app = express();
