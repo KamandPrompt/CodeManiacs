@@ -38,6 +38,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Contests</th>
                         <th>Visible publicly</th>
                         <th></th>
                     </tr>
@@ -50,6 +51,17 @@
                         </td>
                         <td>
                             <%= data[i].name %>
+                        </td>
+                        <td>
+                            <% if (data[i].contests.length===0) { %>
+                                No Contests Found
+                            <% } %>
+                            
+                            <% for(var j = 0; j < data[i].contests.length; j++) { %>
+                                <a href="/contests/<%= data[i].contests[j]%>">
+                                     <%= data[i].contests[j] %>,  
+                                </a>
+                            <% } %>
                         </td>
                         <td>
                             <%= data[i].isVisible %>
