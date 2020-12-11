@@ -91,6 +91,32 @@ $('.submit').on('click', function () {
 	ques.memoryLimit = Number($("#MemoryLimit").val());
 	ques.tags = $("#Tags").val().split(",").map(item => item.trim());
 	ques.editorial = $("#Editorial").val();
+	
+	function check(data) {
+		if(data !== null && data !== ''  && data !== undefined){
+			return true;
+		}
+		return false;
+	}
+
+	if(check(ques.name) && check(ques.isVisible) && check(ques.description) && check(ques.constraints) && check(ques.memoryLimit) && check(ques.timeLimit)) {
+		// Works fine;
+		;
+	}
+	else {
+		window.alert("All star marked fields must be non-empty!");
+		//enable button
+		$('.submit').toggleClass('is-loading');
+		return 0;
+	}
+	
+	if (ques.timeLimit < 1 || ques.memoryLimit < 1) {
+		window.alert("Memory Limit and Time Limit must be greater than 0");
+		//enable button
+		$(".submit").toggleClass("is-loading");
+		return 0;
+	  }
+	
 
 	// creating testcase Object
 	testcases.timeLimit = $("#TimeLimit").val();

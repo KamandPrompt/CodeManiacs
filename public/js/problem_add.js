@@ -136,7 +136,7 @@ $('.submit').on('click', function () {
 		return false;
 	}
 
-	if(check(ques.name) && check(ques.isVisible) && check(ques.description) && check(ques.constraints)) {
+	if(check(ques.name) && check(ques.isVisible) && check(ques.description) && check(ques.constraints) && check(ques.memoryLimit) && check(ques.timeLimit)) {
 		// Works fine;
 		;
 	}
@@ -145,7 +145,14 @@ $('.submit').on('click', function () {
 		//enable button
 		$('.submit').toggleClass('is-loading');
 		return 0;
-	}
+  }
+  
+  if (ques.timeLimit < 1 || ques.memoryLimit < 1) {
+    window.alert("Memory Limit and Time Limit must be greater than 0");
+    //enable button
+    $(".submit").toggleClass("is-loading");
+    return 0;
+  }
 
 	
 	testcases.timeLimit = $("#TimeLimit").val();
