@@ -203,6 +203,7 @@ img {
     -webkit-animation-duration: 1.5s;
     animation-name: fade;
     animation-duration: 1.5s;
+    animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes fade {
