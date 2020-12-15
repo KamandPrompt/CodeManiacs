@@ -4,6 +4,8 @@ CodeManiacs is an online judge for IIT Mandi. It helps students of IIT Mandi pra
 
 ## Getting Started
 
+[Click to see installation video](https://asciinema.org/a/379320?speed=8&autoplay=1)
+
 Install the Node Package Manager 
 ```bash
 $ sudo snap install node --classic --channel=10
