@@ -40,7 +40,7 @@
                 <tr>
                     <td><%= data.subID %></td>
                     <td><%= locals.user.username %></td>
-                    <td><a href="<%= data.qID %>"><%= data.qID %></a></td>
+                    <td><a href="/problem/<%= data.qID %>"><%= data.qID %></a></td>
                     <td><%= data.language %></td>
                     <% var status_color = "nonAC_txt" %>
                     <% if (data.verdict === "Accepted") status_color = "AC_txt" %>

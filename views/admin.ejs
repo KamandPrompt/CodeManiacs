@@ -38,6 +38,7 @@
                     <tr>
                         <th><a><i class="fa fa-sort" aria-hidden="true"></i> Id</a></th>
                         <th><a><i class="fa fa-sort" aria-hidden="true"></i> Name</a></th>
+                        <th><a><i class="fa fa-sort" aria-hidden="true"></i> Contests</a></th>
                         <th><a><i class="fa fa-sort" aria-hidden="true"></i> Visible publicly</a></th>
                         <th></th>
                     </tr>
@@ -50,6 +51,17 @@
                         </td>
                         <td>
                             <%= data[i].name %>
+                        </td>
+                        <td>
+                            <% if (data[i].contests.length===0) { %>
+                                No Contests Found
+                            <% } %>
+                            
+                            <% for(var j = 0; j < data[i].contests.length; j++) { %>
+                                <a href="/contests/<%= data[i].contests[j]%>">
+                                     <%= data[i].contests[j] %>,  
+                                </a>
+                            <% } %>
                         </td>
                         <td>
                             <%= data[i].isVisible %>

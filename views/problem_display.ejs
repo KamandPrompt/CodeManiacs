@@ -37,11 +37,11 @@
                 <h2>Output</h2>
                 <pre><%= data.outputFormat %></pre>
                 <h2>Constraints</h2>
-                <pre><%= data.constraints %></pre>
-                <h2>Sample Input</h2>
-                <pre><%= data.sampleInput %></pre>
-                <h2>Sample Output</h2>
-                <pre><%= data.sampleOutput %></pre>
+                <pre><%= data.constraints %></pre> 
+                <h2>Sample Input<span><button class="border border-dark ml-4 p-2 btn btn-light btn-sm" onclick="copyToClipboard(sampleInputCopy)"><b>Copy text to clipboard</b></button></span></h2>
+                <pre id = "sampleInputCopy"><%= data.sampleInput %></pre>
+                <h2>Sample Output<span><button class="border border-dark ml-4 p-2 btn btn-light btn-sm" onclick="copyToClipboard(sampleOutputCopy)"><b>Copy text to clipboard</b></h2>
+                <pre id = "sampleOutputCopy"><%= data.sampleOutput %></pre>
                 <h2>Explanation</h2>
                 <pre><%= data.explanation %></pre>
             </div>
@@ -53,7 +53,21 @@
     <footer>
         <% include partials/footer %>
     </footer>
-    
+    <script>
+    function copyToClipboard(id) {
+    const string = id.innerHTML;
+    //creating a dummy text area
+    const dummyarea = document.createElement('textarea');
+    dummyarea.value = string;
+    dummyarea.setAttribute('readonly', '');
+    dummyarea.style.position = 'absolute';
+    dummyarea.style.left = '-9999px';
+    document.body.appendChild(dummyarea);
+    dummyarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummyarea);
+}
+    </script>
 </body>
 
 </html>
