@@ -18,6 +18,7 @@ var prob = new mongoose.Schema({
     memoryLimit: Number,
     tags: [String],
     editorial: String,
+    contests:[{type: mongoose.Schema.ObjectId, ref: "Contests"}]
 });
 var Problems = mongoose.model('Problems', prob);
 module.exports = Problems;
