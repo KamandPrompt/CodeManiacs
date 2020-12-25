@@ -228,15 +228,8 @@ helper.displayEditContest = async (req, res, next) => {
 */
 helper.editContest = async (req, res, next) => {
     /**Getting data from each fields in the edit contest form */
-    var editContest = {
-        code: req.params.contCode,
-        name: req.body.contestName,
-        date: req.body.date + " " + req.body.startTime,
-        duration: req.body.duration,
-        visible: req.body.visibility,
-        /**comma separated qID of the problems to be included in the contest */
-        problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
-    };
+    var editContest = req.body.editContest;
+    editContest.code = req.params.contCode;
     editContest.endDate = moment(editContest.date).add(editContest.duration,'m').toDate();
 
     await contests.update({ code: req.params.contCode }, editContest)

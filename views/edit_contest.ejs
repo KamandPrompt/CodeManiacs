@@ -20,22 +20,22 @@
 		<% include partials/header %>
 	</header>
 	<div class="main">
-	<form class="contest-form" action="/admin/edit-contest/<%= data.code %>" method="POST">
+	<form class="contest-form">
 		<h1><strong>EDIT CONTEST</strong></h1><br>
-		Contest Code: <span name="contestCode"><%= data.code %></span><br>
-		Contest Name: <input type="text" name="contestName" value="<%= data.name %>"><br>
-		Date: <input type="date" name="date" value="<%= data.YY %>-<%= data.MM %>-<%= data.DD %>"><br>
-		Starting Time: <input type="time" name="startTime" value="<%= data.TT %>"><br>
-		Duration (minutes): <input type="text" name="duration" value="<%= data.duration %>"><br>
-		Make the contest visible to the public? (1 for yes, 0 for no) <input type="text" name="visibility" value="<%= data.visible %>"><br>
-		Problems to be included (qID "," comma separated): <input type="text" name="problemsID" value="<%= data.problemsID %>"><br>
-		<button type="submit" class="btn btn-danger btn-md">Edit Contest</button>
-
+		Contest Code: <span name="contestCode" id="contestCode"><%= data.code %></span><br>
+		Contest Name: <input type="text" name="contestName" value="<%= data.name %>" id="contestName"><br>
+		Date: <input type="date" name="date" value="<%= data.YY %>-<%= data.MM %>-<%= data.DD %>" id="date"><br>
+		Starting Time: <input type="time" name="startTime" value="<%= data.TT %>" id="startTime"><br>
+		Duration (minutes): <input type="text" name="duration" value="<%= data.duration %>" id="duration"><br>
+		Make the contest visible to the public? (1 for yes, 0 for no) <input type="text" name="visibility" value="<%= data.visible ? '1': '0' %>" id="visibility"><br>
+		Problems to be included (qID "," comma separated): <input type="text" name="problemsID" value="<%= data.problemsID %>" id="problemsID"><br>
+		<button type="submit" class="button submit btn btn-danger btn-md">Edit Contest</button>
 	</form>
 	</div>
 	<footer>
 		<% include partials/footer %>
 	</footer>
 </body>
+<script src="/js/edit_contest.js" defer></script>
 
 </html>
