@@ -11,8 +11,9 @@ var moment = require("moment");
  */
 helper.displayAllProblems = async (req, res, next) => {
     /**Finding all the problems sorted in descending order of the qID */
+
     Question.find({}).populate('contests','code').sort({ qID: -1 })
-        .then(async (data) => {  
+        .then( (data) => {  
             res.render("admin", { data: data });
         })
         .catch((err) => {

@@ -17,7 +17,7 @@ var enforceAuthentication = require('./controls/auth').enforceAuthentication;
 var lang = require("./config/lang")
 
 mongoose.Promise = global.Promise;
-mongoose.connect(configDb.database, { useNewUrlParser: true });
+mongoose.connect(configDb.database, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 
 db.once("open", () => {
@@ -96,8 +96,8 @@ app.use("/user", usersRoute);
 
 app.use("/admin", enforceAuthentication(true, true), adminRoute);
 
-app.get("/contests/:contestCode/submit/:qID",enforceAuthentication(true,false),(req,res,next) => {
-    res.render("contest_solution_submit" ,{ langlist: lang});
+app.get("/contests/:contestCode/submit/:qID", enforceAuthentication(true, false), (req, res, next) => {
+    res.render("contest_solution_submit", { langlist: lang });
 });
 
 /**Display the page to submit problem qID */
@@ -105,7 +105,7 @@ app.get("/submit/:qID", enforceAuthentication(true, false), (req, res, next) => 
     res.render("solution_submit", { langlist: lang });
 });
 
-app.post("/contests/:contestCode/submit/:qID",enforceAuthentication(true,false), problems.submitContestSolution); 
+app.post("/contests/:contestCode/submit/:qID", enforceAuthentication(true, false), problems.submitContestSolution);
 
 /**POST: submitting the problem qID */
 app.post("/submit/:qID", enforceAuthentication(true, false), problems.submitSolution);
