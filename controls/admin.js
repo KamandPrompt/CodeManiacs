@@ -138,17 +138,10 @@ helper.getQuestion = async (req, res, next) => {
 helper.createContest = async (req, res, next) => {
 
     /**Creating an object for new contest */
-    var newContest = {
-        code: req.body.contestCode, 
-        name: req.body.contestName,
-        date: req.body.date + " " + req.body.startTime,
-        endDate: 0,
-        duration: req.body.duration,
-        visible: req.body.visibility,
-        problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
-    };
+    var newContest = req.body.newContest;
+    
     newContest.endDate = moment(newContest.date).add(newContest.duration,'m').toDate();
-    console.log(newContest)
+    console.log(newContest);
     var flag_contest = 0;
     await contests.findOne({"code": newContest.code})
         .then((data) => {
@@ -162,15 +155,19 @@ helper.createContest = async (req, res, next) => {
         await contests.create(newContest)
         .then((val) => {
             console.log(val);
+            res.send(`Contest created successfully with code ${newContest.code}.`);
         })
         .catch((err) => {
             console.log(err);
+            res.send("Error occurred while creating the contest.");
         })
-        res.redirect("/admin/my-contests");
+        
+        // res.redirect("/admin/my-contests");
     }
     else {
-        console.log("Inside flag_contest = 1")
-        res.redirect("/admin/new-contest");
+        console.log("Inside flag_contest = 1");
+        res.send("The contest with same code already exists !, try different code");
+
     }    
 }
 
