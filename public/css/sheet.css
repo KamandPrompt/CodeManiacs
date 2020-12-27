@@ -2,314 +2,282 @@
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
-hr{
-    width: 100%;
-    align-self: "center";
+hr {
+  width: 100%;
+  align-self: "center";
 }
 
 .topbar {
-    background: #fff;
-    height: 80px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
-    position: relative;
-    width: 100%;
-    top: 0;
+  background: #fff;
+  height: 80px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  position: relative;
+  width: 100%;
+  top: 0;
 }
 
-
 .row {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 0;
 }
 
 .box1 {
-    max-width: 20%;
-    /* margin-top: 40px; */
-    left: 15px;
-    padding: 10px;
+  max-width: 20%;
+  /* margin-top: 40px; */
+  left: 15px;
+  padding: 10px;
 }
 
-.in-box1{
-    background-color: white;
-    opacity: 0.8;
-    border: 1px solid black;
-    padding: 10px;
+.in-box1 {
+  background-color: white;
+  opacity: 0.8;
+  border: 1px solid black;
+  padding: 10px;
 }
 
 .flexbox {
-    display: flex;
-    width: 550px;
-    float: right;
-    height: 100%;
+  display: flex;
+  width: 550px;
+  float: right;
+  height: 100%;
 }
 
-
 .photo {
-    vertical-align: center;
-    margin-top: 20px;
-    margin-right: 5px;
+  vertical-align: center;
+  margin-top: 20px;
+  margin-right: 5px;
 }
 
 .left {
-    float: left;
+  float: left;
 }
 
 #logo {
-    font-family: "Courier New";
-    top: -70px;
-    left: 70px;
-    width: 300px;
-    font-size: 40px;
-    position: relative;
-    z-index: 1;
+  font-family: "Courier New";
+  top: -70px;
+  left: 70px;
+  width: 300px;
+  font-size: 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .right {
-    float: right;
-    margin: 10px;
+  float: right;
+  margin: 10px;
 }
 
 .flexbox2 {
-    display: flex;
-    float: all;
+  display: flex;
+  float: all;
 }
 
 * {
-    box-sizing: border-box
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Verdana, sans-serif;
-    margin: 0
+  font-family: Verdana, sans-serif;
+  margin: 0;
 }
 
 .mySlides {
-    display: none
+  display: none;
 }
-
-img {
-    vertical-align: middle;
-}
-
 
 /* Slideshow container */
 
 .slideshow-container {
-    max-width: 1000px;
-    position: relative;
-    margin: auto;
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  margin-top: 40px;
 }
-
-
-/* Next & previous buttons */
-
-.prev,
-.next {
-    cursor: all;
-    position: absolute;
-    top: 40%;
-    width: 50px;
-    height: 200px;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 30px;
-    text-align: center;
-    transition: 0.4s ease;
-    border-radius: 12px;
-    user-select: none;
-    padding-top: 75px;
-    background-color: black;
-    opacity: 0.2;
-}
-
-
-/* Position the "next button" to the right */
-
-.next {
-    right: 0;
-    border-radius: 12px;
-}
-
-
-/* On hover, add a black background color with a little bit see-through */
-
-.prev:hover,
-.next:hover {
-    background-color: black;
-    opacity: 0.8;
-}
-
 
 /* Caption text */
 
 .text {
-    color: #f2f2f2;
-    font-size: 15px;
-    padding: 8px 12px;
-    position: absolute;
-    bottom: 8px;
-    width: 100%;
-    text-align: center;
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
 }
 
-
-/* Number text (1/3 etc) */
-
-.numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
+.item > img {
+  width: 100%;
+  height: 400px;
+  box-shadow: 0 0 10px;
+  border-radius: 10px;
 }
-
-.mySlides>img {
-    width: 100%;
-    height: 400px;
-    box-shadow: 0 0 10px;
-    border-radius: 10px;
-}
-
 
 /* The dots/bullets/indicators */
 
 .dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
 
 .active,
 .dot:hover {
-    background-color: #717171;
+  background-color: #717171;
 }
-
 
 /* Fading animation */
 
 .fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
 
 /* On smaller screens, decrease text size */
 
 @media only screen and (max-width: 300px) {
-    .prev,
-    .next,
-    .text {
-        font-size: 11px
-    }
+  .prev,
+  .next,
+  .text {
+    font-size: 11px;
+  }
 }
 
 .flexbox2 {
-    display: flex;
-    margin-left: 300px;
-    margin-right: 300px;
+  display: flex;
+  margin-left: 300px;
+  margin-right: 300px;
 }
 
 .flexbox2 .div {
-    padding: 5px;
-    width: 33%;
-    position: relative;
-    margin: 10px;
-    box-shadow: 0 0 5px;
-    border-radius: 10px;
+  padding: 5px;
+  width: 33%;
+  position: relative;
+  margin: 10px;
+  box-shadow: 0 0 5px;
+  border-radius: 10px;
 }
 
 .flexbox2 .div div {
-    opacity: 0.6;
-    min-height: 100px;
-    margin: 10px;
-    border: 1px solid #e7e5e6;
+  opacity: 0.6;
+  min-height: 100px;
+  margin: 10px;
+  border: 1px solid #e7e5e6;
 }
 
 .flexbox2 .div div:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 h3 {
-    color: black;
-    opacity: 0.9;
-    /* font-family: 'Sofia'; */
-    text-align: center;
+  color: black;
+  opacity: 0.9;
+  /* font-family: 'Sofia'; */
+  text-align: center;
 }
 
 .caption {
-    font-weight: bold;
-    font-size: 4rem;
+  font-weight: bold;
+  font-size: 4rem;
 }
-
 
 /* margin at top of bulma tables */
 
 .table {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .page-not-found {
-    border: #dadada solid 1px;
-    border-radius: 10px;
-    width: 60%;
-    margin-left: 20%;
-    text-align: center;
-    padding-top: 120px;
-    padding-bottom: 120px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+  border: #dadada solid 1px;
+  border-radius: 10px;
+  width: 60%;
+  margin-left: 20%;
+  text-align: center;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .page-not-found h1 {
-    font-size: 70px;
+  font-size: 70px;
 }
 
 .page-not-found h2 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .index-content {
-    width: 70%;
-    margin-top: 20px;
-    margin-left: 15%;
-    margin-bottom: 20px;
-    font-size: 18px;
-    border: 2px solid #dfdfdf;
-    border-radius: 10px;
-    padding: 20px;
+  width: 70%;
+  margin-top: 20px;
+  margin-left: 15%;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border: 2px solid #dfdfdf;
+  border-radius: 10px;
+  padding: 20px;
 }
 
-.index-content>p {
-    margin-top: 20px;
+.index-content > p {
+  margin-top: 20px;
+}
+
+/* Owl-Carousel */
+
+.owl-carousel {
+  box-shadow: 0 0 10px;
+  border-radius: 10px;
+}
+
+.owl-prev,
+.owl-next {
+  font-size: 60px !important;
+  position: absolute;
+  bottom: -30px;
+  outline: none !important;
+}
+
+.owl-prev {
+  left: 0;
+}
+
+.owl-next {
+  right: 0;
+}
+
+.owl-prev:hover,
+.owl-next:hover {
+  background: none !important;
+  color: black !important;
+  outline: none !important;
 }
