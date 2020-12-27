@@ -7,6 +7,7 @@ var moment = require("moment");
  * route: /user/signup
 */
 exports.postSignUp = function (req, res) {
+    var url = req.url;
     user.findOne({ username: req.body.username })
         .then((data) => {
             /**If any user with same username exists */
@@ -65,7 +66,7 @@ exports.postLogin = function (req, res) {
 */
 exports.getLogout = function (req, res) {
     req.logout();
-    res.redirect('/');
+    res.redirect('url');
 }
 
 /**Implementing the routing guards */
