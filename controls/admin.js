@@ -11,20 +11,9 @@ var moment = require("moment");
  */
 helper.displayAllProblems = async (req, res, next) => {
     /**Finding all the problems sorted in descending order of the qID */
-    Question.find({}).sort({ qID: -1 })
-        .then(async (data) => {
-            var contestsData= await contests.find({});
-            console.log(contestsData);
-            for(var i = 0; i < data.length; i++) {
-                
-                var contestsList = [];
-                for(var j = 0; j <contestsData.length; j++) {
-                    if (contestsData[j].problemsID.includes(String(data[i].qID)))
-                        contestsList.push(contestsData[j].code);
-                }
-                data[i].contests = contestsList;
-            }
-            
+
+    Question.find({}).populate('contests','code').sort({ qID: -1 })
+        .then( (data) => {  
             res.render("admin", { data: data });
         })
         .catch((err) => {
@@ -148,7 +137,7 @@ helper.createContest = async (req, res, next) => {
         problemsID: req.body.problemsID.split(",").map(qID => qID.trim())
     };
     newContest.endDate = moment(newContest.date).add(newContest.duration,'m').toDate();
-    console.log(newContest)
+    console.log(newContest);
     var flag_contest = 0;
     await contests.findOne({"code": newContest.code})
         .then((data) => {
@@ -160,8 +149,27 @@ helper.createContest = async (req, res, next) => {
     
     if(flag_contest == 0){
         await contests.create(newContest)
-        .then((val) => {
+        .then(async (val) => {
+
             console.log(val);
+
+            for(var i = 0; i < val.problemsID.length; i++) {
+        
+                const refProb= await Question.findOne({qID:Number(val.problemsID[i])});
+                console.log(refProb);
+                if (!refProb) {
+                    console.log(`No problem found with ID ${val.problemsID[i]}`);
+                }
+                else {
+                    
+                    val.problems.push(refProb);
+                    refProb.contests.push(val);
+                    await refProb.save();
+                }
+                                
+            }
+            await val.save();     
+            
         })
         .catch((err) => {
             console.log(err);

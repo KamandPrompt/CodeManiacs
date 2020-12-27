@@ -58,8 +58,8 @@
                             <% } %>
                             
                             <% for(var j = 0; j < data[i].contests.length; j++) { %>
-                                <a href="/contests/<%= data[i].contests[j]%>">
-                                     <%= data[i].contests[j] %>,  
+                                <a href="/contests/<%= data[i].contests[j].code%>">
+                                     <%= data[i].contests[j].code %>,  
                                 </a>
                             <% } %>
                         </td>
