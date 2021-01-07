@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/signin.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet"  href="/css/passwordindicator.css">
 </head>
 
 <style>
@@ -130,6 +131,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
+
         <form action="/user/signup" method="post" class="form-signin" id ="signupform">
             <img class="mb-4" src="/photos/avatar.png" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
@@ -139,15 +141,26 @@
             <input type="text" name="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
             <label for="email" class="sr-only">Email</label>
             <input type="email" name="email" id="inputEmailSignUp" class="form-control" placeholder="Email" required autofocus>
-            <label for="inputPasswordSignUp" class="sr-only">Password</label>
-            <input type="password" name="password" id="inputPasswordSignUp" class="form-control" placeholder="Password" required>
+
+                <div class="password-wrapper">
+                    <label for="inputPasswordSignUp" class="sr-only">Password</label>
+                    <input class="form-control password" type="password" onkeyup="trigger()" name="password" id="inputPasswordSignUp" placeholder="Password" required>
+                  <span class="showBtn">SHOW</span>
+                </div>
+                <div class="indicator">
+                  <span class="weak"></span>
+                  <span class="medium"></span>
+                  <span class="strong"></span>
+                </div>
+                <div class="text"></div>
+
             <label for="inputPasswordSignUp" class="sr-only">Confirm Password</label>
             <input type="password" name="password2" id="inputPasswordSignUp2" class="form-control" placeholder="Confirm Password" required>
             <input type="submit" name="" class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up">
             <p class="mt-5 mb-3 text-muted">Already have an Account? <a class="close-modal" data-toggle="modal" href="#loginModal"> Sign In Now!</a></p>
             <label id="errormsg2" class="errmsg"></label>
         </form>
-        </div>
+    </div>
     </div>
 </div>
 <script
@@ -158,3 +171,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="/js/modals_change.js"></script>
 <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+<script src="/js/passwordindicator.js"></script>
