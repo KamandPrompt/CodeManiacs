@@ -10,7 +10,42 @@
 	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+  <style>
+	    h1{
+			    font-family: Verdana, Geneva, Tahoma, sans-serif;
+			  	color:border: 1px solid #c59f21;
+          padding:20px;
+          border-radius:5px;
+          background-color: burlywood;
+          color:darkcyan
+			}
+			input[type="text"],
+			input[type="date"],
+			input[type="time"]{
+			    border: 1px solid orange;
+          padding:10px;
+          margin:10px;
+          background-color:honeydew;
+          width:100%;
+			}
+			button[type="submit"]{
+				border: none;
+				background-color: khaki;
+        padding:10px;
+        width:100%;
+        color:lightslategrey
+			}
+			button[type="submit"]:hover{
+          border:none;
+          background-color:#40e068;
+          padding:10px;
+          width:100%;
+          color:lightslategrey
 
+}
+
+
+  </style>
 </head>
 
 <body>
@@ -18,7 +53,7 @@
 		<% include partials/header %>
 	</header>
 	<!-- <div class="main"> -->
-	
+
 	<div class="grid-content content small">
 		<div class="box">
 			<a href="/admin/add" style="font-size: 15px;">ADD PROBLEM</a> |
@@ -35,7 +70,7 @@
 	Duration (minutes): <span style="color:red">*</span><input type="text" name="duration"><br>
 	Make the contest visible to the public? (1 for yes, 0 for no) <span style="color:red">*</span><input type="text" name="visibility"><br>
 	Problems to be included (qID "," comma separated): <input type="text" name="problemsID"><br>
-	<button type="submit" class="btn btn-success btn-md">Create Contest</button>	
+	<button type="submit" class="btn btn-success btn-md">Create Contest</button>
 	</form>
 	</div>
 	</div>

@@ -1,3 +1,4 @@
+import "./contests.css".
 var mongoose = require('mongoose');
 
 var contests = new mongoose.Schema({
